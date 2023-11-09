@@ -18,6 +18,12 @@ public class Ad implements Serializable {
         this.title = title;
         this.description = description;
     }
+    public Ad(String title, String description, long id) {
+        this.title = title;
+        this.description = description;
+        this.id = id;
+    }
+
 
     public Ad(long userId, String title, String description) {
         this.userId = userId;

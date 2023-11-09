@@ -3,9 +3,6 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,27 +35,40 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
+    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
+        List<Ad> ads = new ArrayList<>();
+        while (rs.next()) {
+            ads.add(extractAd(rs));
+        }
+        return ads;
+    }
+
+    private Ad extractAd(ResultSet rs) throws SQLException {
+        return new Ad(
+                rs.getLong("id"),
+                rs.getLong("user_id"),
+                rs.getString("title"),
+                rs.getString("description")
+        );
+    }
+
     @Override
     public List<Ad> selectedAd(Ad ad) {
 
         return null;
     }
 
-    @Override
-    public List<Ad> selectedAd(long adId) {
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ adId +"'");
-          
-        PreparedStatement stmt = null;
-        try {
-            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ ad.getId() +"'");
-            ResultSet rs = stmt.executeQuery();
-            return createAdsFromResults(rs);
-        } catch (SQLException e) {
-            throw new RuntimeException("Error retrieving ad.", e);
-        }
-    }
+//    @Override
+//    public List<Ad> selectedAd(long adId) throws SQLException {
+//        PreparedStatement stmt = null;
+//        try {
+//            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ adId +"'");
+//            ResultSet rs = stmt.executeQuery();
+//            return createAdsFromResults(rs);
+//        } catch (SQLException e) {
+//            throw new RuntimeException("Error retrieving ad.", e);
+//        }
+//    }
 
     @Override
     public List<Ad> selectedAd(long id) {
@@ -91,22 +101,7 @@ public class MySQLAdsDao implements Ads {
         }
     }
 
-    private Ad extractAd(ResultSet rs) throws SQLException {
-        return new Ad(
-            rs.getLong("id"),
-            rs.getLong("user_id"),
-            rs.getString("title"),
-            rs.getString("description")
-        );
-    }
 
-    private List<Ad> createAdsFromResults(ResultSet rs) throws SQLException {
-        List<Ad> ads = new ArrayList<>();
-        while (rs.next()) {
-            ads.add(extractAd(rs));
-        }
-        return ads;
-    }
 
     public void delete(String id) throws SQLException {
         Statement statement = connection.createStatement();
@@ -143,8 +138,6 @@ public class MySQLAdsDao implements Ads {
         String updateQuery = "UPDATE ads SET title = '"+ad.getTitle()+"', description = '"+ad.getDescription()+ "' WHERE id = '"+ad.getId()+"'";
 
         statement.executeUpdate(updateQuery);
-
-
 
 
         return null;

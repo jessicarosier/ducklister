@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(name = "controllers.SingleAdServlet", urlPatterns = "/ad")
@@ -23,7 +24,12 @@ public class SingleAdServlet extends HttpServlet {
         System.out.println(adId);
 
 
-        List<Ad> singleAd = DaoFactory.getAdsDao().selectedAd(adId);
+        List<Ad> singleAd = null;
+        try {
+            singleAd = DaoFactory.getAdsDao().selectedAd(adId);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.setAttribute("ad",singleAd );
 
         long userAd = 0;

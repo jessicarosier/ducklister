@@ -23,7 +23,11 @@ public class UpdateAdServlet extends HttpServlet {
 
         //TODO: call method to get the ad where the ad ID = adID,
         //TODO: then set that add as an attribute to send it to the JSP
-        request.setAttribute("thisAd", DaoFactory.getAdsDao().selectedAd(adId));
+        try {
+            request.setAttribute("thisAd", DaoFactory.getAdsDao().selectedAd(adId));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);
     }
 

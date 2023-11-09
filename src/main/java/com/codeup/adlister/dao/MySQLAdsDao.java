@@ -3,7 +3,7 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
-import dao.Config;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -39,6 +39,24 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
+
+    @Override
+    public List<Ad> selectedAd(Ad ad) {
+        return null;
+    }
+
+    @Override
+    public List<Ad> selectedAd(long adId) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ adId +"'");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad.", e);
+        }
+    }
+
 
     @Override
     public Long insert(Ad ad) {

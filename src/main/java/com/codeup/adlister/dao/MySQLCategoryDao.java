@@ -2,7 +2,7 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Category;
-import dao.Config;
+
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -40,6 +40,16 @@ public class ListAdsDao implements Ads {
     }
 
     @Override
+    public List<Ad> selectedAd(Ad ad) {
+        return null;
+    }
+
+    @Override
+    public List<Ad> selectedAd(long id) {
+        return null;
+    }
+
+    @Override
     public Ad update(Ad ad) throws SQLException {
         return null;
     }

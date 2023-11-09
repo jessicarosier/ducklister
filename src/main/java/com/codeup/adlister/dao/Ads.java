@@ -16,5 +16,10 @@ public interface Ads {
 
     public List<Ad> getUserAds(User user) throws SQLException;
 
+    List<Ad> selectedAd(Ad ad);
+
+    List<Ad> selectedAd(long id);
+
     Ad update(Ad ad) throws SQLException;
+
 }

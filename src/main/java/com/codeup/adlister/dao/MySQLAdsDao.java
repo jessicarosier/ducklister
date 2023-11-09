@@ -39,6 +39,31 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
+    public List<Ad> selectedAd(Ad ad) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ ad.getId() +"'");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad.", e);
+        }
+    }
+
+    @Override
+    public List<Ad> selectedAd(long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ id +"'");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad.", e);
+        }
+    }
+
+
+    @Override
     public Long insert(Ad ad) {
         try {
             String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
@@ -102,20 +127,16 @@ public class MySQLAdsDao implements Ads {
     //TODO: create a method that executes the update in the DB
     @Override
     public Ad update(Ad ad) throws SQLException {
+        Ad updatedAd = new Ad();
         Statement statement = connection.createStatement();
-        String updateQuery = "ALTER TABLE ads WHERE id = '"+ad.getId()+"'";
-        statement.execute(updateQuery);
-        ResultSet rs = statement.getResultSet();
-        while (rs.next()) {
-            Ad userAd = new Ad(
-                    rs.getLong("id"),
-                    rs.getLong("user_id"),
-                    rs.getString("title"),
-                    rs.getString("description")
-            );
-        }
+        String updateQuery = "UPDATE ads SET title = '"+ad.getTitle()+"', description = '"+ad.getDescription()+ "' WHERE id = '"+ad.getId()+"'";
 
-        return ad;
+        statement.executeUpdate(updateQuery);
+
+
+
+
+        return null;
 
     }
 

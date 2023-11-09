@@ -3,8 +3,6 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
-import dao.Config;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +37,31 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
     }
+
+    @Override
+    public List<Ad> selectedAd(Ad ad) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ ad.getId() +"'");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad.", e);
+        }
+    }
+
+    @Override
+    public List<Ad> selectedAd(long id) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ id +"'");
+            ResultSet rs = stmt.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving ad.", e);
+        }
+    }
+
 
     @Override
     public Long insert(Ad ad) {
@@ -98,6 +121,23 @@ public class MySQLAdsDao implements Ads {
             userAds.add(userAd);
         }
         return userAds;
+    }
+
+
+    //TODO: create a method that executes the update in the DB
+    @Override
+    public Ad update(Ad ad) throws SQLException {
+        Ad updatedAd = new Ad();
+        Statement statement = connection.createStatement();
+        String updateQuery = "UPDATE ads SET title = '"+ad.getTitle()+"', description = '"+ad.getDescription()+ "' WHERE id = '"+ad.getId()+"'";
+
+        statement.executeUpdate(updateQuery);
+
+
+
+
+        return null;
+
     }
 
 }

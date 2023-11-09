@@ -29,6 +29,10 @@
                                 <input hidden="hidden" name="adid" value="${ad.id}">
                                 <button class="delete-ad" type="submit">Delete Post</button>
                             </form>
+                            <form method="get" action="/update">
+                                <input hidden="hidden" name="ad" value="${ad.id}">
+                                <button class="update-ad" type="submit">Update Post</button>
+                            </form>
                         </c:if>
                     </div>
                 </c:forEach>

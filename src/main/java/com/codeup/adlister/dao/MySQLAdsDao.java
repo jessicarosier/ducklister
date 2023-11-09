@@ -3,8 +3,6 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
-import dao.Config;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -98,6 +96,27 @@ public class MySQLAdsDao implements Ads {
             userAds.add(userAd);
         }
         return userAds;
+    }
+
+
+    //TODO: create a method that executes the update in the DB
+    @Override
+    public Ad update(Ad ad) throws SQLException {
+        Statement statement = connection.createStatement();
+        String updateQuery = "ALTER TABLE ads WHERE id = '"+ad.getId()+"'";
+        statement.execute(updateQuery);
+        ResultSet rs = statement.getResultSet();
+        while (rs.next()) {
+            Ad userAd = new Ad(
+                    rs.getLong("id"),
+                    rs.getLong("user_id"),
+                    rs.getString("title"),
+                    rs.getString("description")
+            );
+        }
+
+        return ad;
+
     }
 
 }

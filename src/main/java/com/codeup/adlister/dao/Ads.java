@@ -15,4 +15,6 @@ public interface Ads {
     void delete(String id) throws SQLException;
 
     public List<Ad> getUserAds(User user) throws SQLException;
+
+    Ad update(Ad ad) throws SQLException;
 }

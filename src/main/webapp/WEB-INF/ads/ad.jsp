@@ -10,16 +10,14 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-    <h1>Here Are all the ads!</h1>
+    <h1>Here is the selected ad</h1>
 
-    <c:forEach var="ad" items="${ads}">
+    <c:forEach var="ad" items="${ad}">
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-            <form method="post" action="/ad">
-                <input hidden="hidden" name="ad" value="${ad.id}">
-                <button class="ad-details" type="submit" >View Details</button>
-            </form>
+            <p>${owner.username}</p>
+            <p>${owner.email}</p>
 
             <c:if test="${sessionScope.user.id == ad.userId}">
                 <form method="post" action="/delete">

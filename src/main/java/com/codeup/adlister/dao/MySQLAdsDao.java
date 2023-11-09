@@ -40,6 +40,16 @@ public class MySQLAdsDao implements Ads {
 
     @Override
     public List<Ad> selectedAd(Ad ad) {
+
+        return null;
+    }
+
+    @Override
+    public List<Ad> selectedAd(long adId) {
+        PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ adId +"'");
+          
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ ad.getId() +"'");
@@ -55,6 +65,7 @@ public class MySQLAdsDao implements Ads {
         PreparedStatement stmt = null;
         try {
             stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ id +"'");
+          
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {

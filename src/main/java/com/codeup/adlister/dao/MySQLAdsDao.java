@@ -75,33 +75,21 @@ public class MySQLAdsDao implements Ads {
 
 
     @Override
-    public Long insert(Ad ad, long id) {
+    public Long insert(Ad ad) {
         try {
             String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
-            int rowsAffected = stmt.executeUpdate();
-
-            if (rowsAffected == 0) {
-                throw new SQLException("Creating ad failed, no rows affected.");
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                long adId = rs.getLong(1);
+                return adId;
+            } else {
+                return null;
             }
-            try {
-                ResultSet rs = stmt.getGeneratedKeys();
-                if (rs.next()) {
-                    long adId = rs.getLong(1);
-                    String insertAdCat = "INSERT INTO ads_category (ad_id, cat_id) VALUES ('" + adId + "', '" + id + "')";
-                    Statement statement = connection.createStatement();
-                    statement.executeUpdate(insertAdCat);
-                    return rs.getLong(1);
-                } else {
-                    throw new SQLException("Creating ad failed, no ID obtained.");
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException("Error creating a new ad.", e);
-            }
-
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
@@ -154,7 +142,7 @@ public class MySQLAdsDao implements Ads {
         List<Ad> ads = new ArrayList<>();
         try {
             PreparedStatement statement = connection.prepareStatement
-                    ("SELECT * FROM ads JOIN category ON ads.id = category.id WHERE category.id = ?");
+                    ("SELECT * FROM ads JOIN ads_category ON ads.id = ads_category.ad_id JOIN category ON ads_category.cat_id = category.id WHERE category.id = ?");
             statement.setLong(1, id);
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
@@ -164,6 +152,17 @@ public class MySQLAdsDao implements Ads {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
         return ads;
+    }
+
+    @Override
+    public void insertAdCategory(long adId, long catId) {
+        try {
+            String insertAdCat = "INSERT INTO ads_category (ad_id, cat_id) VALUES ('" + adId + "', '" + catId + "')";
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(insertAdCat);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating a new ad.", e);
+        }
     }
 
 }

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "controllers.CreateAdServlet", urlPatterns = "/ads/create")
 public class CreateAdServlet extends HttpServlet {
@@ -39,12 +41,38 @@ public class CreateAdServlet extends HttpServlet {
             request.getParameter("title"),
             request.getParameter("description")
         );
+        long adId = DaoFactory.getAdsDao().insert(ad);
+        System.out.println(adId + " is the ad id");
+        //bucket to hold the category ids
+        List<Long> catIds = new ArrayList<>();
 
-        long catId = Long.parseLong(request.getParameter("category"));
-        //inserts the new ad into the database // passes the ad object and the category id as arguments
-        DaoFactory.getAdsDao().insert(ad,catId);
+        //if the user selects a category, add the category id to the bucket
+        if(request.getParameter("generic") != null) {
+            catIds.add(Long.parseLong(request.getParameter("generic")));
+        }
+        if(request.getParameter("music") != null) {
+            catIds.add(Long.parseLong(request.getParameter("music")));
+        }
+        if(request.getParameter("sports") != null) {
+            catIds.add(Long.parseLong(request.getParameter("sports")));
+        }
+        if(request.getParameter("seasonal") != null) {
+            catIds.add(Long.parseLong(request.getParameter("seasonal")));
+        }
+        if(request.getParameter("international") != null) {
+            catIds.add(Long.parseLong(request.getParameter("international")));
+        }
+        if(request.getParameter("patriotic") != null) {
+            catIds.add(Long.parseLong(request.getParameter("patriotic")));
+        }
+        if(request.getParameter("movie") != null) {
+            catIds.add(Long.parseLong(request.getParameter("movie")));
+        }
 
-
+        //loops through the category ids bucket and inserts the ad into the ads_cats table
+        for (int i = 0; i < catIds.size(); i++) {
+            DaoFactory.getAdsDao().insertAdCategory(adId, catIds.get(i));
+        }
 
         //redirects the user to the ads index page to display all ads
         response.sendRedirect("/ads");

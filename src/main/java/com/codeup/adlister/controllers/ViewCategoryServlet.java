@@ -35,6 +35,9 @@ public class ViewCategoryServlet extends HttpServlet {
         request.setAttribute("ads", DaoFactory.getAdsDao().adsByCategory(catId));
         //passes the category title to the jsp
         request.setAttribute("title", catTitle);
+        //passes the list to the jsp
+        List<Category> allCats = DaoFactory.getCategoriesDao().all();
+        request.setAttribute("cats", allCats);
 
         request.getRequestDispatcher("/WEB-INF/ads/browse.jsp").forward(request, response);
 

@@ -51,10 +51,6 @@ public class ListAdsDao implements Ads {
         return null;
     }
 
-    @Override
-    public Long insert(Ad ad, long id) {
-        return null;
-    }
 
     @Override
     public Ad update(Ad ad) throws SQLException {
@@ -64,6 +60,11 @@ public class ListAdsDao implements Ads {
     @Override
     public List<Ad> adsByCategory(long id) {
         return null;
+    }
+
+    @Override
+    public void insertAdCategory(long adId, long catId) {
+
     }
 
     private List<Ad> generateAds() {

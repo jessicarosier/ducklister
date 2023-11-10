@@ -14,7 +14,7 @@ public interface Ads {
 
     List<Ad> selectedAd(long adId) throws SQLException;
     // insert a new ad and return the new ad's id
-    Long insert(Ad ad, long id);
+    Long insert(Ad ad);
 
     void delete(String id) throws SQLException;
 
@@ -23,5 +23,7 @@ public interface Ads {
     Ad update(Ad ad) throws SQLException;
 
     List<Ad> adsByCategory(long id);
+
+    void insertAdCategory(long adId, long catId);
 
 }

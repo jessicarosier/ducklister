@@ -15,9 +15,25 @@
 
   <c:choose>
     <c:when test="${ads.isEmpty()}">
+      <form action="/cat" method="post">
+        <select id="category" name="id" class="form-control" type="text">
+          <c:forEach var="cat" items="${cats}">
+            <option value="${cat.id}">${cat.title}</option>
+          </c:forEach>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
       <p>No ads found.</p>
     </c:when>
     <c:otherwise>
+      <form action="/cat" method="post">
+        <select id="category" name="id" class="form-control" type="text">
+          <c:forEach var="cat" items="${cats}">
+            <option value="${cat.id}">${cat.title}</option>
+          </c:forEach>
+        </select>
+        <button type="submit">Submit</button>
+      </form>
       <c:forEach var="ad" items="${ads}" >
         <h2>${ad.title}</h2>
         <p>${ad.description}</p>

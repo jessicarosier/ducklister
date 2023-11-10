@@ -18,17 +18,31 @@
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
             <div class="form-group">
-                <label for="category">Category</label>
-                <select id="category" name="category" class="form-control" type="text">
-                    <option value="1">Generic</option>
-                    <option value="2">Music</option>
-                    <option value="3">Sports</option>
-                    <option value="4">Seasonal</option>
-                    <option value="5">International</option>
-                    <option value="6">Patriotic</option>
-                    <option value="7">Movie</option>
-                    <option value="8">Superhero</option>
-                </select>
+                <p>Category</p>
+                <label> Generic
+                    <input type="checkbox" name="generic" value="1">
+                </label>
+                <label> Music
+                    <input type="checkbox" name="music" value="2">
+                </label>
+                <label> Sports
+                    <input type="checkbox" name="sports" value="3">
+                </label>
+                <label> Seasonal
+                    <input type="checkbox" name="seasonal" value="4">
+                </label>
+                <label> International
+                    <input type="checkbox" name="international" value="5">
+                </label>
+                <label> Patriotic
+                    <input type="checkbox" name="patriotic" value="6">
+                </label>
+                <label> Movie
+                    <input type="checkbox" name="movie" value="7">
+                </label>
+                <label> Superhero
+                    <input type="checkbox" name="superhero" value="8">
+                </label>
             </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>

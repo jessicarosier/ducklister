@@ -10,17 +10,13 @@
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
 
 <div class="container">
-  <h1>Here Are all the ads!</h1>
+  <h1>Browse by Category</h1>
 
-  <c:forEach var="ad" items="${ads}">
-    <div class="col-md-6">
-      <h2>${ad.title}</h2>
-      <p>${ad.description}</p>
-      <form method="post" action="/delete">
-        <input hidden="hidden" name="adid" value="${ad.id}">
-        <button class="delete-ad" type="submit">Delete Post</button>
-      </form>
-    </div>
+  <c:forEach var="cat" items="${cats}" >
+    <h2><a>${cat.title}</a></h2>
+    <form>
+      <input hidden="hidden" name="catId" value="${cat.id}">
+    </form>
   </c:forEach>
 </div>
 

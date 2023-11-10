@@ -7,6 +7,7 @@ import com.codeup.adlister.models.Category;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import com.mysql.cj.jdbc.Driver;
 
 
 public class MySQLCategoryDao implements Categories {
@@ -16,6 +17,7 @@ public class MySQLCategoryDao implements Categories {
 
     public MySQLCategoryDao(Config config) {
         try {
+            DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
                     config.getUrl(),
                     config.getUsername(),
@@ -30,7 +32,7 @@ public class MySQLCategoryDao implements Categories {
     public List<Category> all() {
         try {
             this.categories = new ArrayList<>();
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM ads");
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM category");
             ResultSet rs = statement.executeQuery();
             while (rs.next()) {
                 this.categories.add(extractCategory(rs));
@@ -38,13 +40,13 @@ public class MySQLCategoryDao implements Categories {
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving all ads.", e);
         }
-        return null;
+        return categories;
     }
 
     private Category extractCategory(ResultSet rs) throws SQLException {
         return new Category(
                 rs.getLong("id"),
-                rs.getString("title")
+                rs.getString("cat_title")
         );
 
     }

@@ -12,6 +12,21 @@
 <div class="container">
     <h1>Here Are all the ads!</h1>
 
+    <form>
+        <h2>Browse by category:</h2>
+        <label for="category">Category</label>
+        <select id="category" name="category" class="form-control" type="text">
+            <option value="1">Generic</option>
+            <option value="2">Music</option>
+            <option value="3">Sports</option>
+            <option value="4">Seasonal</option>
+            <option value="5">International</option>
+            <option value="6">Patriotic</option>
+            <option value="7">Movie</option>
+            <option value="8">Superhero</option>
+        </select>
+    </form>
+
     <c:forEach var="ad" items="${ads}">
         <div class="col-md-6">
             <h2>${ad.title}</h2>

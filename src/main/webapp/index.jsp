@@ -8,8 +8,20 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+    <div class="page-wrapper">
+
+
     <div class="container">
-        <h1>Welcome to the Adlister!</h1>
+        <div class="row text-center">
+            <div class="logo-wrapper">
+                <img class="main-logo" src="assets/images/logo.svg">
+            </div>
+            <div>
+                <a href="/ads" class="btn btn-primary">View All Ads</a>
+                <a href="/ads/create" class="btn btn-primary">Create an Ad</a>
+            </div>
+        </div>
+    </div>
     </div>
 
 </body>

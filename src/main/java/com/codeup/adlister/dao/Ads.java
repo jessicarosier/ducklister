@@ -22,4 +22,6 @@ public interface Ads {
 
     Ad update(Ad ad) throws SQLException;
 
+    List<Ad> adsByCategory(long id);
+
 }

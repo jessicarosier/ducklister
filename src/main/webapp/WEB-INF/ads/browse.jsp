@@ -11,14 +11,24 @@
 
 <div class="container">
   <h1>Browse by Category</h1>
+<h1>${title}</h1>
 
+  <c:choose>
+    <c:when test="${ads.isEmpty()}">
+      <p>No ads found.</p>
+    </c:when>
+    <c:otherwise>
+      <c:forEach var="ad" items="${ads}" >
+        <h2>${ad.title}</h2>
+        <p>${ad.description}</p>
+        <form action="/ad" method="post">
+          <input hidden="hidden" name="ad" value="${ad.id}">
+          <input type="submit" name="title" value="View Details">
+        </form>
+      </c:forEach>
+    </c:otherwise>
+  </c:choose>
 
-  <c:forEach var="cat" items="${cats}" >
-    <form action="/cat" method="post">
-      <input hidden="hidden" name="id" value="${cat.id}">
-      <input type="submit" name="title" value="${cat.title}">
-    </form>
-  </c:forEach>
 </div>
 
 <jsp:include page="/WEB-INF/partials/script.jsp" />

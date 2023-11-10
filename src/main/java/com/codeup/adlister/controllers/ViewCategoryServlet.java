@@ -26,10 +26,17 @@ public class ViewCategoryServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String cat = request.getParameter("title");
+        //parses the category id from the form, to be passed as an argument to the adsByCategory method
         long catId = Long.parseLong(request.getParameter("id"));
 
+        String catTitle = DaoFactory.getCategoriesDao().getCategoryName(catId);
 
+        //passes the list of all the ads in the selected category to the jsp
+        request.setAttribute("ads", DaoFactory.getAdsDao().adsByCategory(catId));
+        //passes the category title to the jsp
+        request.setAttribute("title", catTitle);
+
+        request.getRequestDispatcher("/WEB-INF/ads/browse.jsp").forward(request, response);
 
 
     }

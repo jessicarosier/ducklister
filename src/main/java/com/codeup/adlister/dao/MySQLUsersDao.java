@@ -1,6 +1,5 @@
 package com.codeup.adlister.dao;
 
-import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 import java.sql.*;
@@ -66,10 +65,7 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
-    public User update(User user) throws SQLException {
-
-        //TODO  continue working here***********finish this first********************************
-        //TODO then go to updateUserServlet
+    public void updateProfile(User user) throws SQLException {
 
         Statement statement = connection.createStatement();
         String updateQuery = "UPDATE users SET first_name = '"+user.getFirstName()+"', last_name = '"+ user.getLastName()+ "', username = '"+ user.getUsername()+"', email = '"+ user.getEmail()+"' WHERE id = '"+user.getId()+"'";
@@ -77,7 +73,17 @@ public class MySQLUsersDao implements Users {
         statement.executeUpdate(updateQuery);
 
 
-        return null;
+    }
+
+    @Override
+    public void updatePassword(User user) throws SQLException {
+
+        Statement statement = connection.createStatement();
+        String updateQuery = "UPDATE users SET password = '"+user.getPassword()+"' WHERE id = '"+user.getId()+"'";
+
+        statement.executeUpdate(updateQuery);
+
+
     }
 
     private User extractUser(ResultSet rs) throws SQLException {

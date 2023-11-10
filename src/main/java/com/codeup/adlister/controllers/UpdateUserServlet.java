@@ -2,8 +2,6 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.User;
-import org.mindrot.jbcrypt.BCrypt;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,47 +23,40 @@ public class UpdateUserServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/updateUser.jsp").forward(request, response);
     }
 
-//TODO work on the update user method in MySQLUsersDao first, then finish this doPost
 
-    //TODO then go add the edit profile button on the navbar to be displayed only in that page
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        //stores the user input from the form
+        long id = Long.parseLong(request.getParameter("id"));
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
+        String username = request.getParameter("username");
+        String email = request.getParameter("email");
 
 
-//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-//        //stores the user input from the form
-//        String firstName = request.getParameter("firstName");
-//        String lastName = request.getParameter("lastName");
-//        String username = request.getParameter("username");
-//        String email = request.getParameter("email");
-//        String password = request.getParameter("password");
-//        String passwordConfirmation = request.getParameter("confirm_password");
-//
-//        // validate input
-//        boolean inputHasErrors = firstName.isEmpty()
-//                || lastName.isEmpty()
-//                || username.isEmpty()
-//                || email.isEmpty()
-//                || password.isEmpty()
-//                || (! password.equals(passwordConfirmation));
-//
-//        //if there are errors, send the user back to the register page
-//        if (inputHasErrors) {
-//            response.sendRedirect("/register");
-//            return;
-//        }
-//
-//        // create and save a new user
-//        User user = new User(firstName, lastName, username, email, password);
-//
-//        // hash the password and add some salt
-//        String hash = BCrypt.hashpw(password, BCrypt.gensalt(12));
-//
-//        //set the password to the hash
-//        user.setPassword(hash);
-//
-//        //insert the user into the database
-//        DaoFactory.getUsersDao().insert(user);
-//
-//        //redirect the user to the login page
-//        response.sendRedirect("/login");
-//    }
+        // validate input
+        boolean inputHasErrors = firstName.isEmpty()
+                || lastName.isEmpty()
+                || username.isEmpty()
+                || email.isEmpty();
+
+        //if there are errors, send the user back to the profile update page
+        if (inputHasErrors) {
+            response.sendRedirect("/profile/update");
+            return;
+        }
+
+        // create and save a new user
+        User user = new User(id, firstName, lastName, username, email);
+
+
+        //insert the user into the database with new password into
+        try {
+            DaoFactory.getUsersDao().updateProfile(user);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        //redirect the user to the profile page
+        response.sendRedirect("/profile");
+    }
 }

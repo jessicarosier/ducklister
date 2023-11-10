@@ -26,6 +26,7 @@ public class UpdateUserServlet extends HttpServlet {
     }
 
 //TODO work on the update user method in MySQLUsersDao first, then finish this doPost
+
     //TODO then go add the edit profile button on the navbar to be displayed only in that page
 
 

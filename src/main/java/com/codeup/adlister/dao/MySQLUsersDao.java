@@ -71,10 +71,10 @@ public class MySQLUsersDao implements Users {
         //TODO  continue working here***********finish this first********************************
         //TODO then go to updateUserServlet
 
-//        Statement statement = connection.createStatement();
-//        String updateQuery = "UPDATE ads SET title = '"+ad.getTitle()+"', description = '"+ad.getDescription()+ "' WHERE id = '"+ad.getId()+"'";
-//
-//        statement.executeUpdate(updateQuery);
+        Statement statement = connection.createStatement();
+        String updateQuery = "UPDATE users SET first_name = '"+user.getFirstName()+"', last_name = '"+ user.getLastName()+ "', username = '"+ user.getUsername()+"', email = '"+ user.getEmail()+"' WHERE id = '"+user.getId()+"'";
+
+        statement.executeUpdate(updateQuery);
 
 
         return null;

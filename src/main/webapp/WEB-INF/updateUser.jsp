@@ -7,33 +7,44 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-<div class="container">
-  <h1>Update Profile.</h1>
-  <form action="/profile/update" method="post">
-    <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input id="firstName" name="firstName" class="form-control" type="text" value="${thisUser.getFirstName()}">
-    </div>
-    <div class="form-group">
-      <label for="lastName">Last Name</label>
-      <input id="lastName" name="lastName" class="form-control" type="text" value="${thisUser.getLastName()}">
-    </div>
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input id="username" name="username" class="form-control" type="text" value="${thisUser.getUsername()}">
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input id="email" name="email" class="form-control" type="text" value="${thisUser.getEmail()}">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input id="password" name="password" class="form-control" type="password">
-      <input hidden="hidden" name="id" class="form-control" type="text" value="${thisUser.getId()}">
-    </div>
+  <div class="container">
+    <h1>Update Profile.</h1>
+    <form action="/profile/update" method="post">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input id="firstName" name="firstName" class="form-control" type="text" value="${thisUser.getFirstName()}">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input id="lastName" name="lastName" class="form-control" type="text" value="${thisUser.getLastName()}">
+      </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input id="username" name="username" class="form-control" type="text" value="${thisUser.getUsername()}">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" name="email" class="form-control" type="text" value="${thisUser.getEmail()}">
+      </div>
 
-    <input type="submit" class="btn btn-primary btn-block">
-  </form>
-</div>
+      <input hidden="hidden" name="id" value="${thisUser.getId()}">
+
+      <input type="submit" class="btn btn-primary btn-block">
+    </form>
+
+    <h2>Update Password</h2>
+
+    <form method="post" action="/profile/update/password">
+      <div class="form-group">
+        <label for="password">New Password</label>
+        <input id="password" name="password" class="form-control" type="password">
+      </div>
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label>
+        <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+      </div>
+      <input type="submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
 </body>
 </html>

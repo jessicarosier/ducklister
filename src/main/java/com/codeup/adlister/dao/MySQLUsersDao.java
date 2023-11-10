@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 import java.sql.*;
@@ -62,6 +63,21 @@ public class MySQLUsersDao implements Users {
         } catch (SQLException e) {
             throw new RuntimeException("Error finding a user by username", e);
         }
+    }
+
+    @Override
+    public User update(User user) throws SQLException {
+
+        //TODO  continue working here***********finish this first********************************
+        //TODO then go to updateUserServlet
+
+//        Statement statement = connection.createStatement();
+//        String updateQuery = "UPDATE ads SET title = '"+ad.getTitle()+"', description = '"+ad.getDescription()+ "' WHERE id = '"+ad.getId()+"'";
+//
+//        statement.executeUpdate(updateQuery);
+
+
+        return null;
     }
 
     private User extractUser(ResultSet rs) throws SQLException {

@@ -10,6 +10,6 @@ VALUES ('Generic'),
        ('Movie'),
        ('Superhero');
 
-UPDATE ads SET title = "title", description = "description" WHERE id = 1;
+
 
 

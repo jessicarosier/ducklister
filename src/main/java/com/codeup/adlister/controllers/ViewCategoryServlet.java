@@ -16,14 +16,22 @@ import java.util.List;
 public class ViewCategoryServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        //sets the list of current ads as an attribute to be forwarded to the jsp
+        //stores all categories in a list
         List<Category> allCats = DaoFactory.getCategoriesDao().all();
-        for (int i = 0; i < allCats.size(); i++) {
-            System.out.println(allCats.get(i).getTitle());
-        }
+
+        //passes the list to the jsp
         request.setAttribute("cats", allCats);
         request.getRequestDispatcher("/WEB-INF/ads/category.jsp").forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        String cat = request.getParameter("title");
+        long catId = Long.parseLong(request.getParameter("id"));
+
+
+
+
     }
 
 }

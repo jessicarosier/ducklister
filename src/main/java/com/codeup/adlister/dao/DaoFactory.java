@@ -1,5 +1,6 @@
 package com.codeup.adlister.dao;
 
+import com.codeup.adlister.models.AdCat;
 import com.codeup.adlister.models.Category;
 
 
@@ -8,6 +9,7 @@ public class DaoFactory {
     private static Users usersDao;
 
     private static Categories categoriesDao;
+
     private static Config config = new Config();
 
     public static Ads getAdsDao() {
@@ -30,4 +32,6 @@ public class DaoFactory {
         }
         return categoriesDao;
     }
+
+
 }

@@ -3,7 +3,7 @@
 <html>
 <head>
   <jsp:include page="/WEB-INF/partials/head.jsp">
-    <jsp:param name="title" value="Viewing All The dao.Ads" />
+    <jsp:param name="title" value="Browse by category" />
   </jsp:include>
 </head>
 <body>
@@ -13,9 +13,10 @@
   <h1>Browse by Category</h1>
 
   <c:forEach var="cat" items="${cats}" >
-    <h2><a>${cat.title}</a></h2>
-    <form>
-      <input hidden="hidden" name="catId" value="${cat.id}">
+
+    <form action="/cat" method="post">
+      <input hidden="hidden" name="id" value="${cat.id}">
+      <input type="submit" name="title" value="${cat.title}">
     </form>
   </c:forEach>
 </div>

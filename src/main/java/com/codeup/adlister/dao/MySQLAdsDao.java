@@ -3,6 +3,7 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +15,9 @@ public class MySQLAdsDao implements Ads {
         try {
             DriverManager.registerDriver(new Driver());
             connection = DriverManager.getConnection(
-                config.getUrl(),
-                config.getUsername(),
-                config.getPassword()
+                    config.getUrl(),
+                    config.getUsername(),
+                    config.getPassword()
             );
         } catch (SQLException e) {
             throw new RuntimeException("Error connecting to the database!", e);
@@ -58,24 +59,13 @@ public class MySQLAdsDao implements Ads {
         return null;
     }
 
-//    @Override
-//    public List<Ad> selectedAd(long adId) throws SQLException {
-//        PreparedStatement stmt = null;
-//        try {
-//            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ adId +"'");
-//            ResultSet rs = stmt.executeQuery();
-//            return createAdsFromResults(rs);
-//        } catch (SQLException e) {
-//            throw new RuntimeException("Error retrieving ad.", e);
-//        }
-//    }
 
     @Override
     public List<Ad> selectedAd(long id) {
         PreparedStatement stmt = null;
         try {
-            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '"+ id +"'");
-          
+            stmt = connection.prepareStatement("SELECT * FROM ads WHERE id = '" + id + "'");
+
             ResultSet rs = stmt.executeQuery();
             return createAdsFromResults(rs);
         } catch (SQLException e) {
@@ -85,22 +75,37 @@ public class MySQLAdsDao implements Ads {
 
 
     @Override
-    public Long insert(Ad ad) {
+    public Long insert(Ad ad, long id) {
         try {
             String insertQuery = "INSERT INTO ads(user_id, title, description) VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, ad.getUserId());
             stmt.setString(2, ad.getTitle());
             stmt.setString(3, ad.getDescription());
-            stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            rs.next();
-            return rs.getLong(1);
+            int rowsAffected = stmt.executeUpdate();
+
+            if (rowsAffected == 0) {
+                throw new SQLException("Creating ad failed, no rows affected.");
+            }
+            try {
+                ResultSet rs = stmt.getGeneratedKeys();
+                if (rs.next()) {
+                    long adId = rs.getLong(1);
+                    String insertAdCat = "INSERT INTO ads_category (ad_id, cat_id) VALUES ('" + adId + "', '" + id + "')";
+                    Statement statement = connection.createStatement();
+                    statement.executeUpdate(insertAdCat);
+                    return rs.getLong(1);
+                } else {
+                    throw new SQLException("Creating ad failed, no ID obtained.");
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException("Error creating a new ad.", e);
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException("Error creating a new ad.", e);
         }
     }
-
 
 
     public void delete(String id) throws SQLException {
@@ -135,7 +140,7 @@ public class MySQLAdsDao implements Ads {
     public Ad update(Ad ad) throws SQLException {
         Ad updatedAd = new Ad();
         Statement statement = connection.createStatement();
-        String updateQuery = "UPDATE ads SET title = '"+ad.getTitle()+"', description = '"+ad.getDescription()+ "' WHERE id = '"+ad.getId()+"'";
+        String updateQuery = "UPDATE ads SET title = '" + ad.getTitle() + "', description = '" + ad.getDescription() + "' WHERE id = '" + ad.getId() + "'";
 
         statement.executeUpdate(updateQuery);
 

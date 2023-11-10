@@ -17,6 +17,19 @@
                 <label for="description">Description</label>
                 <textarea id="description" name="description" class="form-control" type="text"></textarea>
             </div>
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category" class="form-control" type="text">
+                    <option value="1">Generic</option>
+                    <option value="2">Music</option>
+                    <option value="3">Sports</option>
+                    <option value="4">Seasonal</option>
+                    <option value="5">International</option>
+                    <option value="6">Patriotic</option>
+                    <option value="7">Movie</option>
+                    <option value="8">Superhero</option>
+                </select>
+            </div>
             <input type="submit" class="btn btn-block btn-primary">
         </form>
     </div>

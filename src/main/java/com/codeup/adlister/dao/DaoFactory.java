@@ -2,6 +2,9 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.AdCat;
 import com.codeup.adlister.models.Category;
+import com.codeup.adlister.models.Comment;
+
+import java.sql.SQLException;
 
 
 public class DaoFactory {
@@ -9,6 +12,8 @@ public class DaoFactory {
     private static Users usersDao;
 
     private static Categories categoriesDao;
+
+    private static Comments commentsDao;
 
     private static Config config = new Config();
 
@@ -31,6 +36,13 @@ public class DaoFactory {
             categoriesDao = new MySQLCategoryDao(config);
         }
         return categoriesDao;
+    }
+
+    public static Comments getCommentsDao() {
+        if (commentsDao == null) {
+            commentsDao = new MySQLCommentsDao(config);
+        }
+        return commentsDao;
     }
 
 

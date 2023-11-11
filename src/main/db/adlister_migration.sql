@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS comments (
     user_id INT UNSIGNED,
     ad_id INT UNSIGNED,
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (ad_id) REFERENCES ads (id)
+    FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,
+    FOREIGN KEY (ad_id) REFERENCES ads (id) ON DELETE CASCADE
 );
 
 

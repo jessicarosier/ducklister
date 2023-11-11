@@ -29,6 +29,12 @@
                             <button class="delete-ad" type="submit">Delete Post</button>
                         </form>
                     </c:if>
+                    <c:if test="${comment != null}">
+                        <div>
+                            <h3>${comment.username}</h3>
+                            <p>${comment.comment}</p>
+                        </div>
+                    </c:if>
                     <button id="comment" data-id="${ad.id}">Comment</button>
                 </c:forEach>
             </div>

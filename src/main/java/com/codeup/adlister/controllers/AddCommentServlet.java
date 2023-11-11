@@ -27,7 +27,7 @@ public class AddCommentServlet extends HttpServlet {
         System.out.println(comment);
         System.out.println(adId);
         System.out.println(userId);
-        Comment newComment = new Comment(adId, userId, comment);
+        Comment newComment = new Comment(userId, adId, comment);
         System.out.println(newComment.getUserId());
         System.out.println(newComment.getAdId());
         System.out.println(newComment.getComment());

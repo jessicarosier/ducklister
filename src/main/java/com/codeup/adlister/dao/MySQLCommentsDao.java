@@ -41,6 +41,7 @@ public class MySQLCommentsDao implements Comments {
                 return 0;
             }
         } catch (SQLException e) {
+            e.printStackTrace();
             throw new RuntimeException("Error creating a new comment.", e);
         }
 

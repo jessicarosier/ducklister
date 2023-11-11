@@ -75,7 +75,7 @@
     </div>
 </div>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
-<script src="${pageContext.request.contextPath}/js/profile.js"></script>
+<script src="/js/profile.js" type="module"></script>
 
 </body>
 </html>

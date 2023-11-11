@@ -1,4 +1,5 @@
-const fsKey = "ApuEX84WRR0K8zh6E6DuCz";
+import fsKey from "./keys.js";
+
 //initialize filestack with api key
 const client = filestack.init(fsKey);
 

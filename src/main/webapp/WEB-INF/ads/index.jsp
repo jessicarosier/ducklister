@@ -25,8 +25,9 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-            <form method="post" action="/ad">
+            <form method="get" action="/ad">
                 <input hidden="hidden" name="ad" value="${ad.id}">
+                <input hidden="hidden" name="from" value="ads">
                 <button class="ad-details" type="submit">View Details</button>
             </form>
 

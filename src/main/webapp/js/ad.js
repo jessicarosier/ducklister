@@ -16,6 +16,7 @@ commentLink.addEventListener("click", (e) => {
         </div>
             <form action="/comment" method="post">
                 <input type="hidden" name="id" value="${adId}">
+                <input type="hidden" name="location" value="/ad">
                 <textarea name="comment"  ></textarea>
                 <button type="submit" class="submit-btn">Submit<button>
             </form>

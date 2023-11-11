@@ -16,6 +16,8 @@ import java.util.List;
 @WebServlet(name = "controllers.SingleAdServlet", urlPatterns = "/ad")
 public class SingleAdServlet extends HttpServlet {
 
+    //I had to change this it doGet so I could get the adId from the url for the AdCommentsServlet
+    //This did not need to be a post because not data is being sent from the form to the db
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //sets the list of current ads as an attribute to be forwarded to the jsp

@@ -14,8 +14,6 @@
     <main class="container-fluid">
         <div class="row">
             <h1>Here is the selected ad</h1>
-
-
             <div class="col-md-6">
                 <c:forEach var="ad" items="${ad}">
                     <h2>${ad.title}</h2>

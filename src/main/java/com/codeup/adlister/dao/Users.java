@@ -8,4 +8,6 @@ public interface Users {
     User findByUsername(String username);
     Long insert(User user);
     User findUserById(long adId);
+
+    User insertProfilePic(long userId, String image);
 }

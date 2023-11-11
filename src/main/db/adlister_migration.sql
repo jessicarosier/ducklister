@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS users
     jeep_color VARCHAR(100),
     username VARCHAR(100) UNIQUE,
     email    VARCHAR(100) NOT NULL UNIQUE,
+    avatar VARCHAR(300),
     password VARCHAR(500)  NOT NULL,
     PRIMARY KEY (id)
 );
@@ -26,6 +27,7 @@ CREATE TABLE IF NOT EXISTS ads
     id          INT UNSIGNED  NOT NULL AUTO_INCREMENT,
     title       VARCHAR(100)  NOT NULL,
     description VARCHAR(1000) NOT NULL,
+    image       VARCHAR(300),
     user_id     INT UNSIGNED,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users (id)

@@ -49,5 +49,6 @@
         </form>
     </div>
     <jsp:include page="/WEB-INF/partials/script.jsp" />
+<script src="/js/create-ad.js"></script>
 </body>
 </html>

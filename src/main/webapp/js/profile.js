@@ -1,20 +1,30 @@
 const fsKey = "ApuEX84WRR0K8zh6E6DuCz";
+//initialize filestack with api key
 const client = filestack.init(fsKey);
-const image = document.getElementById("profile-pic");
+
+const image = document.getElementById("temp-pic");
 const fileUpload = document.getElementById("file-upload");
+const imageInput = document.getElementById("image-url");
 
+const form = document.getElementById("image-form");
 
-fileUpload.addEventListener("click", (event) => {
+//add event listener to file upload button, when a file is selected, upload it to filestack
+fileUpload.addEventListener("change", (event) => {
     event.preventDefault();
-    // const file = event.target.files[0];
-    //
-    // client.upload(file).then((response) => {
-    //     image.src = response.url;
-    // }).catch((error) => {
-    //     console.log(error);
-    // });
-    client.picker().open();
+    //get the file that was selected
+    const file = event.target.files[0];
+    console.log(file);
+    client.upload(file).then((response) => {
+        const imageUrl = response.url;
+        image.src = imageUrl;
+        imageInput.value = imageUrl;
+        form.submit();
+    }).catch((error) => {
+        console.log(error);
+    });
+
 });
+
 
 
 

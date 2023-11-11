@@ -11,13 +11,14 @@ VALUES ('Generic'),
        ('Superhero');
 
 INSERT INTO users (username, first_name, last_name, email, password, jeep_model, jeep_year, jeep_color)
-VALUES ('duckyMan', 'Donald', 'Duck', 'donduck@disney.com', 'password', 'Wrangler', 2015, 'Red'),
-       ('mickeyMan', 'Mickey', 'Mouse', 'themouse@disney.com', 'password', 'Wrangler', 2023, 'Blue'),
-       ('JeepGuy', 'John', 'Doe', 'jdoe@gmail.com', 'password', 'Wrangler', 2018, 'Black'),
-       ('AllThingsJeep', 'Jane', 'Doe', 'janedoe@yahoo.com', 'password', 'Wrangler', 2019, 'White'),
-       ('JeepLover', 'Jill', 'Doe', 'jeep_jill@aol.com', 'password', 'Wrangler', 2017, 'Green'),
-       ('steveTheDeer', 'Steve', 'Deer', 'justAdeer@live.com', 'password', 'Wrangler', 2016, 'Yellow'),
-       ('jrose', 'Jessica', 'Rosier', 'jessicarosierc@gmail.com', 'password', 'Wrangler', 2015, 'Red');
+VALUES ('jrose', 'Jessica', 'Rosier', 'jessicarosier@gmail.com',
+        '$2a$12$tcuidp2umjRVHXST.z.Ga.QPCydyNq7Y6/smNlLWHE4qeeS3jBznq', 'Wrangler', 2015, 'Red'),
+       ('duckyMan', 'Donald', 'Duck', 'donduck@disney.com', '$2a$12$tcuidp2umjRVHXST.z.Ga.QPCydyNq7Y6/smNlLWHE4qeeS3jBznq', 'Wrangler', 2015, 'Red'),
+       ('mickeyMan', 'Mickey', 'Mouse', 'themouse@disney.com', '$2a$12$tcuidp2umjRVHXST.z.Ga.QPCydyNq7Y6/smNlLWHE4qeeS3jBznq', 'Wrangler', 2023, 'Blue'),
+       ('JeepGuy', 'John', 'Doe', 'jdoe@gmail.com', '$2a$12$tcuidp2umjRVHXST.z.Ga.QPCydyNq7Y6/smNlLWHE4qeeS3jBznq', 'Wrangler', 2018, 'Black'),
+       ('AllThingsJeep', 'Jane', 'Doe', 'janedoe@yahoo.com', '$2a$12$tcuidp2umjRVHXST.z.Ga.QPCydyNq7Y6/smNlLWHE4qeeS3jBznq', 'Wrangler', 2019, 'White'),
+       ('JeepLover', 'Jill', 'Doe', 'jeep_jill@aol.com', '$2a$12$tcuidp2umjRVHXST.z.Ga.QPCydyNq7Y6/smNlLWHE4qeeS3jBznq', 'Wrangler', 2017, 'Green'),
+       ('steveTheDeer', 'Steve', 'Deer', 'justAdeer@live.com', '$2a$12$tcuidp2umjRVHXST.z.Ga.QPCydyNq7Y6/smNlLWHE4qeeS3jBznq', 'Wrangler', 2016, 'Yellow');
 
 INSERT INTO ads (user_id, title, description)
 VALUES (1, 'American Duck!', 'This duck is as American as they come!'),

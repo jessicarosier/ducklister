@@ -5,12 +5,29 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
+    <link href="/css/profile.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="page-wrapper">
     <div class="container">
         <h1>Welcome, ${sessionScope.user.firstName} ${sessionScope.user.lastName}!</h1>
+        <c:choose>
+            <c:when test="${sessionScope.user.avatar == null}">
+                <div class="image-upload-wrapper">
+                    <input type="file" id="file-upload" value="Upload a Profile Picture">
+                    <form id="image-form" method="post" action="/images" >
+                        <input type="hidden" id="image-url" name="image" value="">
+                        <input type="hidden" name="location" value="profile">
+                    </form>
+                    <img src="" name="avatar" alt="avatar" class="avatar" id="temp-pic">
+                </div>
+            </c:when>
+            <c:otherwise>
+                <img src="${sessionScope.user.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+            </c:otherwise>
+        </c:choose>
+
 
         <main class="profile">
             <div class="row">
@@ -57,8 +74,8 @@
         </main>
     </div>
 </div>
-
-<script src="${pageContext.request.contextPath}/js/profile.js"></script>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/profile.js"></script>
+
 </body>
 </html>

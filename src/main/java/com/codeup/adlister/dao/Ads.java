@@ -11,6 +11,7 @@ public interface Ads {
 
     //get a single ad
     List<Ad> selectedAd(Ad ad);
+    List<Ad> searchAds(String keywords);
 
     List<Ad> selectedAd(long adId) throws SQLException;
     // insert a new ad and return the new ad's id

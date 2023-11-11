@@ -35,10 +35,19 @@
                             <p>${comment.comment}</p>
                         </div>
                     </c:if>
-                    <button id="comment" data-id="${ad.id}">Comment</button>
+                    <c:choose>
+                        <%-- user should only be able to comment if they are logged in --%>
+                        <c:when test="${sessionScope.user != null}">
+                            <button id="comment" data-id="${ad.id}">Comment</button>
+                        </c:when>
+                        <%-- if they are not logged in - call to action --%>
+                        <c:otherwise>
+                            <p>Want to leave a comment? <a href="/login">Login</a> or <a href="/register">Register</a>
+                            </p>
+                        </c:otherwise>
+                    </c:choose>
                 </c:forEach>
             </div>
-
         </div>
     </main>
 </div>

@@ -12,4 +12,6 @@ public interface Categories {
 
     String getCategoryName(long id);
 
+    List<Category> getCategoriesByAdId(long id);
+
 }

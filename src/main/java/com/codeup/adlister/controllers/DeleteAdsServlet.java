@@ -22,8 +22,14 @@ public class DeleteAdsServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        //then redirects to the ads page to display the remaining ads
-        response.sendRedirect("/ads");
+
+        if(request.getParameter("from").equals("profile")){
+            response.sendRedirect("/profile");
+        } else if (request.getParameter("from").equals("ads")) {
+            //then redirects to the ads page to display the remaining ads
+            response.sendRedirect("/ads");
+        }
+
 
     }
 }

@@ -8,6 +8,10 @@ CREATE TABLE IF NOT EXISTS users
     id       INT UNSIGNED NOT NULL AUTO_INCREMENT,
     first_name VARCHAR(100),
     last_name VARCHAR(100),
+    jeep_owner BOOLEAN,
+    jeep_model VARCHAR(100),
+    jeep_year VARCHAR(100),
+    jeep_color VARCHAR(100),
     username VARCHAR(100) UNIQUE,
     email    VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(500)  NOT NULL,
@@ -25,6 +29,17 @@ CREATE TABLE IF NOT EXISTS ads
     user_id     INT UNSIGNED,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users (id)
+);
+
+
+CREATE TABLE IF NOT EXISTS comments (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    comment VARCHAR(1000) NOT NULL,
+    user_id INT UNSIGNED,
+    ad_id INT UNSIGNED,
+    PRIMARY KEY (id),
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (ad_id) REFERENCES ads (id)
 );
 
 

@@ -15,20 +15,20 @@
         <c:choose>
             <c:when test="${sessionScope.user.avatar == null}">
                 <div class="image-upload-wrapper">
-                    <input type="file" id="file-upload" value="Upload a Profile Picture">
+                    <label>Upload Profile Picture
+                        <input type="file" id="file-upload">
+                    </label>
                     <form id="image-form" method="post" action="/images" >
                         <input type="hidden" id="image-url" name="image" value="">
                         <input type="hidden" name="location" value="profile">
                     </form>
-                    <img src="" name="avatar" alt="avatar" class="avatar" id="temp-pic">
+                    <img src="/assets/images/default-profile.png" name="avatar" alt="avatar" class="avatar" id="temp-pic">
                 </div>
             </c:when>
             <c:otherwise>
                 <img src="${sessionScope.user.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
             </c:otherwise>
         </c:choose>
-
-
         <main class="profile">
             <div class="row">
                 <section class="col-md-6">

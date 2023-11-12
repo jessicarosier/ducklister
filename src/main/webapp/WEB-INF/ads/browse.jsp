@@ -37,7 +37,8 @@
       <c:forEach var="ad" items="${ads}" >
         <h2>${ad.title}</h2>
         <p>${ad.description}</p>
-        <form action="/ad" method="post">
+        <img src="${ad.image}">
+        <form action="/ad" method="get">
           <input hidden="hidden" name="ad" value="${ad.id}">
           <input type="submit" name="title" value="View Details">
         </form>

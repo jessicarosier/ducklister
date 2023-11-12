@@ -18,6 +18,7 @@
                 <c:forEach var="ad" items="${ad}">
                     <h2>${ad.title}</h2>
                     <p>${ad.description}</p>
+                    <img src="${ad.image}" alt="ad image">
                     <p>${owner.username}</p>
                     <p>${owner.email}</p>
 

@@ -17,8 +17,8 @@
                 <img class="main-logo" src="assets/images/logo.svg">
             </div>
             <div>
-                <a href="/ads" class="btn btn-primary">View All Ads</a>
-                <a href="/ads/create" class="btn btn-primary">Create an Ad</a>
+                <a href="/ads" class="btn btn-primary">View All Posts</a>
+                <a href="/cat" class="btn btn-primary">Browse by Category</a>
             </div>
         </div>
     </div>

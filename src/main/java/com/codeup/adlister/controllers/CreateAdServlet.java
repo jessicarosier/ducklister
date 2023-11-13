@@ -2,7 +2,9 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 import com.codeup.adlister.models.User;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,59 +42,76 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("image")
         );
 
-        //stores the ad ID obtained from the DB after inserting the ad into the ads table
-        long adId = DaoFactory.getAdsDao().insert(ad);
+        //if the user selected any categories, store that
+        String generic = request.getParameter("generic");
+        String music = request.getParameter("music");
+        String sports = request.getParameter("sports");
+        String seasonal = request.getParameter("seasonal");
+        String international = request.getParameter("international");
+        String patriotic = request.getParameter("patriotic");
+        String movie = request.getParameter("movie");
+        String superhero = request.getParameter("superhero");
 
-        //TODO: FIX THIS, INPUT VALIDATION DOES NOT WORK YET -JR
+        List<String> selectedCats = new ArrayList<>();
+        if (generic != null) {
+            selectedCats.add(generic);
+        }
+        if (music != null) {
+            selectedCats.add(music);
+        }
+        if (sports != null) {
+            selectedCats.add(sports);
+        }
+        if (seasonal != null) {
+            selectedCats.add(seasonal);
+        }
+        if (international != null) {
+            selectedCats.add(international);
+        }
+        if (patriotic != null) {
+            selectedCats.add(patriotic);
+        }
+        if (movie != null) {
+            selectedCats.add(movie);
+        }
+        if (superhero != null) {
+            selectedCats.add(superhero);
+        }
+
+
         //input validation, user must enter a title and description when creating an ad
-        if (ad.getTitle() == null || ad.getDescription() == null) {
-            request.setAttribute("titleError", "Please fill out all fields.");
+        if (ad.getTitle() == "" || ad.getDescription() == "" || selectedCats.isEmpty()) {
+            request.setAttribute("Error", "Please fill out all fields.");
             request.setAttribute("ad", ad);
-            request.getRequestDispatcher("/WEB-INF/ads/recreate.jsp").forward(request, response);
-            return;
-        }
-
-        //bucket to hold the category ids
-        List<Long> catIds = new ArrayList<>();
-
-        //if the user selects a category, add the category id to the bucket
-        if (request.getParameter("generic") != null) {
-            catIds.add(Long.parseLong(request.getParameter("generic")));
-        }
-        if (request.getParameter("music") != null) {
-            catIds.add(Long.parseLong(request.getParameter("music")));
-        }
-        if (request.getParameter("sports") != null) {
-            catIds.add(Long.parseLong(request.getParameter("sports")));
-        }
-        if (request.getParameter("seasonal") != null) {
-            catIds.add(Long.parseLong(request.getParameter("seasonal")));
-        }
-        if (request.getParameter("international") != null) {
-            catIds.add(Long.parseLong(request.getParameter("international")));
-        }
-        if (request.getParameter("patriotic") != null) {
-            catIds.add(Long.parseLong(request.getParameter("patriotic")));
-        }
-        if (request.getParameter("movie") != null) {
-            catIds.add(Long.parseLong(request.getParameter("movie")));
-        }
-
-        //TODO: FIX THIS, INPUT VALIDATION DOES NOT WORK YET -JR
-        //input validation, if the user does not select at least one category, display an error message
-        if (catIds.isEmpty()) {
-            request.setAttribute("ad", ad);
-            request.setAttribute("categoryError", "Please select at least one category.");
+            request.setAttribute("generic", generic);
+            request.setAttribute("music", music);
+            request.setAttribute("sports", sports);
+            request.setAttribute("seasonal", seasonal);
+            request.setAttribute("international", international);
+            request.setAttribute("patriotic", patriotic);
+            request.setAttribute("movie", movie);
+            request.setAttribute("superhero", superhero);
             request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
             return;
         }
 
-        //loops through the category ids bucket and inserts the ad into the ads_cats table
-        for (Long catId : catIds) {
-            DaoFactory.getAdsDao().insertAdCategory(adId, catId);
+        long adId = DaoFactory.getAdsDao().insert(ad);
+        //bucket to hold the category ids
+        List<Long> catIds = new ArrayList<>();
+
+        //gets the categories
+        List<Category> adsCategories = DaoFactory.getCategoriesDao().getCategoriesByAdId(adId);
+
+
+        for (String selectedCat : selectedCats) {
+            DaoFactory.getAdsDao().insertAdCategory(adId, Long.parseLong(selectedCat));
+
         }
 
         //redirects the user to the ads index page to display all ads
         response.sendRedirect("/ads");
     }
+
+
 }
+

@@ -35,7 +35,7 @@ public class AddCommentServlet extends HttpServlet {
         System.out.println(newComment.getAdId());
         System.out.println(newComment.getComment());
         DaoFactory.getCommentsDao().insertComment(newComment);
-        List<Comment> adComments =  DaoFactory.getCommentsDao().getComments(adId);
+        List<Comment> adComments =  DaoFactory.getCommentsDao().getCommentsByAdId(adId);
         request.setAttribute("comments", adComments);
        
 

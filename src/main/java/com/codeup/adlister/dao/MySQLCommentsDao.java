@@ -76,7 +76,19 @@ public class MySQLCommentsDao implements Comments {
     }
 
     @Override
-    public List<Comment> getComments(long adId) {
+    public List<Comment> all() {
+        try {
+            String query = "SELECT * FROM comments";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            return createCommentsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving comments.", e);
+        }
+    }
+
+    @Override
+    public List<Comment> getCommentsByAdId(long adId) {
         try {
             String query = "SELECT * FROM comments WHERE ad_id = ?";
             PreparedStatement stmt = connection.prepareStatement(query);

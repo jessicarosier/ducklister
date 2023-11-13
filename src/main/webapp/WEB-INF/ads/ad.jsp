@@ -28,12 +28,19 @@
                             <button class="delete-ad" type="submit">Delete Post</button>
                         </form>
                     </c:if>
-                    <c:if test="${comment != null}">
-                        <div>
-                            <h3>${comment.username}</h3>
-                            <p>${comment.comment}</p>
-                        </div>
-                    </c:if>
+                    <c:choose>
+                        <c:when test="${comments.size() > 0}">
+                            <h2>Comments</h2>
+                            <c:forEach var="comment" items="${comments}">
+                                <div>
+                                    <p>${comment.comment}</p>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Be the first to comment on this post!</p>
+                        </c:otherwise>
+                    </c:choose>
                     <c:choose>
                         <%-- user should only be able to comment if they are logged in --%>
                         <c:when test="${sessionScope.user != null}">

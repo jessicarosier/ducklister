@@ -13,7 +13,9 @@ public interface Comments {
 
     void updateComment(String comment, long commentId);
 
-    List<Comment> getComments(long adId);
+    List<Comment> all();
+
+    List<Comment> getCommentsByAdId(long adId);
 
     List<Comment> getCommentsByUser(long userId);
 

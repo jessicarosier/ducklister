@@ -17,6 +17,7 @@
                     <li><a href="/login">Login</a></li>
                 </c:when>
                 <c:otherwise>
+                    <li><a href="/ads">View all posts</a></li>
                     <li><a href="/profile">Profile</a></li>
                     <li><a href="/ads/create">Create Post</a></li>
                     <li><a href="/logout">Logout</a></li>

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.List;
 
-@WebServlet(name = "SearchAdsServlet", urlPatterns = "/adlister_war_exploded/ads/search")
+@WebServlet(name = "SearchAdsServlet", urlPatterns = "/ads/search")
 public class SearchAdsServlet extends HttpServlet {
 
     public SearchAdsServlet() throws SQLException {

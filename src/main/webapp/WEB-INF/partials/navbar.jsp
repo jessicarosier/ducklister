@@ -20,7 +20,7 @@
                 </c:otherwise>
             </c:choose>
         </ul>
-        <form class="form" action="adlister_war_exploded/ads/search" method="POST">
+        <form class="form" action="/ads/search" method="POST">
             <input class="form-control" name="search" id="search" type="search" placeholder="Search"
                    aria-label="Search">
             <button class="btn " type="submit">Search</button>

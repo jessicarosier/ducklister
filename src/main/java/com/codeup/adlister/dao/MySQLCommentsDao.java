@@ -5,6 +5,7 @@ import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class MySQLCommentsDao implements Comments {
@@ -133,6 +134,23 @@ public class MySQLCommentsDao implements Comments {
             stmt.setLong(1, userId);
             ResultSet rs = stmt.executeQuery();
             return createCommentsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving comments.", e);
+        }
+    }
+
+    @Override
+    public HashMap<String, String> mapCommentToUsers(long adId) {
+        try {
+            String query = "SELECT username, comment FROM users JOIN comments ON users.id = comments.user_id JOIN ads ON comments.ad_id = ads.id WHERE ad_id = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, adId);
+            ResultSet rs = stmt.executeQuery();
+            HashMap<String, String> commentMap = new HashMap<>();
+            while (rs.next()) {
+                commentMap.put(rs.getString("comment"), rs.getString("username"));
+            }
+            return commentMap;
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving comments.", e);
         }

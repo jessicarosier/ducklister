@@ -26,6 +26,7 @@
                     <c:if test="${sessionScope.user.id == ad.userId}">
                         <form method="post" action="/delete">
                             <input hidden="hidden" name="adid" value="${ad.id}">
+                            <input hidden="hidden" name="from" value="ad"  >
                             <button class="delete-ad" type="submit">Delete Post</button>
                         </form>
                     </c:if>

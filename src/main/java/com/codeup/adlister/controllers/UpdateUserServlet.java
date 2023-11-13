@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -14,13 +15,28 @@ import java.sql.SQLException;
 public class UpdateUserServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         // gets user from current session (logged user)
         User user = (User) request.getSession().getAttribute("user");
 
-        //sets attribute with current session user and sends it to be displayed
-        request.setAttribute("thisUser", DaoFactory.getUsersDao().findByUsername(user.getUsername()));
-        request.getRequestDispatcher("/WEB-INF/updateUser.jsp").forward(request, response);
+
+        if (user == null) {
+
+            HttpSession session = request.getSession();
+            String requestedUrl = request.getRequestURL().toString();
+            session.setAttribute("requestedUrl", requestedUrl);
+
+            System.out.println(requestedUrl);
+               request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+          //  response.sendRedirect("/login");
+
+            return;
+        } else {
+
+
+            //sets attribute with current session user and sends it to be displayed
+            request.setAttribute("thisUser", DaoFactory.getUsersDao().findByUsername(user.getUsername()));
+            request.getRequestDispatcher("/WEB-INF/updateUser.jsp").forward(request, response);
+        }
     }
 
 

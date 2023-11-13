@@ -21,8 +21,6 @@ public class SingleAdServlet extends HttpServlet {
         //sets the list of current ads as an attribute to be forwarded to the jsp
         long adId = Long.parseLong(request.getParameter("ad"));
 
-        System.out.println(adId);
-
 
         List<Ad> singleAd = null;
         try {

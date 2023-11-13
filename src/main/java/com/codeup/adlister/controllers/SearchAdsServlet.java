@@ -48,6 +48,7 @@ public class SearchAdsServlet extends HttpServlet {
         }
         request.getRequestDispatcher("/WEB-INF/ads/search.jsp").forward(request,response);
 //        String searchTerm = request.getParameter("searchTerm");
+//        response.sendRedirect(request.getContextPath() + "/ads/search.jsp");
 
     }
 }

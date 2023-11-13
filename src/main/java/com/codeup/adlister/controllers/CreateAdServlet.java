@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,13 @@ public class CreateAdServlet extends HttpServlet {
 
         //if the user is NOT logged in, they should not be able to create an ad, so redirect them to the login page
         if (request.getSession().getAttribute("user") == null) {
-            response.sendRedirect("/login");
+
+            HttpSession session = request.getSession();
+            String requestedUrl = request.getRequestURL().toString();
+            session.setAttribute("requestedUrl", requestedUrl);
+
+
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
             // add a return statement to exit out of the entire method.
             return;
         }

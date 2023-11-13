@@ -9,9 +9,17 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<<<<<<< HEAD
+
+<div class="container">
+    <h1>Welcome, ${thisUser.firstName} ${thisUser.lastName}!</h1>
+
+    <div>
+=======
 <div class="page-wrapper">
     <div class="container">
         <h1>Welcome, ${sessionScope.user.firstName} ${sessionScope.user.lastName}!</h1>
+>>>>>>> main
         <c:choose>
             <c:when test="${sessionScope.user.avatar == null}">
                 <div class="image-upload-wrapper">

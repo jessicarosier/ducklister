@@ -59,6 +59,18 @@
       <input hidden="hidden" name="id" value="${thisUser.getId()}">
       <input type="submit" class="btn btn-primary btn-block">
     </form>
+
+    <h2>Update Profile Picture</h2>
+    <label>
+      <input type="file" id="file-upload">
+    </label>
+    <form id="image-form" method="post" action="/images" >
+      <input type="hidden" id="image-url" name="image" value="">
+      <input type="hidden" name="location" value="profile">
+    </form>
   </div>
 </body>
+
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script src="/js/updateUser.js" type="module"></script>
 </html>

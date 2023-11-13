@@ -26,6 +26,19 @@
         <label for="email">Email</label>
         <input required id="email" name="email" class="form-control" type="text" value="${thisUser.getEmail()}">
       </div>
+      <h2>Update Jeep.</h2>
+      <div class="form-group">
+        <label for="model">Model</label>
+        <input required id="model" name="model" class="form-control" type="text" value="${thisUser.getJeepModel()}">
+      </div>
+      <div class="form-group">
+        <label for="year">Year</label>
+        <input required id="year" name="year" class="form-control" type="text" value="${thisUser.getJeepYear()}">
+      </div>
+      <div class="form-group">
+        <label for="color">Color</label>
+        <input required id="color" name="color" class="form-control" type="text" value="${thisUser.getJeepColor()}">
+      </div>
 
       <input hidden="hidden" name="id" value="${thisUser.getId()}">
 

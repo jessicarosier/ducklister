@@ -28,6 +28,8 @@ public class DeleteAdsServlet extends HttpServlet {
         } else if (request.getParameter("from").equals("ads")) {
             //then redirects to the ads page to display the remaining ads
             response.sendRedirect("/ads");
+        } else if (request.getParameter("from").equals("ad")) {
+            response.sendRedirect("/ads");
         }
 
 

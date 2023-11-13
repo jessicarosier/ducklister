@@ -45,7 +45,10 @@ VALUES (1, 1),
 
 
 
-
+SELECT username, comment FROM users
+JOIN comments ON users.id = comments.user_id
+JOIN ads ON comments.ad_id = ads.id
+WHERE ad_id = 1;
 
 
 

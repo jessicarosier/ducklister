@@ -3,6 +3,7 @@ package com.codeup.adlister.dao;
 import com.codeup.adlister.models.Comment;
 
 import java.sql.ResultSet;
+import java.util.HashMap;
 import java.util.List;
 
 public interface Comments {
@@ -18,6 +19,8 @@ public interface Comments {
     List<Comment> getCommentsByAdId(long adId);
 
     List<Comment> getCommentsByUser(long userId);
+
+    HashMap<String, String> mapCommentToUsers(long adId);
 
 
 

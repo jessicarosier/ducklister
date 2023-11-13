@@ -10,8 +10,22 @@ public class User implements Serializable {
     private String email;
     private String password;
     private String avatar;
+    private String jeep_model;
+    private String jeep_year;
+    private String jeep_color;
 
     public User() {
+    }
+
+    public User(long id, String firstName, String lastName, String username, String email, String jeep_model, String jeep_year, String jeep_color) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.jeep_model = jeep_model;
+        this.jeep_year = jeep_year;
+        this.jeep_color = jeep_color;
     }
 
     public User(String firstName, String lastName, String username, String email, String password) {
@@ -43,6 +57,19 @@ public class User implements Serializable {
     public User(long id, String password) {
         this.id = id;
         this.password = password;
+    }
+
+    public User(long id, String firstName, String lastName, String username, String email, String password, String avatar, String jeep_model, String jeep_year, String jeep_color) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.avatar = avatar;
+        this.jeep_model = jeep_model;
+        this.jeep_year = jeep_year;
+        this.jeep_color = jeep_color;
     }
 
     public long getId() {
@@ -96,4 +123,18 @@ public class User implements Serializable {
     public String getAvatar() {return avatar;}
 
     public void setAvatar(String avatar) {this.avatar = avatar;}
+
+    public String getJeepModel() {
+        return jeep_model;
+    }
+
+    public String getJeepYear() {
+        return jeep_year;
+    }
+
+    public String getJeepColor() {
+        return jeep_color;
+    }
 }
+
+

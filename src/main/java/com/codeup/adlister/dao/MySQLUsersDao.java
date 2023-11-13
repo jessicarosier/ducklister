@@ -69,7 +69,7 @@ public class MySQLUsersDao implements Users {
     public void updateProfile(User user) throws SQLException {
 
         Statement statement = connection.createStatement();
-        String updateQuery = "UPDATE users SET first_name = '" + user.getFirstName() + "', last_name = '" + user.getLastName() + "', username = '" + user.getUsername() + "', email = '" + user.getEmail() + "' WHERE id = '" + user.getId() + "'";
+        String updateQuery = "UPDATE users SET first_name = '" + user.getFirstName() + "', last_name = '" + user.getLastName() + "', username = '" + user.getUsername() + "', email = '" + user.getEmail() + "', jeep_model = '" + user.getJeepModel() + "', jeep_year = '" + user.getJeepYear() + "', jeep_color = '" + user.getJeepColor() + "' WHERE id = '" + user.getId() + "'";
 
         statement.executeUpdate(updateQuery);
 
@@ -111,7 +111,10 @@ public class MySQLUsersDao implements Users {
                 rs.getString("username"),
                 rs.getString("email"),
                 rs.getString("password"),
-                rs.getString("avatar")
+                rs.getString("avatar"),
+                rs.getString("jeep_model"),
+                rs.getString("jeep_year"),
+                rs.getString("jeep_color")
         );
     }
 

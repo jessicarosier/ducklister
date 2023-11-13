@@ -17,6 +17,8 @@ public class UpdateUserServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // gets user from current session (logged user)
         User user = (User) request.getSession().getAttribute("user");
+        System.out.println(user.getJeepYear());
+        System.out.println(user.getEmail());
 
 
         if (user == null) {
@@ -25,7 +27,7 @@ public class UpdateUserServlet extends HttpServlet {
             String requestedUrl = request.getRequestURL().toString();
             session.setAttribute("requestedUrl", requestedUrl);
 
-            System.out.println(requestedUrl);
+
                request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
           //  response.sendRedirect("/login");
 
@@ -40,13 +42,16 @@ public class UpdateUserServlet extends HttpServlet {
     }
 
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         //stores the user input from the form
         long id = Long.parseLong(request.getParameter("id"));
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
         String username = request.getParameter("username");
         String email = request.getParameter("email");
+        String jeepModel = request.getParameter("model");
+        String jeepYear = request.getParameter("year");
+        String jeepColor = request.getParameter("color");
 
 
         // validate input
@@ -62,7 +67,7 @@ public class UpdateUserServlet extends HttpServlet {
         }
 
         // create and save a new user
-        User user = new User(id, firstName, lastName, username, email);
+        User user = new User(id, firstName, lastName, username, email,jeepModel, jeepYear, jeepColor);
 
 
         //insert the user into the database with new password into
@@ -73,6 +78,6 @@ public class UpdateUserServlet extends HttpServlet {
         }
 
         //redirect the user to the profile page
-        response.sendRedirect("/profile");
+        request.getRequestDispatcher("/WEB-INF/userUpdatedMessage.jsp").forward(request, response);
     }
 }

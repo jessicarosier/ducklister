@@ -1,0 +1,31 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+img {
+    display: block;
+}
+
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & img {
+        width: 30vw;
+
+    }
+}
+
+
+

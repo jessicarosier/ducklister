@@ -65,13 +65,13 @@ public class MySQLUsersDao implements Users {
     }
 
     @Override
+
     public void updateProfile(User user) throws SQLException {
 
         Statement statement = connection.createStatement();
-        String updateQuery = "UPDATE users SET first_name = '"+user.getFirstName()+"', last_name = '"+ user.getLastName()+ "', username = '"+ user.getUsername()+"', email = '"+ user.getEmail()+"' WHERE id = '"+user.getId()+"'";
+        String updateQuery = "UPDATE users SET first_name = '" + user.getFirstName() + "', last_name = '" + user.getLastName() + "', username = '" + user.getUsername() + "', email = '" + user.getEmail() + "' WHERE id = '" + user.getId() + "'";
 
         statement.executeUpdate(updateQuery);
-
 
     }
 
@@ -79,14 +79,28 @@ public class MySQLUsersDao implements Users {
     public void updatePassword(User user) throws SQLException {
 
         Statement statement = connection.createStatement();
-        String updateQuery = "UPDATE users SET password = '"+user.getPassword()+"' WHERE id = '"+user.getId()+"'";
+        String updateQuery = "UPDATE users SET password = '" + user.getPassword() + "' WHERE id = '" + user.getId() + "'";
 
         statement.executeUpdate(updateQuery);
-
+    }
+        @Override
+    public User insertProfilePic ( long userId, String image){
+        String query = "UPDATE users SET avatar = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, image);
+            stmt.setLong(2, userId);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return findUserById(userId);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating new user", e);
+        }
 
     }
 
-    private User extractUser(ResultSet rs) throws SQLException {
+    private User extractUser (ResultSet rs) throws SQLException {
         if (!rs.next()) {
             return null;
         }
@@ -96,8 +110,10 @@ public class MySQLUsersDao implements Users {
                 rs.getString("last_name"),
                 rs.getString("username"),
                 rs.getString("email"),
-                rs.getString("password")
+                rs.getString("password"),
+                rs.getString("avatar")
         );
     }
+
 
 }

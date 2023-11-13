@@ -8,15 +8,18 @@ public class Ad implements Serializable {
     private String title;
     private String description;
 
+    private String image;
+
     public Ad() {
 
     }
 
-    public Ad(long id, long userId, String title, String description) {
+    public Ad(long id, long userId, String title, String description, String image) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.image = image;
     }
     public Ad(String title, String description, long id) {
         this.title = title;
@@ -25,10 +28,11 @@ public class Ad implements Serializable {
     }
 
 
-    public Ad(long userId, String title, String description) {
+    public Ad(long userId, String title, String description, String image) {
         this.userId = userId;
         this.title = title;
         this.description = description;
+        this.image = image;
     }
 
     public long getId() {
@@ -62,4 +66,8 @@ public class Ad implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getImage() {return image;}
+
+    private void setImage(String image) {this.image = image;}
 }

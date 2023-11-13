@@ -18,15 +18,24 @@
 <body>
 
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-<div class="container">
+<%--<div class="container">--%>
   <h1>Results for: <c:out value="${searched}"/></h1>
   <c:forEach var="ad" items="${searchedAds}">
-    <div class="col-md-6">
-      <a href="/ad-info/show?id=${ad.id}"><h2><c:out value="${ad.title}"/></h2></a>
-      <p><c:out value="${ad.description}"/></p>
-    </div>
-  </c:forEach>
-</div>
+<%--    <div class="col">--%>
+<%--      <div class="col-md-6">--%>
+<%--        <h2>${ad.title}</h2>--%>
+<%--        <p>${ad.description}</p>--%>
+<%--        <form method="post" action="/ad">--%>
+<%--          <input hidden="hidden" name="ad" value="${ad.id}">--%>
+<%--&lt;%&ndash;          <button class="ad-details" type="submit" >View Details</button>&ndash;%&gt;--%>
+<%--        </form>--%>
+<%--  </c:forEach>--%>
+  <div class="col-md-6">
+  <h2>${ad.title}</h2>
+  <p>${ad.description}</p>
+
+  </div>
+</c:forEach>
 
 </body>
 </html>

@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.*;
+import java.util.List;
 
-@WebServlet(name = "SearchAdsServlet", urlPatterns = "/ads/search")
+@WebServlet(name = "SearchAdsServlet", urlPatterns = "/adlister_war_exploded/ads/search")
 public class SearchAdsServlet extends HttpServlet {
 
     public SearchAdsServlet() throws SQLException {
@@ -30,9 +31,23 @@ public class SearchAdsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String searched = request.getParameter("search");
+        System.out.println("Search term being submitted:" + searched);
         request.setAttribute("searched", searched);
-        request.setAttribute("searchedAds", DaoFactory.getAdsDao().searchAds(searched));
-        request.getRequestDispatcher("/WEB-INF/ads/search.jsp").forward(request,response); String searchTerm = request.getParameter("searchTerm");
+        Ads ads = DaoFactory.getAdsDao();
+        List<Ad> searchedAds = null;
+        try {
+            searchedAds = DaoFactory.getAdsDao().searchAds(searched);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Number of results: " + searchedAds.size());
+        try {
+            request.setAttribute("searchedAds", DaoFactory.getAdsDao().searchAds(searched));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        request.getRequestDispatcher("/WEB-INF/ads/search.jsp").forward(request,response);
+//        String searchTerm = request.getParameter("searchTerm");
 
     }
 }

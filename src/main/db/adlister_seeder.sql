@@ -13,3 +13,5 @@ VALUES ('Generic'),
 UPDATE ads SET title = "title", description = "description" WHERE id = 1;
 
 
+
+

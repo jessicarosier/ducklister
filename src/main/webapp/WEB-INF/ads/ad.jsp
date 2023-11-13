@@ -22,25 +22,32 @@
                     <p>${owner.username}</p>
                     <p>${owner.email}</p>
 
+                    <%--  logic to display delete button if the ad belongs to the logged in user --%>
                     <c:if test="${sessionScope.user.id == ad.userId}">
                         <form method="post" action="/delete">
                             <input hidden="hidden" name="adid" value="${ad.id}">
                             <button class="delete-ad" type="submit">Delete Post</button>
                         </form>
                     </c:if>
+
+                    <%--  logic to display comments that belong to an ad IF they exist --%>
+                    <%-- commentUserMap is a Hashmap with the username as the key and the comment made by that user as the value  --%>
                     <c:choose>
-                        <c:when test="${comments.size() > 0}">
+                        <c:when test="${commentUserMap.size() > 0}">
                             <h2>Comments</h2>
-                            <c:forEach var="comment" items="${comments}">
-                                <div>
-                                    <p>${comment.comment}</p>
+                            <c:forEach var="comment" items="${commentUserMap}">
+                                <div style="border: 1px solid black">
+                                    <p>${comment.value}</p>
+                                    <p>By: ${comment.key}</p>
                                 </div>
                             </c:forEach>
+
                         </c:when>
                         <c:otherwise>
                             <p>Be the first to comment on this post!</p>
                         </c:otherwise>
                     </c:choose>
+
                     <c:choose>
                         <%-- user should only be able to comment if they are logged in --%>
                         <c:when test="${sessionScope.user != null}">

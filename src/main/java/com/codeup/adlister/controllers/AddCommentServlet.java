@@ -22,22 +22,21 @@ public class AddCommentServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/addComment.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String comment = request.getParameter("comment");
         long adId = Long.parseLong(request.getParameter("id"));
         User user = (User) request.getSession().getAttribute("user");
         long userId = user.getId();
-        System.out.println(comment);
-        System.out.println(adId);
-        System.out.println(userId);
+
+        //creates a new comment object
         Comment newComment = new Comment(userId, adId, comment);
         System.out.println(newComment.getUserId());
         System.out.println(newComment.getAdId());
         System.out.println(newComment.getComment());
+
+        //inserts the new comment into the db
         DaoFactory.getCommentsDao().insertComment(newComment);
-        List<Comment> adComments =  DaoFactory.getCommentsDao().getCommentsByAdId(adId);
-        request.setAttribute("comments", adComments);
-       
+
 
         response.sendRedirect("/ad?ad=" + adId+ "&from=ads");
     }

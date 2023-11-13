@@ -13,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet(name = "controllers.SingleAdServlet", urlPatterns = "/ad")
 public class SingleAdServlet extends HttpServlet {
 
-    //I had to change this it doGet so I could get the adId from the url for the AdCommentsServlet
+    //I had to change this to doGet so I could get the adId from the url for the AdCommentsServlet
     //This did not need to be a post because not data is being sent from the form to the db
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -43,8 +44,23 @@ public class SingleAdServlet extends HttpServlet {
         User adOwner = DaoFactory.getUsersDao().findUserById(userAd);
         request.setAttribute("owner", adOwner);
 
-        //gets the comments for the ad and sets them as an attribute to be forwarded to the jsp
-        request.setAttribute("comments", DaoFactory.getCommentsDao().getCommentsByAdId(adId));
+//        //gets the comments for the ad and sets them as an attribute to be forwarded to the jsp
+//        request.setAttribute("comments", DaoFactory.getCommentsDao().getCommentsByAdId(adId));
+
+        //gets a list of users who have commented on the ad and stores each user in an arraylist
+        List<User> commentUsers = new ArrayList<>();
+        for (Comment comment : DaoFactory.getCommentsDao().getCommentsByAdId(adId)) {
+            commentUsers.add(DaoFactory.getUsersDao().findUserById(comment.getUserId()));
+        }
+
+        //creates a hashmap of the user and their comment to be forwarded to the jsp
+        //hashmap was the only way I could figure out how to get the user and their comment to display together in the correct order
+        HashMap<String, String> commentUserMap = new HashMap<>();
+        //loops through the commentUsers arraylist and gets the username and comment for each user and stores them in the hashmap
+        for (int i = 0; i < commentUsers.size(); i++) {
+            commentUserMap.put(commentUsers.get(i).getUsername(), DaoFactory.getCommentsDao().getCommentsByAdId(adId).get(i).getComment());
+        }
+        request.setAttribute("commentUserMap", commentUserMap);
 
         request.getRequestDispatcher("/WEB-INF/ads/ad.jsp").forward(request, response);
     }

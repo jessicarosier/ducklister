@@ -30,6 +30,7 @@
 <%--&lt;%&ndash;          <button class="ad-details" type="submit" >View Details</button>&ndash;%&gt;--%>
 <%--        </form>--%>
 <%--  </c:forEach>--%>
+<%--    //Genesis messed with this--%>
   <div class="col-md-6">
   <h2>${ad.title}</h2>
   <p>${ad.description}</p>

@@ -58,7 +58,7 @@ public class MySQLAdsDao implements Ads {
         return null;
     }
 
-
+//Genesis messed with this
     public List<Ad> searchAds(String searched) throws SQLException {
         String query = "SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {

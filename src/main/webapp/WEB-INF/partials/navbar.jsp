@@ -20,6 +20,7 @@
                 </c:otherwise>
             </c:choose>
         </ul>
+<%--        Genesis messed with this--%>
         <form class="form" action="/ads/search" method="POST">
             <input class="form-control" name="search" id="search" type="search" placeholder="Search"
                    aria-label="Search">

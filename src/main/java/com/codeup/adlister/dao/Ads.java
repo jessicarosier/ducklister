@@ -11,6 +11,7 @@ public interface Ads {
 
     //get a single ad
     List<Ad> selectedAd(Ad ad);
+//    //Genesis messed with this
     List<Ad> searchAds(String keywords) throws SQLException;
 
     List<Ad> selectedAd(long adId) throws SQLException;

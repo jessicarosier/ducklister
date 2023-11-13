@@ -61,6 +61,30 @@ public class MySQLAdsDao implements Ads {
     }
 
 
+//Genesis messed with this
+    public List<Ad> searchAds(String searched) throws SQLException {
+        String query = "SELECT * FROM ads WHERE title LIKE ? OR description LIKE ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, "%" + searched + "%");
+            statement.setString(2, "%" + searched + "%");
+            ResultSet rs = statement.executeQuery();
+            return createAdsFromResults(rs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error searching for ads", e);
+        }
+//        try {
+//            PreparedStatement stmt = connection.prepareStatement(query);
+//            stmt.setString(1, "%" + searched + "%");
+//            stmt.setString(2, "%" + searched + "%");
+//            ResultSet rs = stmt.executeQuery();
+//            return (createAdsFromResults(rs));
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw new RuntimeException("Error finding retrieving your ad", e);
+//        }
+    }
+
+
     @Override
     public List<Ad> selectedAd(long id) {
         PreparedStatement stmt = null;

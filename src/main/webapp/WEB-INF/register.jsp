@@ -1,4 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page errorPage="partials/messages.jsp"%>
 <html>
 <head>
     <jsp:include page="partials/head.jsp">
@@ -6,9 +8,11 @@
     </jsp:include>
 </head>
 <body>
+
     <jsp:include page="partials/navbar.jsp" />
     <div class="container">
         <h1>Please fill in your information.</h1>
+
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -31,6 +35,7 @@
                 <label for="password">Password</label>
                 <input id="password" name="password" class="form-control" type="password" required="required">
             </div>
+
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password" required="required">
@@ -40,5 +45,8 @@
     </div>
 
     <jsp:include page="partials/script.jsp" />
+    <c:if test="${PasswordError != null}">
+        <p style="color:red">Password sucks</p>
+        </c:if>
 </body>
 </html>

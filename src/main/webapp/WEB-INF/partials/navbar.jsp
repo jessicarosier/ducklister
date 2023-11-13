@@ -19,7 +19,11 @@
                 <c:otherwise>
                     <li><a href="/ads">View all posts</a></li>
                     <li><a href="/profile">Profile</a></li>
+<<<<<<< HEAD
+                    <li><a href="/profile/update"> Edit Profile</a></li>
+=======
                     <li><a href="/ads/create">Create Post</a></li>
+>>>>>>> main
                     <li><a href="/logout">Logout</a></li>
                 </c:otherwise>
             </c:choose>

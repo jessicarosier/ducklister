@@ -26,7 +26,9 @@ public class SingleAdServlet extends HttpServlet {
         //sets the list of current ads as an attribute to be forwarded to the jsp
         long adId = Long.parseLong(request.getParameter("ad"));
 
+
         //gets the ad and sets it as an attribute to be forwarded to the jsp
+
         List<Ad> singleAd = null;
         try {
             singleAd = DaoFactory.getAdsDao().selectedAd(adId);

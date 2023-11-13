@@ -9,6 +9,7 @@ public class User implements Serializable {
     private String username;
     private String email;
     private String password;
+    private String avatar;
 
     public User() {
     }
@@ -21,13 +22,14 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public User(long id, String firstName, String lastName, String username, String email, String password) {
+    public User(long id, String firstName, String lastName, String username, String email, String password, String avatar) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.avatar = avatar;
     }
 
     public long getId() {
@@ -77,4 +79,8 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getAvatar() {return avatar;}
+
+    public void setAvatar(String avatar) {this.avatar = avatar;}
 }

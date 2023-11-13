@@ -2,6 +2,7 @@ package com.codeup.adlister.controllers;
 
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.Category;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/update")
@@ -19,32 +21,87 @@ public class UpdateAdServlet extends HttpServlet {
 
         Long adId = Long.valueOf(request.getParameter("ad"));
 
-//        System.out.println(adId);
+        //TODO: call method to get the ad category where the ad ID = adID,
+        List<Category> categoryList = DaoFactory.getCategoriesDao().getCategoriesByAdId(adId);
 
-        //TODO: call method to get the ad where the ad ID = adID,
-        //TODO: then set that add as an attribute to send it to the JSP
+        //loops through the list of categories and sets the attribute for each category that is not null
+        for (int i = 0; i < categoryList.size(); i++) {
+            if (categoryList.get(i).getId() == 1) {
+                request.setAttribute("generic", categoryList.get(i).getId());
+            } else if (categoryList.get(i).getId() == 2) {
+                request.setAttribute("music", categoryList.get(i).getId());
+            } else if (categoryList.get(i).getId() == 3) {
+                request.setAttribute("sports", categoryList.get(i).getId());
+            } else if (categoryList.get(i).getId() == 4) {
+                request.setAttribute("seasonal", categoryList.get(i).getId());
+            } else if (categoryList.get(i).getId() == 5) {
+                request.setAttribute("international", categoryList.get(i).getId());
+            } else if (categoryList.get(i).getId() == 6) {
+                request.setAttribute("patriotic", categoryList.get(i).getId());
+            } else if (categoryList.get(i).getId() == 7) {
+                request.setAttribute("movie", categoryList.get(i).getId());
+            } else {
+                continue;
+            }
+        }
+
+        //gets the single ad to be updated from the database
         try {
             request.setAttribute("thisAd", DaoFactory.getAdsDao().selectedAd(adId));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        //send the ad to the update page
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         long adId = Long.parseLong(request.getParameter("adId"));
 
 
-        Ad updatedAd = new Ad(title,description, adId);
+        //creates a new ad object with the updated information
+        Ad updatedAd = new Ad(title.trim(), description.trim(), adId);
 
-        System.out.println(updatedAd.getId());
-
+        //send the updated ad to the database
         try {
             DaoFactory.getAdsDao().update(updatedAd);
         } catch (SQLException e) {
-e.printStackTrace();        }
+            e.printStackTrace();
+        }
+
+        //bucket to hold the category ids
+        List<Long> catIds = new ArrayList<>();
+
+        //if the user selects a category, add the category id to the bucket
+        if (request.getParameter("generic") != null) {
+            catIds.add(Long.parseLong(request.getParameter("generic")));
+        }
+        if (request.getParameter("music") != null) {
+            catIds.add(Long.parseLong(request.getParameter("music")));
+        }
+        if (request.getParameter("sports") != null) {
+            catIds.add(Long.parseLong(request.getParameter("sports")));
+        }
+        if (request.getParameter("seasonal") != null) {
+            catIds.add(Long.parseLong(request.getParameter("seasonal")));
+        }
+        if (request.getParameter("international") != null) {
+            catIds.add(Long.parseLong(request.getParameter("international")));
+        }
+        if (request.getParameter("patriotic") != null) {
+            catIds.add(Long.parseLong(request.getParameter("patriotic")));
+        }
+        if (request.getParameter("movie") != null) {
+            catIds.add(Long.parseLong(request.getParameter("movie")));
+        }
+
+        for (int i = 0; i < catIds.size(); i++) {
+            DaoFactory.getAdsDao().insertAdCategory(adId, catIds.get(i));
+        }
+        //then redirects back to the profile to show the updated ad
+        response.sendRedirect("/profile");
 
 
     }

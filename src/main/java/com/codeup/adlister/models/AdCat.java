@@ -30,4 +30,6 @@ public class AdCat implements Serializable {
     public void setAdId(long adId) {
         this.adId = adId;
     }
+
+
 }

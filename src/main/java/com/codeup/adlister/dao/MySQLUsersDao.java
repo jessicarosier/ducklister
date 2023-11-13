@@ -64,6 +64,22 @@ public class MySQLUsersDao implements Users {
         }
     }
 
+    @Override
+    public User insertProfilePic(long userId, String image) {
+        String query = "UPDATE users SET avatar = ? WHERE id = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, image);
+            stmt.setLong(2, userId);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            rs.next();
+            return findUserById(userId);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error creating new user", e);
+        }
+    }
+
     private User extractUser(ResultSet rs) throws SQLException {
         if (!rs.next()) {
             return null;
@@ -74,7 +90,8 @@ public class MySQLUsersDao implements Users {
                 rs.getString("last_name"),
                 rs.getString("username"),
                 rs.getString("email"),
-                rs.getString("password")
+                rs.getString("password"),
+                rs.getString("avatar")
         );
     }
 

@@ -2,24 +2,38 @@
 <html>
 <head>
     <jsp:include page="/WEB-INF/partials/head.jsp">
-        <jsp:param name="title" value="Please Log In" />
+        <jsp:param name="title" value="Please Log In"/>
     </jsp:include>
+    <link href="/css/login.css" rel="stylesheet">
 </head>
 <body>
-    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
-    <div class="container">
-        <h1>Please Log In</h1>
-        <form action="/login" method="POST">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text">
+<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<div class="container">
+    <div class="row">
+        <div class="col login-wrapper">
+
+            <div class="login">
+                <img src="/assets/images/logo.svg" alt="Duck" class="duck">
+                <h1>Log in and get ducking!</h1>
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input id="username" name="username" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" name="password" class="form-control" type="password">
+                    </div>
+                    <input type="submit" class="btn btn-block login-button" value="Log In">
+                </form>
+                <br>
+                <div class="register-wrapper">
+                    <p>Don't have an account?</p>
+                    <a href="/register" class="btn">Register here</a></div>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" name="password" class="form-control" type="password">
-            </div>
-            <input type="submit" class="btn btn-primary btn-block" value="Log In">
-        </form>
+        </div>
     </div>
+</div>
+<jsp:include page="/WEB-INF/partials/script.jsp" />
 </body>
 </html>

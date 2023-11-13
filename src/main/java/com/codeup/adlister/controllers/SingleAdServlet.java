@@ -35,17 +35,16 @@ public class SingleAdServlet extends HttpServlet {
         }
         request.setAttribute("ad", singleAd);
 
+        //gets the urserId for this specific ad
         long userAd = 0;
         for (Ad ad : singleAd) {
             userAd = ad.getUserId();
         }
 
-        //gets the owner of the ad and sets them as an attribute to be forwarded to the jsp
+        //gets the owner of the ad using the usersID obtained above and sets them as an attribute to be forwarded to the jsp
         User adOwner = DaoFactory.getUsersDao().findUserById(userAd);
         request.setAttribute("owner", adOwner);
 
-//        //gets the comments for the ad and sets them as an attribute to be forwarded to the jsp
-//        request.setAttribute("comments", DaoFactory.getCommentsDao().getCommentsByAdId(adId));
 
         //gets a list of users who have commented on the ad and stores each user in an arraylist
         List<User> commentUsers = new ArrayList<>();

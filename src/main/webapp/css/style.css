@@ -22,12 +22,10 @@ img {
     align-items: center;
 
     & img {
-        width: 50vw;
+        width: 30vw;
 
     }
 }
 
-.nav-logo {
-    width: 100px;
-}
+
 

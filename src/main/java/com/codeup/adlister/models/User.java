@@ -72,6 +72,13 @@ public class User implements Serializable {
         this.jeep_color = jeep_color;
     }
 
+    public User(String username, long id, String firstName, String lastName) {
+        this.username = username;
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public long getId() {
         return id;
     }

@@ -12,6 +12,48 @@
 
 <div class="page-wrapper">
     <div class="container">
+        <c:choose>
+        <c:when test="${location == 'viewUser'}">
+            <h1>${userToView.firstName} ${userToView.lastName}!</h1>
+            <img src="${userToView.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+            <main class="profile">
+                <div class="row">
+                    <section class="col-md-6">
+                                <div class="profile-info">
+                                    <h2>${userToView.username}'s Jeep:</h2>
+                                    <p>Model: ${userToView.getJeepModel()}</p>
+                                    <p>year: ${userToView.getJeepYear()}</p>
+                                    <p>color: ${userToView.getJeepColor()}</p>
+                                </div>
+                    </section>
+                    <section class="col-md-6">
+                        <c:choose>
+                            <c:when test="${usersAds.isEmpty()}">
+                                <h2>${userToView.username} has no active posts.</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2>${userToView.username}'s active posts:</h2>
+                                <c:forEach var="ad" items="${usersAds}">
+                                    <div class="col-md-6">
+                                        <h2>${ad.title}</h2>
+                                        <p>${ad.description}</p>
+                                        <img src="${ad.image}" alt="ad image">
+                                        <form method="get" action="/ad">
+                                            <input hidden="hidden" name="ad" value="${ad.id}">
+                                            <input hidden="hidden" name="from" value="ads">
+                                            <button class="ad-details" type="submit">View Details</button>
+                                        </form>
+                                    </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+
+                    </section>
+                </div>
+            </main>
+        </c:when>
+        <c:otherwise>
+
         <h1>Welcome, ${thisUser.firstName} ${thisUser.lastName}!</h1>
 
         <c:choose>
@@ -20,11 +62,12 @@
                     <label>Upload Profile Picture
                         <input type="file" id="file-upload">
                     </label>
-                    <form id="image-form" method="post" action="/images" >
+                    <form id="image-form" method="post" action="/images">
                         <input type="hidden" id="image-url" name="image" value="">
                         <input type="hidden" name="location" value="profile">
                     </form>
-                    <img src="/assets/images/default-profile.png" name="avatar" alt="avatar" class="avatar" id="temp-pic">
+                    <img src="/assets/images/default-profile.png" name="avatar" alt="avatar" class="avatar"
+                         id="temp-pic">
                 </div>
             </c:when>
             <c:otherwise>
@@ -42,7 +85,7 @@
                                 <p>year: </p>
                                 <p>color: </p>
                                 <form method="get" action="/profile/update">
-                                <button class="update-profile">Update Info</button>
+                                    <button class="update-profile">Update Info</button>
                                 </form>
                             </div>
                         </c:when>
@@ -86,6 +129,8 @@
                                 </div>
                             </c:forEach>
                         </c:otherwise>
+                    </c:choose>
+                    </c:otherwise>
                     </c:choose>
                 </section>
             </div>

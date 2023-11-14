@@ -61,18 +61,14 @@ button {
     background: rgba(0, 0, 0, 0.8);
     width: 100%;
     transition: .5s ease;
-    /*opacity: 0;*/
     bottom: 0;
     font-size: 20px;
     padding: 20px;
     text-align: center;
 }
-.visible {
-    opacity: 0;
 
-}
 .post-card button {
-    margin-top: 70px;
+    margin-top: 90px;
 }
 
 .ad-img-wrapper{

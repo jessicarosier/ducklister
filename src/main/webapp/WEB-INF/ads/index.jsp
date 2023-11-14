@@ -31,9 +31,6 @@
 
                     <div class="ad-img-wrapper">
                         <img src="${ad.image}"class ="ad-img">
-                        <div class="overlay visible">
-                            <p>${ad.description}</p>
-                        </div>
                     </div>
 
                     <form method="get" action="/ad">
@@ -49,6 +46,7 @@
                             <button class="delete-ad" type="submit">Delete Post</button>
                         </form>
                     </c:if>
+                    <p>${ad.description}</p>
                 </div>
             </c:forEach>
         </div>
@@ -58,22 +56,20 @@
 <jsp:include page="/WEB-INF/partials/script.jsp"/>
 </body>
 <script>
-    const movieCard = document.querySelector(".post-card");
-    const overlay = document.querySelector(".overlay")
 
-    movieCard.addEventListener("click", (e)=>{
-        e.preventDefault()
-        console.log(e);
-    })
+    //TODO MAYBE IMPLEMENT
+    // const movieCard = document.querySelectorAll(".post-card");
+    // const overlay = document.querySelectorAll(".overlay")
+    //
+    // movieCard.onmouseover = function(e) {
+    //     overlay.classList.toggle("visible");
+    //     console.log(e.target);
+    // };
+    // movieCard.onmouseout = function(e) {
+    //
+    //     overlay.classList.toggle("visible");
+    // };
 
-    movieCard.onmouseout = function(event) {
-        /* event.target: parent element */
-        overlay.classList.toggle("visible");
-    };
-    movieCard.onmouseover = function(event) {
-        overlay.classList.toggle("visible");
-        /* event.target: child element (bubbled) */
-    };
 
 </script>
 </html>

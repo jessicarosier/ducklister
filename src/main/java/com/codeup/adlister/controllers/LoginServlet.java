@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/profile");
             return;
         }
-
         //otherwise, show the login page
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
@@ -35,7 +34,6 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-
         // checks if the username and password are in the database
         User user = DaoFactory.getUsersDao().findByUsername(username);
 
@@ -45,7 +43,6 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
-
         //is true if the password matches the hashed password in the database
         boolean validAttempt = BCrypt.checkpw(password, user.getPassword());
 
@@ -53,10 +50,13 @@ public class LoginServlet extends HttpServlet {
         String requestedUrl = (String) request.getSession().getAttribute("requestedUrl");
 
         //if the password is correct, redirect to profile
-        if (validAttempt && requestedUrl != null) {
+        if (validAttempt && requestedUrl.equals("http://localhost:8080/register")) {
+            request.getSession().setAttribute("user", user);
+            response.sendRedirect("/profile");
+        } else if (validAttempt && requestedUrl != null) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect(requestedUrl);
-
+            System.out.println(requestedUrl);
         } else if (validAttempt) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");

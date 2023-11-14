@@ -78,3 +78,11 @@ button {
     }
 }
 
+.nav-link{
+
+}
+
+.nav-link:hover {
+    color: var(--royal-blue);
+}
+

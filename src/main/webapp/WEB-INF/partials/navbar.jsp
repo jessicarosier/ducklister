@@ -2,10 +2,6 @@
 
 <nav class="navbar navbar-default">
     <div class="navbar-container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <%--        <div class="nav-header">--%>
-        <%--            <h3><a href="/">Home</a></h3>--%>
-        <%--        </div>--%>
         <form class="form search-form" action="/ads/search" method="POST">
             <input class="form-control" name="search" id="search" type="search" placeholder="Search"
                    aria-label="Search">
@@ -16,18 +12,18 @@
         <ul class="nav navbar-nav navbar-right">
             <c:choose>
                 <c:when test='<%=session.getAttribute("user") == null%>'>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/login">Login</a></li>
+                    <li><a class="nav-link" href="/">Home</a></li>
+                    <li><a class="nav-link" href="/about">About Us</a></li>
+                    <li><a class="nav-link" href="/register">Register</a></li>
+                    <li><a class="nav-link" href="/login">Login</a></li>
                 </c:when>
                 <c:otherwise>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/ads">View all posts</a></li>
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/profile/update"> Edit Profile</a></li>
-                    <li><a href="/ads/create">Create Post</a></li>
-                    <li><a href="/logout">Logout</a></li>
+                    <li><a class="nav-link" href="/">Home</a></li>
+                    <li><a class="nav-link" href="/ads">View all posts</a></li>
+                    <li><a class="nav-link" href="/profile">Profile</a></li>
+                    <li><a class="nav-link" href="/profile/update"> Edit Profile</a></li>
+                    <li><a class="nav-link" href="/ads/create">Create Post</a></li>
+                    <li><a class="nav-link" href="/logout">Logout</a></li>
                 </c:otherwise>
             </c:choose>
         </ul>

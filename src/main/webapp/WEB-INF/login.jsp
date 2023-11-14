@@ -7,7 +7,9 @@
     <link href="/css/login.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+    <jsp:param name="location" value="login" />
+</jsp:include>
 <div class="container">
     <div class="row">
         <div class="col login-wrapper">

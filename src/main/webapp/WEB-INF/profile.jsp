@@ -9,7 +9,9 @@
     <link href="/css/profile.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+    <jsp:param name="location" value="profile" />
+</jsp:include>
 
 <div class="page-wrapper">
     <div class="container">

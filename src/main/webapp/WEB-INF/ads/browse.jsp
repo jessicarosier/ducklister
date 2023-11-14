@@ -7,7 +7,9 @@
   </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+  <jsp:param name="location" value="browse" />
+</jsp:include>
 
 <div class="container">
   <h1>Browse by Category</h1>

@@ -15,7 +15,6 @@ public class Ad implements Serializable {
     }
 
     public Ad(long id, long userId, String title, String description, String image) {
-        this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;

@@ -8,7 +8,9 @@
     <link href="css/landing.css" rel="stylesheet" >
 </head>
 <body>
-    <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+    <jsp:include page="/WEB-INF/partials/navbar.jsp" >
+        <jsp:param name="location" value="index" />
+     </jsp:include>
     <div class="page-wrapper">
 
 

@@ -9,7 +9,9 @@
 </head>
 <body>
 
-    <jsp:include page="partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+    <jsp:param name="location" value="register" />
+</jsp:include>
     <div class="container">
         <h1>Please fill in your information.</h1>
 

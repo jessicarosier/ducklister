@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Comment;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -140,15 +141,23 @@ public class MySQLCommentsDao implements Comments {
     }
 
     @Override
-    public HashMap<String, String> mapCommentToUsers(long adId) {
+    public HashMap<String, User> mapCommentToUsers(long adId) {
         try {
-            String query = "SELECT username, comment FROM users JOIN comments ON users.id = comments.user_id JOIN ads ON comments.ad_id = ads.id WHERE ad_id = ?";
+            String query = "SELECT username, users.id, users.first_name, users.last_name, comment FROM users JOIN comments ON users.id = comments.user_id JOIN ads ON comments.ad_id = ads.id WHERE ad_id = ?";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setLong(1, adId);
             ResultSet rs = stmt.executeQuery();
-            HashMap<String, String> commentMap = new HashMap<>();
+            HashMap<String, User> commentMap = new HashMap<>();
             while (rs.next()) {
-                commentMap.put(rs.getString("comment"), rs.getString("username"));
+                User user =
+                        new User(
+                                rs.getString("username"),
+                                rs.getLong("id"),
+                                rs.getString("first_name"),
+                                rs.getString("last_name")
+
+                        );
+                commentMap.put(rs.getString("comment"), user);
             }
             return commentMap;
         } catch (SQLException e) {

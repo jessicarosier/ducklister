@@ -40,6 +40,8 @@ public class UpdateAdServlet extends HttpServlet {
                 request.setAttribute("patriotic", categoryList.get(i).getId());
             } else if (categoryList.get(i).getId() == 7) {
                 request.setAttribute("movie", categoryList.get(i).getId());
+            } else if (categoryList.get(i).getId() == 8) {
+                request.setAttribute("superhero", categoryList.get(i).getId());
             } else {
                 continue;
             }
@@ -95,6 +97,9 @@ public class UpdateAdServlet extends HttpServlet {
         }
         if (request.getParameter("movie") != null) {
             catIds.add(Long.parseLong(request.getParameter("movie")));
+        }
+        if (request.getParameter("superhero") != null) {
+            catIds.add(Long.parseLong(request.getParameter("superhero")));
         }
 
         for (int i = 0; i < catIds.size(); i++) {

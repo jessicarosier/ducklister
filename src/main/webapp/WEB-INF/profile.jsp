@@ -5,13 +5,68 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
-    <link href="/css/profile.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 
 <div class="page-wrapper">
     <div class="container">
+        <c:choose>
+        <c:when test="${location == 'viewUser'}">
+            <h1>${userToView.firstName} ${userToView.lastName}!</h1>
+            <c:choose>
+                <c:when test="${userToView.avatar != null}">
+                    <img src="${userToView.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+                </c:when>
+                <c:otherwise>
+                    <img src="/assets/images/default-profile.png" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+                </c:otherwise>
+            </c:choose>
+            <main class="profile">
+                <div class="row">
+                    <section class="col-md-6">
+                                <div class="profile-info">
+                                    <h2>${userToView.username}'s Jeep:</h2>
+                                    <p>Model: ${userToView.getJeepModel()}</p>
+                                    <p>year: ${userToView.getJeepYear()}</p>
+                                    <p>color: ${userToView.getJeepColor()}</p>
+                                </div>
+                    </section>
+                    <section class="col-md-6">
+                        <c:choose>
+                            <c:when test="${usersAds.isEmpty()}">
+                                <h2>${userToView.username} has no active posts.</h2>
+                            </c:when>
+                            <c:otherwise>
+                                <h2>${userToView.username}'s active posts:</h2>
+                                <c:forEach var="ad" items="${usersAds}">
+                                    <div class="col-md-6">
+                                        <h2>${ad.title}</h2>
+                                        <p>${ad.description}</p>
+                                        <c:choose>
+                                            <c:when test="${ad.image == null || ad.image == ''}">
+                                                <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img src="${ad.image}" alt="ad image" class="ad-img">
+                                            </c:otherwise>
+                                        </c:choose>
+                                        <form method="get" action="/ad">
+                                            <input hidden="hidden" name="ad" value="${ad.id}">
+                                            <input hidden="hidden" name="from" value="ads">
+                                            <button class="ad-details" type="submit">View Details</button>
+                                        </form>
+                                    </div>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </section>
+                </div>
+            </main>
+        </c:when>
+        <c:otherwise>
+
         <h1>Welcome, ${thisUser.firstName} ${thisUser.lastName}!</h1>
 
         <c:choose>
@@ -20,11 +75,12 @@
                     <label>Upload Profile Picture
                         <input type="file" id="file-upload">
                     </label>
-                    <form id="image-form" method="post" action="/images" >
+                    <form id="image-form" method="post" action="/images">
                         <input type="hidden" id="image-url" name="image" value="">
                         <input type="hidden" name="location" value="profile">
                     </form>
-                    <img src="/assets/images/default-profile.png" name="avatar" alt="avatar" class="avatar" id="temp-pic">
+                    <img src="/assets/images/default-profile.png" name="avatar" alt="avatar" class="avatar"
+                         id="temp-pic">
                 </div>
             </c:when>
             <c:otherwise>
@@ -34,6 +90,31 @@
         <main class="profile">
             <div class="row">
                 <section class="col-md-6">
+
+                    <c:choose>
+                        <c:when test="${thisUser.getJeepModel() ==null || thisUser.getJeepYear() == null || thisUser.getJeepColor() == null }">
+                            <div class="profile-info">
+                                <h2>Tell us about your Jeep</h2>
+                                <p>Model: </p>
+                                <p>year: </p>
+                                <p>color: </p>
+                                <form method="get" action="/profile/update">
+                                    <button class="update-profile">Update Info</button>
+                                </form>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="profile-info">
+                                <h2>Your Jeep:</h2>
+                                <p>Model: ${thisUser.getJeepModel()}</p>
+                                <p>year: ${thisUser.getJeepYear()}</p>
+                                <p>color: ${thisUser.getJeepColor()}</p>
+                            </div>
+
+                        </c:otherwise>
+                    </c:choose>
+
+
                     <div class="profile-info">
                         <h2>Tell us about your Jeep</h2>
                         <p>Model: ${thisUser.getJeepModel()} </p>
@@ -41,6 +122,7 @@
                         <p>color: ${thisUser.getJeepColor()}</p>
                         <button class="update-profile">Save to your Profile</button>
                     </div>
+
                 </section>
                 <section class="col-md-6">
                     <c:choose>
@@ -55,6 +137,14 @@
                                 <div class="col-md-6">
                                     <h2>${ad.title}</h2>
                                     <p>${ad.description}</p>
+                                    <c:choose>
+                                        <c:when test="${ad.image == null || ad.image == ''}">
+                                            <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="${ad.image}" alt="ad image" class="ad-img">
+                                        </c:otherwise>
+                                    </c:choose>
                                     <c:if test="${sessionScope.user.id == ad.userId}">
                                         <form method="post" action="/delete">
                                             <input hidden="hidden" name="adid" value="${ad.id}">
@@ -70,6 +160,8 @@
                                 </div>
                             </c:forEach>
                         </c:otherwise>
+                    </c:choose>
+                    </c:otherwise>
                     </c:choose>
                 </section>
             </div>

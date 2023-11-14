@@ -47,17 +47,12 @@ public class SingleAdServlet extends HttpServlet {
         User adOwner = DaoFactory.getUsersDao().findUserById(userAd);
         request.setAttribute("owner", adOwner);
 
-//        List<Comment> adComments = DaoFactory.getCommentsDao().getCommentsByAdId(adId);
 
-
-        //creates a hashmap of the user and their comment to be forwarded to the jsp
+        //creates a hashmap with a key of the comment and a value of the user who made the comment
         //hashmap was the only way I could figure out how to get the user and their comment to display together in the correct order
-        HashMap<String, String> commentUsers = DaoFactory.getCommentsDao().mapCommentToUsers(adId);
+        HashMap<String, User> commentUsers = DaoFactory.getCommentsDao().mapCommentToUsers(adId);
 
-        for (int i = 0; i < commentUsers.size(); i++) {
-            System.out.println(commentUsers.values());
-        }
-
+        //sets the comments for this specific ad as an attribute to be forwarded to the jsp
         request.setAttribute("commentUserMap", commentUsers);
 
         request.getRequestDispatcher("/WEB-INF/ads/ad.jsp").forward(request, response);

@@ -27,5 +27,19 @@ img {
     }
 }
 
+.missing-duck {
+    width: 250px;
+    height: auto;
+    border-radius: 6px;
+    aspect-ratio: 1/1;
+    background-color: #f0f0f0;
+}
+
+.ad-img {
+    width: 250px;
+    height: auto;
+    border-radius: 6px;
+    aspect-ratio: 1/1;
+}
 
 

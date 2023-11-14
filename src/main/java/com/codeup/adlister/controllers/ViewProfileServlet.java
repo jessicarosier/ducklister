@@ -28,7 +28,6 @@ public class ViewProfileServlet extends HttpServlet {
             return;
         }
 
-
         try {
             //below line gets the user from the db and to be displayed in the profile header
             request.setAttribute("thisUser", DaoFactory.getUsersDao().findByUsername(user.getUsername()));

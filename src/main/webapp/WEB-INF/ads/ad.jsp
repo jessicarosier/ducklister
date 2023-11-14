@@ -18,15 +18,27 @@
                 <c:forEach var="ad" items="${ad}">
                     <h2>${ad.title}</h2>
                     <p>${ad.description}</p>
-                    <img src="${ad.image}" alt="ad image">
-                    <p>${owner.username}</p>
+                    <c:choose>
+                        <c:when test="${ad.image == null || ad.image == ''}">
+                            <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+                        </c:when>
+                        <c:otherwise>
+                            <img src="${ad.image}" alt="ad image" class="ad-img">
+                        </c:otherwise>
+                    </c:choose>
+
+                    <form method="get" action="/userProfile">
+                        <input hidden="hidden" name="username" value="${owner.getUsername()}">
+                        <input hidden="hidden" name="location" value="viewUser">
+                        <input type="submit" contenteditable="false" value="By: ${owner.getUsername()}">
+                    </form>
                     <p>${owner.email}</p>
 
                     <%--  logic to display delete button if the ad belongs to the logged in user --%>
                     <c:if test="${sessionScope.user.id == ad.userId}">
                         <form method="post" action="/delete">
                             <input hidden="hidden" name="adid" value="${ad.id}">
-                            <input hidden="hidden" name="from" value="ad"  >
+                            <input hidden="hidden" name="from" value="ad">
                             <button class="delete-ad" type="submit">Delete Post</button>
                         </form>
                     </c:if>
@@ -38,8 +50,12 @@
                             <h2>Comments</h2>
                             <c:forEach var="comment" items="${commentUserMap}">
                                 <div style="border: 1px solid black">
-                                    <p>${comment.value}</p>
-                                    <p>By: ${comment.key}</p>
+                                    <p>${comment.key}</p>
+                                    <form method="get" action="/userProfile">
+                                        <input hidden="hidden" name="username" value="${comment.value.getUsername()}">
+                                        <input hidden="hidden" name="location" value="viewUser">
+                                        <input type="submit" contenteditable="false" value="By: ${comment.value.getUsername()}">
+                                    </form>
                                 </div>
                             </c:forEach>
 

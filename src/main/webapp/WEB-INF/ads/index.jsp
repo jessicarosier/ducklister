@@ -23,6 +23,7 @@
             <button type="submit">Submit</button>
         </form>
 
+
     <div class="container-fluid w-100">
         <div class="row">
             <c:forEach var="ad" items="${ads}">
@@ -49,6 +50,36 @@
                     <p>${ad.description}</p>
                 </div>
             </c:forEach>
+        </select>
+        <button type="submit">Submit</button>
+    </form>
+
+
+    <c:forEach var="ad" items="${ads}">
+        <div class="col-md-6">
+            <h2>${ad.title}</h2>
+            <p>${ad.description}</p>
+            <c:choose>
+                <c:when test="${ad.image == null || ad.image == ''}">
+                    <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+                </c:when>
+                <c:otherwise>
+                    <img src="${ad.image}" alt="ad image" class="ad-img">
+                </c:otherwise>
+            </c:choose>
+            <form method="get" action="/ad">
+                <input hidden="hidden" name="ad" value="${ad.id}">
+                <input hidden="hidden" name="from" value="ads">
+                <button class="ad-details" type="submit">View Details</button>
+            </form>
+
+            <c:if test="${sessionScope.user.id == ad.userId}">
+                <form method="post" action="/delete">
+                    <input hidden="hidden" name="adid" value="${ad.id}">
+                    <input hidden="hidden" name="from" value="ads">
+                    <button class="delete-ad" type="submit">Delete Post</button>
+                </form>
+            </c:if>
         </div>
     </div>
 </div>

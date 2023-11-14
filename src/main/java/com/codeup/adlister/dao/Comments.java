@@ -1,6 +1,7 @@
 package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.Comment;
+import com.codeup.adlister.models.User;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
@@ -20,7 +21,8 @@ public interface Comments {
 
     List<Comment> getCommentsByUser(long userId);
 
-    HashMap<String, String> mapCommentToUsers(long adId);
+
+    HashMap<String, User> mapCommentToUsers(long adId);
 
 
 

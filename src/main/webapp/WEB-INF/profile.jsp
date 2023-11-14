@@ -36,9 +36,9 @@
                 <section class="col-md-6">
                     <div class="profile-info">
                         <h2>Tell us about your Jeep</h2>
-                        <p>Model: </p>
-                        <p>year: </p>
-                        <p>color: </p>
+                        <p>Model: ${thisUser.getJeepModel()} </p>
+                        <p>year: ${thisUser.getJeepYear()}</p>
+                        <p>color: ${thisUser.getJeepColor()}</p>
                         <button class="update-profile">Save to your Profile</button>
                     </div>
                 </section>

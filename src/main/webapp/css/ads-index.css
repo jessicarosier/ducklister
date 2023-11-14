@@ -1,6 +1,93 @@
+
+body {
+    background-color: #ffff00;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
+
+select {
+    background-color: #ffffff;
+    padding-left: 10px;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+}
+button {
+    color:#ffffff;
+    background-color: #292929;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+}
+.row {
+    display: flex;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+}
+
+.row::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+.post-card {
+
+    color:#ffffff;
+    background-color: #141414;
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 500px;
+    margin: 10px;
+    /*box-shadow: 10px 10px #ffffff;*/
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+.post-card:hover {
+
+    transition: 0.3s ease-in;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+.overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    width: 100%;
+    transition: .5s ease;
+    /*opacity: 0;*/
+    bottom: 0;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+}
+.visible {
+    opacity: 0;
+
+}
+.post-card button {
+    margin-top: 70px;
+}
+
+.ad-img-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .ad-img {
     max-width: 200px;
     max-height: 200px;
+    min-width: 200px;
+    min-height: 200px;
     aspect-ratio: 1/1;
-    border-radius: 6px;
+    border-radius: 15px;
 }

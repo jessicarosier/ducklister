@@ -49,8 +49,10 @@ public class LoginServlet extends HttpServlet {
 
         String requestedUrl = (String) request.getSession().getAttribute("requestedUrl");
 
-        //if the password is correct, redirect to profile
-        if (validAttempt && requestedUrl.equals("http://localhost:8080/register")) {
+        if (validAttempt && requestedUrl == null) {
+            request.getSession().setAttribute("user", user);
+            response.sendRedirect("/profile");
+        } else if (validAttempt && requestedUrl.equals("http://localhost:8080/register")) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
         } else if (validAttempt && requestedUrl != null) {

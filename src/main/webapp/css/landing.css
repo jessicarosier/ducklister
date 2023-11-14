@@ -1,0 +1,27 @@
+
+body {
+    background-color: var(--mimosa);
+}
+
+.button {
+    color:#ffffff;
+    background-color: #292929;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+
+    &:hover {
+        background-color: var(--royal-blue);
+    }
+}
+
+.logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & img {
+        width: 40vw;
+        margin: 10px 0 40px 0;
+    }
+}

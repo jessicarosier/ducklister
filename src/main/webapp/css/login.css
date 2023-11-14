@@ -1,6 +1,6 @@
 
 body {
-    background-color: #f8e505;
+    background-color: var(--mimosa);
     font-family: Arial;
 }
 
@@ -42,9 +42,16 @@ h1 {
     text-align: center;
 }
 
-.login-button {
-    background-color: #87ceeb;
-    color: white;
+button {
+    color:#ffffff;
+    background-color: #292929;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+
+    &:hover {
+        background-color: var(--royal-blue);
+    }
 }
 
 .duck {

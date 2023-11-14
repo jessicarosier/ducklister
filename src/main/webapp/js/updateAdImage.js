@@ -1,4 +1,4 @@
-import fsKey from "./keys";
+import fsKey from "./keys.js";
 
 //initialize filestack with api key
 const client = filestack.init(fsKey);
@@ -19,7 +19,7 @@ fileUpload.addEventListener("change", (event) => {
         const imageUrl = response.url;
 
         imageInput.value = imageUrl;
-        form.submit();
+        // form.submit();
     }).catch((error) => {
         console.log(error);
     });

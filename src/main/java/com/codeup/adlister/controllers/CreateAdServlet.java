@@ -48,6 +48,10 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description").trim(),
                 request.getParameter("image")
         );
+        System.out.println(loggedInUser.getId());
+        System.out.println(ad.getImage());
+        System.out.println(ad.getTitle());
+        System.out.println(ad.getDescription());
 
         //if the user selected any categories, store that
         String generic = request.getParameter("generic");

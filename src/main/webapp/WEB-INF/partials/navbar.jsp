@@ -2,10 +2,15 @@
 
 <nav class="navbar navbar-default">
     <div class="navbar-container">
-        <form class="form search-form" action="/ads/search" method="POST">
-            <input class="form-control" name="search" id="search" type="search" placeholder="Search"
-                   aria-label="Search">
-            <button class="btn" type="submit">Search</button>
+           <c:if test="${param.location.equals('search')}">
+               <form class="form search-form" action="/ads/search" method="POST">
+                   <input class="form-control" name="search" id="search" type="search" placeholder="Search"
+                          aria-label="Search">
+                   <button class="btn" type="submit" id="search-button">Search</button>
+               </form>
+           </c:if>
+        <form class="form search-form">
+
         </form>
         <% session = request.getSession();%>
 <%--        nav--%>

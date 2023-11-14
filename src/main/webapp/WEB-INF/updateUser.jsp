@@ -6,7 +6,9 @@
   </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+  <jsp:param name="location" value="updateUser" />
+</jsp:include>
   <div class="container">
     <h1>Update Profile.</h1>
     <form action="/profile/update" method="post">

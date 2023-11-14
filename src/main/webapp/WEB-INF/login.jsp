@@ -17,8 +17,11 @@
                 <form action="/login" method="POST">
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input id="username" name="username" class="form-control" type="text">
+                        <input id="username" name="username" class="form-control" type="text" value="${Username}">
                     </div>
+                    <% String incorrectPassword = (String) request.getAttribute("IncorrectPassword");%>
+                    <% if (incorrectPassword != null) { %>
+                    <p style="color: red;"><%=incorrectPassword%></p><% } %>
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input id="password" name="password" class="form-control" type="password">

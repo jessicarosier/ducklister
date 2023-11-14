@@ -6,6 +6,7 @@ import com.codeup.adlister.util.Password;
 import com.mysql.cj.Session;
 import org.mindrot.jbcrypt.BCrypt;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +29,7 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
         //stores the username and password from the login form
         String username = request.getParameter("username");
@@ -56,12 +57,33 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("user", user);
             response.sendRedirect(requestedUrl);
 
-        } else if (validAttempt){
+        } else if (validAttempt) {
             request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
-        } else {
-            //otherwise, redirect to login page
-            response.sendRedirect("/login");
+        } else if (!validAttempt) {
+//            response.sendRedirect("/login");
+
+            request.setAttribute("IncorrectPassword", "Incorrect password.");
+            request.setAttribute("Username", username);
+            request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+            if (validAttempt) {
+                String page = "";
+                try {
+
+                } catch (Exception e) {
+                    String error = "Error.";
+                } finally {
+                    request.getSession().setAttribute("user", user);
+                    page = "login.jsp";
+                }
+
+                RequestDispatcher dd = request.getRequestDispatcher(page);
+                dd.forward(request, response);
+            }
+            {
+                //otherwise, redirect to login page
+                response.sendRedirect("/login");
+            }
         }
     }
 }

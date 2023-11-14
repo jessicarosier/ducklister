@@ -12,6 +12,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Update Ad"/>
     </jsp:include>
+    <link href="${pageContext.request.contextPath}/css/update.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>

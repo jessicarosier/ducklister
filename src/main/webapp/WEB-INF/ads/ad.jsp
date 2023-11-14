@@ -38,8 +38,8 @@
                             <h2>Comments</h2>
                             <c:forEach var="comment" items="${commentUserMap}">
                                 <div style="border: 1px solid black">
-                                    <p>${comment.value}</p>
-                                    <p>By: ${comment.key}</p>
+                                    <p>${comment.key}</p>
+                                    <p>By: ${comment.value}</p>
                                 </div>
                             </c:forEach>
 

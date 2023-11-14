@@ -34,13 +34,29 @@
         <main class="profile">
             <div class="row">
                 <section class="col-md-6">
-                    <div class="profile-info">
-                        <h2>Tell us about your Jeep</h2>
-                        <p>Model: </p>
-                        <p>year: </p>
-                        <p>color: </p>
-                        <button class="update-profile">Save to your Profile</button>
-                    </div>
+                    <c:choose>
+                        <c:when test="${thisUser.getJeepModel() ==null || thisUser.getJeepYear() == null || thisUser.getJeepColor() == null }">
+                            <div class="profile-info">
+                                <h2>Tell us about your Jeep</h2>
+                                <p>Model: </p>
+                                <p>year: </p>
+                                <p>color: </p>
+                                <form method="get" action="/profile/update">
+                                <button class="update-profile">Update Info</button>
+                                </form>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <div class="profile-info">
+                                <h2>Your Jeep:</h2>
+                                <p>Model: ${thisUser.getJeepModel()}</p>
+                                <p>year: ${thisUser.getJeepYear()}</p>
+                                <p>color: ${thisUser.getJeepColor()}</p>
+                            </div>
+
+                        </c:otherwise>
+                    </c:choose>
+
                 </section>
                 <section class="col-md-6">
                     <c:choose>

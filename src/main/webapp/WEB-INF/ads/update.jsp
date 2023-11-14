@@ -17,23 +17,34 @@
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
 <div class="container">
-    <h1>Edit the ad:</h1>
+    <h1>Edit ad:</h1>
     <form action="/update" method="post">
+                <img src="${userToView.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
         <c:forEach var="ad" items="${thisAd}">
+
             <div class="form-group">
                 <label for="title">Title</label>
                 <input id="title" name="title" class="form-control" type="text" value="${ad.title}">
             </div>
+
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" class="form-control" type="text">
-                        ${ad.description}
+                <textarea id="description" name="description" class="form-control" type="text">${ad.description}
                 </textarea>
             </div>
+            <div class="image-group">
             <input hidden="hidden" name="adId" value="${ad.id}">
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> Edit Image
+                        <input type="file" id="file-upload" >
+                    </label>
+                    <input type="hidden" id="image-url" name="image" value="${ad.image}">
+                    <img src="" name="adImage" alt="ad image" class="ad-image" id="temp-pic">
+            </div>
+
         </c:forEach>
         <div class="form-group">
-            <p>Category</p>
+            <p><b>Category</b></p>
             <label> Generic
                 <c:choose>
                     <c:when test="${generic != null}">
@@ -119,5 +130,6 @@
     </form>
 </div>
 <jsp:include page="/WEB-INF/partials/script.jsp"/>
+<script src="src/main/webapp/js/updateAdImage.js"></script>
 </body>
 </html>

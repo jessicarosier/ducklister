@@ -5,7 +5,8 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
-    <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
+
+    <link href="/css/profile.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
@@ -41,6 +42,8 @@
                             <c:otherwise>
                                 <h2>${userToView.username}'s active posts:</h2>
                                 <c:forEach var="ad" items="${usersAds}">
+<%--                            post- card below--%>
+                            <div class="post-card d-flex">
                                     <div class="col-md-6">
                                         <h2>${ad.title}</h2>
                                         <p>${ad.description}</p>
@@ -58,6 +61,7 @@
                                             <button class="ad-details" type="submit">View Details</button>
                                         </form>
                                     </div>
+                            </div>
                                 </c:forEach>
                             </c:otherwise>
                         </c:choose>
@@ -124,7 +128,8 @@
                             <h2>Your active posts:</h2>
 
                             <c:forEach var="ad" items="${ads}">
-                                <div class="col-md-6">
+<%--                             post-card below--%>
+                                <div class="post-card d-flex">
                                     <h2>${ad.title}</h2>
                                     <p>${ad.description}</p>
                                     <c:choose>

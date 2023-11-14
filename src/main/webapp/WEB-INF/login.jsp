@@ -29,7 +29,8 @@
                 <br>
                 <div class="register-wrapper">
                     <p>Don't have an account?</p>
-                    <a href="/register" class="btn">Register here</a></div>
+                    <a href="/register" class="btn">Register here</a>
+                </div>
             </div>
         </div>
     </div>

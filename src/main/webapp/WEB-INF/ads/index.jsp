@@ -61,7 +61,7 @@
                 <p>${ad.description}</p>
                 <c:choose>
                     <c:when test="${ad.image == null || ad.image == ''}">
-                        <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+                        <img class="ad-img" src="/assets/images/missing-duck.svg" alt="ad image">
                     </c:when>
                     <c:otherwise>
                         <img src="${ad.image}" alt="ad image" class="ad-img">

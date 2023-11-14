@@ -26,7 +26,14 @@
         <div class="col-md-6">
             <h2>${ad.title}</h2>
             <p>${ad.description}</p>
-            <img src="${ad.image}"class ="ad-img">
+            <c:choose>
+                <c:when test="${ad.image != null}">
+                    <img src="${ad.image}" alt="ad image">
+                </c:when>
+                <c:otherwise>
+                    <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image" style="width: 250px">
+                </c:otherwise>
+            </c:choose>
             <form method="get" action="/ad">
                 <input hidden="hidden" name="ad" value="${ad.id}">
                 <input hidden="hidden" name="from" value="ads">

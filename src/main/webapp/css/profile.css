@@ -1,6 +1,24 @@
+
+img {
+    display: block;
+}
+
 .avatar {
     width: 250px;
     height: auto;
     border-radius: 50%;
     aspect-ratio: 1/1;
+}
+
+/*WHY DOSENT THIS WORK?!?!?!*/
+.missing-duck {
+    width: 250px;
+    width: 250px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    background-color: #f0f0f0;
+}
+
+body {
+    background-color:orange;
 }

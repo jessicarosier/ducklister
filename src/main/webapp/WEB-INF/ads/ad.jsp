@@ -18,7 +18,15 @@
                 <c:forEach var="ad" items="${ad}">
                     <h2>${ad.title}</h2>
                     <p>${ad.description}</p>
-                    <img src="${ad.image}" alt="ad image">
+                    <c:choose>
+                        <c:when test="${ad.image != null}">
+                            <img src="${ad.image}" alt="ad image">
+                        </c:when>
+                        <c:otherwise>
+                            <img class="missing-duck" src="/assets/images/MissingDuck.svg" alt="ad image" style="width: 250px">
+                        </c:otherwise>
+                    </c:choose>
+
                     <form method="get" action="/userProfile">
                         <input hidden="hidden" name="username" value="${owner.getUsername()}">
                         <input hidden="hidden" name="location" value="viewUser">

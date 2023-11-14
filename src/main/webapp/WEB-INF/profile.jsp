@@ -5,7 +5,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Your Profile"/>
     </jsp:include>
-    <link href="/css/profile.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/profile.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
@@ -15,7 +15,14 @@
         <c:choose>
         <c:when test="${location == 'viewUser'}">
             <h1>${userToView.firstName} ${userToView.lastName}!</h1>
-            <img src="${userToView.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+            <c:choose>
+                <c:when test="${userToView.avatar != null}">
+                    <img src="${userToView.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+                </c:when>
+                <c:otherwise>
+                    <img src="/assets/images/default-profile.png" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+                </c:otherwise>
+            </c:choose>
             <main class="profile">
                 <div class="row">
                     <section class="col-md-6">
@@ -37,7 +44,14 @@
                                     <div class="col-md-6">
                                         <h2>${ad.title}</h2>
                                         <p>${ad.description}</p>
-                                        <img src="${ad.image}" alt="ad image">
+                                        <c:choose>
+                                            <c:when test="${ad.image != null}">
+                                                <img src="${ad.image}" alt="ad image">
+                                            </c:when>
+                                            <c:otherwise>
+                                                <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image" style="width: 250px">
+                                            </c:otherwise>
+                                        </c:choose>
                                         <form method="get" action="/ad">
                                             <input hidden="hidden" name="ad" value="${ad.id}">
                                             <input hidden="hidden" name="from" value="ads">
@@ -47,7 +61,6 @@
                                 </c:forEach>
                             </c:otherwise>
                         </c:choose>
-
                     </section>
                 </div>
             </main>
@@ -114,6 +127,14 @@
                                 <div class="col-md-6">
                                     <h2>${ad.title}</h2>
                                     <p>${ad.description}</p>
+                                    <c:choose>
+                                        <c:when test="${ad.image != null}">
+                                            <img src="${ad.image}" alt="ad image">
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+                                        </c:otherwise>
+                                    </c:choose>
                                     <c:if test="${sessionScope.user.id == ad.userId}">
                                         <form method="post" action="/delete">
                                             <input hidden="hidden" name="adid" value="${ad.id}">

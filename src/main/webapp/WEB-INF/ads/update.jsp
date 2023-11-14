@@ -19,7 +19,7 @@
 <div class="container">
     <h1>Edit ad:</h1>
     <form action="/update" method="post">
-                <img src="${userToView.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+                <img src="${User.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
         <c:forEach var="ad" items="${thisAd}">
 
             <div class="form-group">
@@ -33,14 +33,15 @@
                 </textarea>
             </div>
             <div class="image-group">
-            <input hidden="hidden" name="adId" value="${ad.id}">
+              >
+                    <input hidden="hidden" name="adId" value="${ad.id}">
                     <label for="file-upload" class="custom-file-upload">
-                        <i class="fa fa-cloud-upload"></i> Edit Image
+                                                    <i class="fa fa-cloud-upload"></i> Edit Image
                         <input type="file" id="file-upload" >
                     </label>
                     <input type="hidden" id="image-url" name="image" value="${ad.image}">
                     <img src="" name="adImage" alt="ad image" class="ad-image" id="temp-pic">
-            </div>
+</div>
 
         </c:forEach>
         <div class="form-group">
@@ -130,6 +131,7 @@
     </form>
 </div>
 <jsp:include page="/WEB-INF/partials/script.jsp"/>
-<script src="src/main/webapp/js/updateAdImage.js"></script>
+<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>
+<script type="module" src="/js/updateAdImage.js"></script>
 </body>
 </html>

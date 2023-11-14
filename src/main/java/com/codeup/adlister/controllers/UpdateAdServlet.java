@@ -3,6 +3,7 @@ package com.codeup.adlister.controllers;
 import com.codeup.adlister.dao.DaoFactory;
 import com.codeup.adlister.models.Ad;
 import com.codeup.adlister.models.Category;
+import com.codeup.adlister.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -53,6 +54,17 @@ public class UpdateAdServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        Long userId = null;
+        try {
+            List <Ad> ad = DaoFactory.getAdsDao().selectedAd(adId);
+            for (int i = 0; i < ad.size(); i++) {
+                userId = ad.get(i).getUserId();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        User user = DaoFactory.getUsersDao().findUserById(userId);
+        request.setAttribute("User", user);
         //send the ad to the update page
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);
     }
@@ -61,10 +73,11 @@ public class UpdateAdServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         long adId = Long.parseLong(request.getParameter("adId"));
+        String image = request.getParameter("image");
 
 
         //creates a new ad object with the updated information
-        Ad updatedAd = new Ad(title.trim(), description.trim(), adId);
+        Ad updatedAd = new Ad(adId, title, description, image);
 
         //send the updated ad to the database
         try {

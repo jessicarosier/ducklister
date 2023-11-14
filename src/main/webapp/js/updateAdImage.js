@@ -7,7 +7,7 @@ const image = document.getElementById("temp-pic");
 const fileUpload = document.getElementById("file-upload");
 const imageInput = document.getElementById("image-url");
 
-const form = document.getElementById("image-form");
+// const form = document.getElementById("image-form");
 
 //add event listener to file upload button, when a file is selected, upload it to filestack
 fileUpload.addEventListener("change", (event) => {
@@ -19,6 +19,7 @@ fileUpload.addEventListener("change", (event) => {
         const imageUrl = response.url;
 
         imageInput.value = imageUrl;
+        image.src = response.url;
         // form.submit();
     }).catch((error) => {
         console.log(error);

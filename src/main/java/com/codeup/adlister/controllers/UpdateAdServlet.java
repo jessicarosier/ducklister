@@ -73,7 +73,7 @@ public class UpdateAdServlet extends HttpServlet {
         String title = request.getParameter("title");
         String description = request.getParameter("description");
         long adId = Long.parseLong(request.getParameter("adId"));
-        String image = request.getParameter("image");
+        String image = request.getParameter("adImage");
 
 
         //creates a new ad object with the updated information
@@ -118,6 +118,7 @@ public class UpdateAdServlet extends HttpServlet {
         for (int i = 0; i < catIds.size(); i++) {
             DaoFactory.getAdsDao().insertAdCategory(adId, catIds.get(i));
         }
+        System.out.println(updatedAd.getImage());
         //then redirects back to the profile to show the updated ad
         response.sendRedirect("/profile");
 

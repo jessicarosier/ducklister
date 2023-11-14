@@ -52,16 +52,20 @@ public class RegisterServlet extends HttpServlet {
 
         //if there are errors, send the user back to the register page
         if (inputHasErrors) {
+            request.setAttribute("FirstName", firstName);
+            request.setAttribute("LastName", lastName);
+            request.setAttribute("Username", username);
+            request.setAttribute("Email", email);
+
             request.setAttribute("PasswordError", "Passwords don't match.");
             request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
             return;
-        } if (!password.equals(passwordConfirmation)) {
-//            return "Passwords dont match";
-            request.setAttribute("PasswordError", "Passwords don't match.");
-//            request.getSession();
-            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
-            return;
-        } else {
+        }
+
+//            request.setAttribute("PasswordError", "Passwords don't match.");
+//            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+//            return;
+
             // create and save a new user
             User user = new User(firstName, lastName, username, email, password);
 
@@ -79,4 +83,5 @@ public class RegisterServlet extends HttpServlet {
             response.sendRedirect("/login");
         }
     }
-}
+
+

@@ -16,16 +16,19 @@
         <form action="/register" method="post">
             <div class="form-group">
                 <label for="firstName">First Name</label>
-                <input id="firstName" name="firstName" class="form-control" type="text" required="required" value="${User.firstName}">
+                <input id="firstName" name="firstName" class="form-control" type="text" required="required" value="${FirstName}">
             </div>
             <div class="form-group">
                 <label for="lastName">Last Name</label>
-                <input id="lastName" name="lastName" class="form-control" type="text" required="required" value="${User.lastName}">
+                <input id="lastName" name="lastName" class="form-control" type="text" required="required" value="${LastName}">
             </div>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text" required="required">
+                <input id="username" name="username" class="form-control" type="text" required="required" value="${Username}">
             </div>
+            <% String emailError = (String) request.getAttribute("EmailError");%>
+            <% if (emailError != null) { %>
+            <p style="color: red;"><%=emailError%></p><% } %>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input id="email" name="email" class="form-control" type="text" required="required">
@@ -34,9 +37,12 @@
                 <label for="password">Password</label>
                 <input id="password" name="password" class="form-control" type="password" required="required">
             </div>
-            <c:if test="${PasswordError != null}">
-                <p style="color:red">Passwords do not match.</p>
-            </c:if>
+
+            <% String passwordError = (String) request.getAttribute("PasswordError");%>
+                        <% if (passwordError != null) { %>
+                        <p style="color: red;"><%=passwordError%></p><% } %>
+<%--                            <p style="color:red">Passwords do not match.</p>--%>
+<%--                        </c:if>--%>
             <div class="form-group">
                 <label for="confirm_password">Confirm Password</label>
                 <input id="confirm_password" name="confirm_password" class="form-control" type="password" required="required">

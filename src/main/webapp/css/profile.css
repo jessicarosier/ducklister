@@ -9,5 +9,93 @@ img {
     border-radius: 50%;
     aspect-ratio: 1/1;
 }
+:root {
+    --aquamarine : #A2C4E0;
+    --mimosa: #F7CB2D;
+    --blue-grotta: #0D659D;
+    --royal-blue: #1390E0;
+}
+body {
+    background-color: var(--mimosa);
+    margin: 0;
+    padding: 0;
+}
 
+.container-fluid {
+    margin-top: 20px;
+}
+
+select {
+    background-color: #ffffff;
+    padding-left: 10px;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+}
+button {
+    color:#ffffff;
+    background-color: #292929;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+}
+button:hover{
+    background-color: var(--royal-blue);
+}
+.row {
+    display: flex;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+}
+
+.row::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+.post-card {
+
+    color:#000000;
+    background-color: var(--aquamarine);
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 500px;
+    margin: 10px;
+    /*box-shadow: 10px 10px #ffffff;*/
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+.post-card:hover {
+
+    transition: 0.3s ease-in;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+
+.post-card button {
+    margin-top: 90px;
+}
+
+.ad-img-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.ad-img {
+    max-width: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+}
+form {
+    margin: 0;
+    max-height: 50px;
+}
 

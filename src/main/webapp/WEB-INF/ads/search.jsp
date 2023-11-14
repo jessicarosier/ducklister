@@ -17,7 +17,9 @@
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+  <jsp:param name="location" value="search" />
+</jsp:include>
 <%--<div class="container">--%>
   <h1>Results for: <c:out value="${searched}"/></h1>
   <c:forEach var="ad" items="${searchedAds}">

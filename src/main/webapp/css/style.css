@@ -60,9 +60,11 @@ button {
     width: 200px;
     height: 40px;
     border-radius: 25px;
+    border: none;
 
     &:hover {
         background-color: var(--royal-blue);
+        color: black;
     }
 }
 
@@ -72,5 +74,10 @@ text-decoration: none;
 
 .nav-links:hover {
     color: var(--royal-blue);
+}
+
+
+#search-button {
+  height: 32px;
 }
 

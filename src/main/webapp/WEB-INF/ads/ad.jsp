@@ -9,7 +9,9 @@
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+    <jsp:param name="location" value="ad" />
+</jsp:include>
 <div class="page-wrapper">
     <main class="container-fluid">
         <div class="row">

@@ -9,7 +9,9 @@
     <link href="/css/ads-index.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+    <jsp:param name="location" value="search" />
+</jsp:include>
 
     <div class="container-fluid w-100">
         <h1>Here Are all the ads!</h1>

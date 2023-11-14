@@ -15,7 +15,9 @@
     <link href="${pageContext.request.contextPath}/css/update.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+    <jsp:param name="location" value="update" />
+</jsp:include>
 <div class="container">
     <h1>Edit ad:</h1>
     <form action="/update" method="post">

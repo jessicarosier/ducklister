@@ -13,7 +13,9 @@
   </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp"/>
+<jsp:include page="/WEB-INF/partials/navbar.jsp" >
+  <jsp:param name="location" value="about" />
+</jsp:include>
 <p>
   Welcome to Duck Lister – the ultimate online community for Jeep enthusiasts to celebrate the unique bond between Jeep owners and their rubber ducks. Our platform provides a fun and interactive space for Jeep Owners to register their beloved vehicles and showcase their rubber duck collections.
 

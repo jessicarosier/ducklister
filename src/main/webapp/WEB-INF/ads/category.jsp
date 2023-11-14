@@ -5,22 +5,27 @@
   <jsp:include page="/WEB-INF/partials/head.jsp">
     <jsp:param name="title" value="Browse by category" />
   </jsp:include>
+  <link href="/css/category.css" rel="stylesheet" >
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" />
+<div class="page-wrapper">
+
 
 <div class="container">
   <h1>Browse by Category</h1>
 
+<div class="cat-form-wrapper">
 
   <c:forEach var="cat" items="${cats}" >
-    <form action="/cat" method="post">
+    <form action="/cat" method="post" class="cat-form">
       <input hidden="hidden" name="id" value="${cat.id}">
-      <input type="submit" name="title" value="${cat.title}">
+      <input class="cat-title" type="submit" name="title" value="${cat.title}">
     </form>
   </c:forEach>
 </div>
-
+</div>
+</div>
 <jsp:include page="/WEB-INF/partials/script.jsp" />
 </body>
 </html>

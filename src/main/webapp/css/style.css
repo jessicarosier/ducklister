@@ -1,4 +1,12 @@
 
+:root {
+    --aquamarine : #A2C4E0;
+    --mimosa: #F7CB2D;
+    --blue-grotta: #0D659D;
+    --royal-blue: #1390E0;
+}
+
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,16 +24,6 @@ img {
 }
 
 
-.logo-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    & img {
-        width: 30vw;
-
-    }
-}
 
 .missing-duck {
     width: 250px;
@@ -37,4 +35,46 @@ img {
 
 
 
+/*NAVBAR STYLING*/
+
+.navbar {
+    background-color: var(--mimosa);
+    border: none;
+    padding: 10px 20px;
+}
+
+.navbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--mimosa);
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.search-form {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+    justify-self: start;
+    margin: 0;
+}
+
+#search {
+    max-width: 300px;
+}
+
+button {
+    color:#ffffff;
+    background-color: #292929;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+
+    &:hover {
+        background-color: var(--royal-blue);
+    }
+}
 

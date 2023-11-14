@@ -1,0 +1,23 @@
+
+body {
+    background-color: var(--mimosa);
+}
+
+
+
+.cat-form-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.cat-title {
+    background-color: transparent;
+    border: none;
+    font-size: 40px;
+    font-weight: bolder;
+
+    &:hover {
+        color: var(--royal-blue);
+    }
+}

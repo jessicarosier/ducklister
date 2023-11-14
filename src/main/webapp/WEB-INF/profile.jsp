@@ -114,7 +114,6 @@
                                 <p>year: ${thisUser.getJeepYear()}</p>
                                 <p>color: ${thisUser.getJeepColor()}</p>
                             </div>
-
                         </c:otherwise>
                     </c:choose>
 

@@ -5,6 +5,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Welcome to my site!" />
     </jsp:include>
+    <link href="css/landing.css" rel="stylesheet" >
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" />
@@ -14,11 +15,11 @@
     <div class="container">
         <div class="row text-center">
             <div class="logo-wrapper">
-                <img class="main-logo" src="assets/images/logo.svg">
+                <img class="main-logo" src="assets/images/logo-transparent.png">
             </div>
             <div>
-                <a href="/ads" class="btn btn-primary">View All Posts</a>
-                <a href="/cat" class="btn btn-primary">Browse by Category</a>
+                <a href="/ads" class="btn button">View All Posts</a>
+                <a href="/cat" class="btn button">Browse by Category</a>
             </div>
         </div>
     </div>

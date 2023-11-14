@@ -11,7 +11,6 @@
 <div class="container">
     <div class="row">
         <div class="col login-wrapper">
-
             <div class="login">
                 <img src="/assets/images/logo.svg" alt="Duck" class="duck">
                 <h1>Log in and get ducking!</h1>
@@ -27,7 +26,7 @@
                         <label for="password">Password</label>
                         <input id="password" name="password" class="form-control" type="password">
                     </div>
-                    <input type="submit" class="btn btn-block login-button" value="Log In">
+                    <button type="submit">Log In</button>
                 </form>
                 <br>
                 <div class="register-wrapper">
@@ -38,6 +37,6 @@
         </div>
     </div>
 </div>
-<jsp:include page="/WEB-INF/partials/script.jsp" />
+<jsp:include page="/WEB-INF/partials/script.jsp"/>
 </body>
 </html>

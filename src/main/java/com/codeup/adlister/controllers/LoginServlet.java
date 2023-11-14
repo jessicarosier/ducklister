@@ -51,18 +51,17 @@ public class LoginServlet extends HttpServlet {
         //is true if the password matches the hashed password in the database
         boolean validAttempt = BCrypt.checkpw(password, user.getPassword());
 
-        request.getSession().setAttribute("user", user);
+
         String requestedUrl = (String) request.getSession().getAttribute("requestedUrl");
 
         //if the password is correct, redirect to profile
         if (validAttempt && requestedUrl != null) {
-
+            request.getSession().setAttribute("user", user);
             response.sendRedirect(requestedUrl);
 
         } else if (validAttempt){
-
+            request.getSession().setAttribute("user", user);
             response.sendRedirect("/profile");
-
         } else {
             //otherwise, redirect to login page
             response.sendRedirect("/login");

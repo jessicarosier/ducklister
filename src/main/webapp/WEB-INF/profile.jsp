@@ -114,15 +114,6 @@
                         </c:otherwise>
                     </c:choose>
 
-
-                    <div class="profile-info">
-                        <h2>Tell us about your Jeep</h2>
-                        <p>Model: ${thisUser.getJeepModel()} </p>
-                        <p>year: ${thisUser.getJeepYear()}</p>
-                        <p>color: ${thisUser.getJeepColor()}</p>
-                        <button class="update-profile">Save to your Profile</button>
-                    </div>
-
                 </section>
                 <section class="col-md-6">
                     <c:choose>

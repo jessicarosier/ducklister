@@ -35,11 +35,11 @@
   <h2>${ad.title}</h2>
   <p>${ad.description}</p>
     <c:choose>
-      <c:when test="${ad.image != null}">
-        <img src="${ad.image}" alt="ad image">
+      <c:when test="${ad.image == null || ad.image == ''}">
+        <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
       </c:when>
       <c:otherwise>
-        <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+        <img src="${ad.image}" alt="ad image" class="ad-img">
       </c:otherwise>
     </c:choose>
   </div>

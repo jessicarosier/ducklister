@@ -14,7 +14,7 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp"/>
-<p>
+<p class="about-us">
   Welcome to Duck Lister – the ultimate online community for Jeep enthusiasts to celebrate the unique bond between Jeep owners and their rubber ducks. Our platform provides a fun and interactive space for Jeep Owners to register their beloved vehicles and showcase their rubber duck collections.
 
   Who are we? We are a passionate team of Jeep enthusiasts who understand that the love for these iconic vehicles goes beyond the ordinary. We recognized the special connection that many Jeep owners share with their rubber ducks wanted to create a dedicated space to honor this quirky tradition.

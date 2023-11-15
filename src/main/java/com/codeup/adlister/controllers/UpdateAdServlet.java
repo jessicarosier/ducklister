@@ -54,7 +54,7 @@ public class UpdateAdServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        Long userId = null;
+        Long userId = adId;
         try {
             List <Ad> ad = DaoFactory.getAdsDao().selectedAd(adId);
             for (int i = 0; i < ad.size(); i++) {
@@ -62,8 +62,8 @@ public class UpdateAdServlet extends HttpServlet {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
-        User user = DaoFactory.getUsersDao().findUserById(userId);
+        } User user = DaoFactory.getUsersDao().findUserById(userId);
+
         request.setAttribute("User", user);
         //send the ad to the update page
         request.getRequestDispatcher("/WEB-INF/ads/update.jsp").forward(request, response);

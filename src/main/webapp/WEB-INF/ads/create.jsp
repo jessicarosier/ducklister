@@ -5,7 +5,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Create a new Ad"/>
     </jsp:include>
-    <link href="/css/create.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/createAd.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp">
@@ -15,9 +15,12 @@
     <div id="message" class="messages">
         <%--Form Validation error messages are dynamically placed here with JavaScript--%>
     </div>
+    <div class="create-new-ad-text">
     <h1>Create a new Ad</h1>
+    </div>
     <form action="/ads/create" method="post" id="create-ad-form">
         <%--  if the user tries to subit a from with missing information, keep the values for the fields that they DID fill in    --%>
+        <div class="left-content">
         <div class="form-group">
             <c:choose>
                 <c:when test="${ad.title != null}">
@@ -36,6 +39,7 @@
                 </c:otherwise>
             </c:choose>
         </div>
+<%--            <hr>--%>
         <div class="form-group">
             <c:choose>
                 <c:when test="${ad.description != null}">
@@ -76,12 +80,15 @@
                 </c:otherwise>
             </c:choose>
         </div>
-
-        <div class="form-group">
-            <p>Category</p>
+        </div>
+            <div class="vl"></div>
+            <div class="right-content">
+        <div class="form-group category">
+            <p><b>Select categories</b></p>
             <div id="category-error">
                 <%-- dynamically created JS goes here if the user does not select at least one category   --%>
             </div>
+            <div class="categories-group">
 
             <c:choose>
                 <c:when test="${generic != null}">
@@ -181,8 +188,15 @@
             </c:choose>
             </label>
         </div>
-        <button type="submit" id="submit-button" class="btn btn-block btn-primary"> Submit</button>
+            </div>
+            </div>
+                <div class="btn-align">
+                    <button type="submit" id="submit-button" class="btn btn-block btn-primary"> Submit</button>
+                </div>
+
     </form>
+</div>
+
 </div>
 <jsp:include page="/WEB-INF/partials/script.jsp"/>
 <script src="/js/create-ad.js" type="module"></script>

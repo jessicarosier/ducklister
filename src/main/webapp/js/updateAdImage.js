@@ -14,12 +14,11 @@ fileUpload.addEventListener("change", (event) => {
     event.preventDefault();
     //get the file that was selected
     const file = event.target.files[0];
-    console.log(file);
     client.upload(file).then((response) => {
         const imageUrl = response.url;
-
         imageInput.value = imageUrl;
-        image.src = response.url;
+        image.src = imageUrl;
+        console.log(imageUrl);
         // form.submit();
     }).catch((error) => {
         console.log(error);

@@ -15,6 +15,8 @@ public class DeleteAdsServlet extends HttpServlet {
 
         //gets the ad id from the form
         String adId = request.getParameter("adid");
+        String userid = request.getParameter("userid");
+        System.out.println(adId);
 
         //deletes the ad from the database using the ad id
         try {

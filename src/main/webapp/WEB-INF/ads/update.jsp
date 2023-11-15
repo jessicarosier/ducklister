@@ -20,7 +20,9 @@
 </jsp:include>
 <div class="container p-4">
     <div class="content">
-    <h1>Edit ad:</h1>
+        <div class="edit-ad-text">
+            <h1>Edit Your Ad</h1>
+        </div>
     <form action="/update" method="post" class="form-edit">
         <img src="${User.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
         <c:forEach var="ad" items="${thisAd}">

@@ -23,19 +23,25 @@ fileUpload.addEventListener("change", (event) => {
 });
 
 
+
+
 const submitButton = document.getElementById("submit-button");
-
-
 //FORM VALIDATION
 submitButton.addEventListener("click", (event) => {
     event.preventDefault();
-    const messageDiv = document.getElementById("message");
+    const categoryError = document.getElementById("category-error");
+    const titleError = document.getElementById("title-error");
+    const descriptionError = document.getElementById("description-error");
     //clear out any previous messages
-    messageDiv.innerHTML = "";
-    const title = document.getElementById("title").value;
-    const description = document.getElementById("description").value;
+    categoryError.innerHTML = "";
+    titleError.innerHTML = "";
+    descriptionError.innerHTML = "";
+
+    const title = document.getElementById("title");
+    const description = document.getElementById("description");
     const categories = [];
-    //get all the checked categories
+
+    //get all the checked categories, if they are checked, add them to an array
     const categoryInputs = document.getElementsByClassName("category");
     for (let i = 0; i < categoryInputs.length; i++) {
         if (categoryInputs[i].checked) {
@@ -44,25 +50,20 @@ submitButton.addEventListener("click", (event) => {
     }
     //if there are no checked categories, add an error message
     if (categories.length < 1) {
-        const categoryError = document.createElement("h3");
-        categoryError.innerText = "Please select at least one category";
-        messageDiv.appendChild(categoryError);
+        categoryError.innerHTML = `<p style="color: red">Please select at least one category</p>`;
 
     }
     //if there is no title or description, add an error message
-    if (title.length < 1) {
-          const titleError = document.createElement("h3");
-            titleError.innerText = "Please enter a title";
-            messageDiv.appendChild(titleError);
+    if (title.value.length < 1) {
+        titleError.innerHTML = `<p style="color: red" >Please enter a title</p>`;
     }
-    if (description.length < 1) {
-        const descriptionError = document.createElement("h3");
-        descriptionError.innerText = "Please enter a description";
-        messageDiv.appendChild(descriptionError);
+
+    if (description.value.length < 1) {
+        descriptionError.innerHTML = `<p style="color: red">Please enter a description</p>`;
     }
 
     //if there are no errors, submit the form
-    if (messageDiv.innerHTML === "") {
+    if (categoryError.innerHTML.length < 1 && titleError.innerHTML.length < 1 && descriptionError.innerHTML.length < 1) {
         document.getElementById("create-ad-form").submit();
     }
 });

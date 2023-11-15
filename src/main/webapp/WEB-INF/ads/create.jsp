@@ -21,11 +21,17 @@
         <div class="form-group">
             <c:choose>
                 <c:when test="${ad.title != null}">
+                    <div id="title-error">
+                            <%-- dynamically created JS goes here if the user does not type in a title   --%>
+                    </div>
                     <label for="title">Title</label>
                     <input id="title" name="title" class="form-control" type="text" value="${ad.title}">
                 </c:when>
                 <c:otherwise>
                     <label for="title">Title</label>
+                    <div id="title-error">
+                            <%-- dynamically created JS goes here if the user does not type in a title   --%>
+                    </div>
                     <input id="title" name="title" class="form-control" type="text">
                 </c:otherwise>
             </c:choose>
@@ -33,11 +39,17 @@
         <div class="form-group">
             <c:choose>
                 <c:when test="${ad.description != null}">
+                    <div id="description-error">
+                            <%-- dynamically created JS goes here if the user does not type in a description   --%>
+                    </div>
                     <label for="description">Description</label>
                     <textarea id="description" name="description" class="form-control"
                               type="text">${ad.description}</textarea>
                 </c:when>
                 <c:otherwise>
+                    <div id="description-error">
+                            <%-- dynamically created JS goes here if the user does not type in a description   --%>
+                    </div>
                     <label for="description">Description</label>
                     <textarea id="description" name="description" class="form-control" type="text"></textarea>
                 </c:otherwise>
@@ -67,7 +79,9 @@
 
         <div class="form-group">
             <p>Category</p>
-
+            <div id="category-error">
+                <%-- dynamically created JS goes here if the user does not select at least one category   --%>
+            </div>
 
             <c:choose>
                 <c:when test="${generic != null}">

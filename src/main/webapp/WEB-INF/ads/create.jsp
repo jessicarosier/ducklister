@@ -5,6 +5,7 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Create a new Ad"/>
     </jsp:include>
+    <link href="/css/create.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp">

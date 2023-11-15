@@ -25,6 +25,9 @@
                 <input id="lastName" name="lastName" class="form-control" type="text" required="required" value="${LastName}">
             </div>
             <div class="form-group">
+                <c:if test="${UsernameError != null}">
+                    <p style="color: red;">${UsernameError}</p>
+                </c:if>
                 <label for="username">Username</label>
                 <input id="username" name="username" class="form-control" type="text" required="required" value="${Username}">
             </div>
@@ -33,7 +36,7 @@
             <p style="color: red;"><%=emailError%></p><% } %>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text" required="required">
+                <input id="email" name="email" class="form-control" type="text" required="required" value="${Email}">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

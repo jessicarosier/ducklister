@@ -22,7 +22,7 @@
 </jsp:include>
 
   <div class="page-wrapper" >
-      <h1>Welcome</h1>
+      <h1>Welcome!</h1>
       <div class="about-us">
 
 

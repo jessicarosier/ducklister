@@ -14,13 +14,11 @@ body {
 
 .page-wrapper {
     display: flex;
-
     align-items: center;
 }
 
 
 .about-us {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -36,9 +34,14 @@ body {
     text-align: center;
     gap: 10px;
 }
+
  h1 {
     font-size: 70px;
     font-weight: 700;
     margin-top: 40px;
     margin-bottom: 90px;
 }
+  p {
+     font-size: 500px;
+ }
+

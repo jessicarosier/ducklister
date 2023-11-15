@@ -21,7 +21,6 @@
                 <input type="hidden" id="image-url" name="image" value="">
                 <input type="hidden" name="location" value="profile">
             </form>
-
             <h1>Update Profile.</h1>
             <form action="/profile/update" method="post">
                 <div class="form-group">

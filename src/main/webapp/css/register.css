@@ -1,0 +1,81 @@
+body {
+    background-color: var(--mimosa)
+}
+
+h1 {
+    text-align: center;
+}
+p {
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+}
+
+.register-form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+    padding: 50px 0;
+    background-color: white;
+    width: 55vw;
+}
+
+.register-form-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50vw;
+
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    width: 300px;
+
+}
+
+button {
+    align-self: center;
+
+}
+
+
+label {
+    display: flex;
+    flex-direction: column;
+    min-width: fit-content;
+}
+.input-wrapper {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+.full-name, .password {
+    min-width: fit-content;
+}
+
+.username-email {
+    min-width: 360px;
+}
+
+.single-input-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+

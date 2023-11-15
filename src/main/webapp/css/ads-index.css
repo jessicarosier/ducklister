@@ -85,3 +85,33 @@ form {
     margin: 0;
     max-height: 50px;
 }
+
+.arrow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+    max-width: 80px;
+    min-width: 150px;
+}
+
+#arrow-img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0 auto;
+    display: block;
+    animation: pointRight 1s infinite;
+}
+
+@keyframes pointRight {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}

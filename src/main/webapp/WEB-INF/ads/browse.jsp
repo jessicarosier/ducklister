@@ -50,20 +50,22 @@
                         <img src="/assets/images/arrow-right-solid.svg" id="arrow-img">
                     </div>
                     <c:forEach var="ad" items="${ads}">
-                        <div class="duck-card">
+                        <div class="post-card d-flex">
                             <h2>${ad.title}</h2>
                             <p>${ad.description}</p>
-                            <c:choose>
-                                <c:when test="${ad.image == null || ad.image == ''}">
-                                    <img class="ad-img" src="/assets/images/missing-duck.svg" alt="ad image">
-                                </c:when>
-                                <c:otherwise>
-                                    <img src="${ad.image}" alt="ad image" class="ad-img">
-                                </c:otherwise>
-                            </c:choose>
+                            <div class="ad-img-wrapper">
+                                <c:choose>
+                                    <c:when test="${ad.image == null || ad.image == ''}">
+                                        <img class="ad-img" src="/assets/images/missing-duck.svg" alt="ad image">
+                                    </c:when>
+                                    <c:otherwise>
+                                        <img src="${ad.image}" alt="ad image" class="ad-img">
+                                    </c:otherwise>
+                                </c:choose>
+                            </div>
                             <form action="/ad" method="get">
                                 <input hidden="hidden" name="ad" value="${ad.id}">
-                                <button type="submit" name="title">View Details</button>
+                                <button type="submit" name="title" class="post-card-button">View Details</button>
                             </form>
                         </div>
                     </c:forEach>

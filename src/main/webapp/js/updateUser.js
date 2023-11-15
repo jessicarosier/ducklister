@@ -14,7 +14,6 @@ fileUpload.addEventListener("change", (event) => {
     event.preventDefault();
     //get the file that was selected
     const file = event.target.files[0];
-    console.log(file);
     client.upload(file).then((response) => {
         const imageUrl = response.url;
 

@@ -15,13 +15,13 @@
     <link href="${pageContext.request.contextPath}/css/update.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" >
-    <jsp:param name="location" value="update" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp">
+    <jsp:param name="location" value="update"/>
 </jsp:include>
 <div class="container">
     <h1>Edit ad:</h1>
     <form action="/update" method="post">
-                <img src="${User.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
+        <img src="${User.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">
         <c:forEach var="ad" items="${thisAd}">
 
             <div class="form-group">
@@ -34,16 +34,15 @@
                 <textarea id="description" name="description" class="form-control" type="text">${ad.description}
                 </textarea>
             </div>
-            <div class="image-group">
-              >
-                    <input hidden="hidden" name="adId" value="${ad.id}">
-                    <label for="file-upload" class="custom-file-upload">
-                                                    <i class="fa fa-cloud-upload"></i> Edit Image
-                        <input type="file" id="file-upload" >
-                    </label>
-                    <input type="hidden" id="image-url" name="image" value="${ad.image}">
-                    <img src="" name="adImage" alt="ad image" class="ad-image" id="temp-pic">
-</div>
+
+
+                <input hidden="hidden" name="adId" value="${ad.id}">
+                <label for="file-upload" class="custom-file-upload">Edit Image
+                    <input type="file" id="file-upload">
+                </label>
+                <input type="hidden" id="image-url" name="image" value="">
+                <img src="" name="adImage" alt="ad image" class="ad-image" id="temp-pic">
+
 
         </c:forEach>
         <div class="form-group">

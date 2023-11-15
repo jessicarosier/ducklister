@@ -70,15 +70,16 @@ public class UpdateAdServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String title = request.getParameter("title");
-        String description = request.getParameter("description");
+        String title = request.getParameter("title").trim();
+        String description = request.getParameter("description").trim();
         long adId = Long.parseLong(request.getParameter("adId"));
-        String image = request.getParameter("adImage");
+        String image = request.getParameter("image").trim();
+
 
 
         //creates a new ad object with the updated information
-        Ad updatedAd = new Ad(adId, title, description, image);
-
+        Ad updatedAd = new Ad(title, description, adId, image);
+        System.out.println(updatedAd.getImage());
         //send the updated ad to the database
         try {
             DaoFactory.getAdsDao().update(updatedAd);
@@ -118,7 +119,7 @@ public class UpdateAdServlet extends HttpServlet {
         for (int i = 0; i < catIds.size(); i++) {
             DaoFactory.getAdsDao().insertAdCategory(adId, catIds.get(i));
         }
-        System.out.println(updatedAd.getImage());
+
         //then redirects back to the profile to show the updated ad
         response.sendRedirect("/profile");
 

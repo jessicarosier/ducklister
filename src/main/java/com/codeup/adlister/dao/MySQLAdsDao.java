@@ -154,10 +154,11 @@ public class MySQLAdsDao implements Ads {
     @Override
     public long update(Ad ad) {
         try {
-            PreparedStatement statement = connection.prepareStatement("UPDATE ads SET title = ?, description = ? WHERE id = ?", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = connection.prepareStatement("UPDATE ads SET title = ?, description = ?, image = ? WHERE id = ?", Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, ad.getTitle());
             statement.setString(2, ad.getDescription());
-            statement.setLong(3, ad.getId());
+            statement.setString(3, ad.getImage());
+            statement.setLong(4, ad.getId());
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
             if (rs.next()) {

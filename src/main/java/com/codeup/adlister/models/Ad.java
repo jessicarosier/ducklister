@@ -15,6 +15,7 @@ public class Ad implements Serializable {
     }
 
     public Ad(long id, long userId, String title, String description, String image) {
+       this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
@@ -33,6 +34,16 @@ public class Ad implements Serializable {
         this.description = description;
         this.image = image;
     }
+
+    public Ad(String title, String description, long adID, String image) {
+        this.title = title;
+        this.description = description;
+        this.image = image;
+        this.id = adID;
+    }
+
+
+
 
     public long getId() {
         return id;

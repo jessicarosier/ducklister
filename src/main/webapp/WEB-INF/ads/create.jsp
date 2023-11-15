@@ -5,23 +5,33 @@
     <jsp:include page="/WEB-INF/partials/head.jsp">
         <jsp:param name="title" value="Create a new Ad"/>
     </jsp:include>
+    <link href="/css/create.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" >
-    <jsp:param name="location" value="create" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp">
+    <jsp:param name="location" value="create"/>
 </jsp:include>
 <div class="container">
+    <div id="message" class="messages">
+        <%--Form Validation error messages are dynamically placed here with JavaScript--%>
+    </div>
     <h1>Create a new Ad</h1>
-    <form action="/ads/create" method="post">
+    <form action="/ads/create" method="post" id="create-ad-form">
         <%--  if the user tries to subit a from with missing information, keep the values for the fields that they DID fill in    --%>
         <div class="form-group">
             <c:choose>
                 <c:when test="${ad.title != null}">
+                    <div id="title-error">
+                            <%-- dynamically created JS goes here if the user does not type in a title   --%>
+                    </div>
                     <label for="title">Title</label>
                     <input id="title" name="title" class="form-control" type="text" value="${ad.title}">
                 </c:when>
                 <c:otherwise>
                     <label for="title">Title</label>
+                    <div id="title-error">
+                            <%-- dynamically created JS goes here if the user does not type in a title   --%>
+                    </div>
                     <input id="title" name="title" class="form-control" type="text">
                 </c:otherwise>
             </c:choose>
@@ -29,11 +39,17 @@
         <div class="form-group">
             <c:choose>
                 <c:when test="${ad.description != null}">
+                    <div id="description-error">
+                            <%-- dynamically created JS goes here if the user does not type in a description   --%>
+                    </div>
                     <label for="description">Description</label>
                     <textarea id="description" name="description" class="form-control"
                               type="text">${ad.description}</textarea>
                 </c:when>
                 <c:otherwise>
+                    <div id="description-error">
+                            <%-- dynamically created JS goes here if the user does not type in a description   --%>
+                    </div>
                     <label for="description">Description</label>
                     <textarea id="description" name="description" class="form-control" type="text"></textarea>
                 </c:otherwise>
@@ -63,108 +79,109 @@
 
         <div class="form-group">
             <p>Category</p>
-
+            <div id="category-error">
+                <%-- dynamically created JS goes here if the user does not select at least one category   --%>
+            </div>
 
             <c:choose>
                 <c:when test="${generic != null}">
                     <label> Generic
-                        <input type="checkbox" name="generic" value="1" checked>
+                        <input class="category" type="checkbox" name="generic" value="1" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label> Generic
-                        <input type="checkbox" name="generic" value="1">
+                        <input class="category" type="checkbox" name="generic" value="1">
                     </label>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${music != null}">
                     <label> Music
-                        <input type="checkbox" name="music" value="2" checked>
+                        <input class="category" type="checkbox" name="music" value="2" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label> Music
-                        <input type="checkbox" name="music" value="2">
+                        <input class="category" type="checkbox" name="music" value="2">
                     </label>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${sports != null}">
                     <label>Sports
-                        <input type="checkbox" name="sports" value="3" checked>
+                        <input class="category" type="checkbox" name="sports" value="3" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label>Sports
-                        <input type="checkbox" name="sports" value="3">
+                        <input class="category" type="checkbox" name="sports" value="3">
                     </label>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${seasonal != null}">
                     <label>Sports
-                        <input type="checkbox" name="seasonal" value="4" checked>
+                        <input class="category" type="checkbox" name="seasonal" value="4" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label>Sports
-                        <input type="checkbox" name="seasonal" value="4">
+                        <input class="category" type="checkbox" name="seasonal" value="4">
                     </label>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${international != null}">
                     <label> International
-                        <input type="checkbox" name="international" value="5" checked>
+                        <input class="category" type="checkbox" name="international" value="5" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label> International
-                        <input type="checkbox" name="international" value="5">
+                        <input class="category" type="checkbox" name="international" value="5">
                     </label>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${patriotic != null}">
                     <label>Patriotic
-                        <input type="checkbox" name="patriotic" value="6" checked>
+                        <input class="category" type="checkbox" name="patriotic" value="6" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label>Patriotic
-                        <input type="checkbox" name="patriotic" value="6">
+                        <input class="category" type="checkbox" name="patriotic" value="6">
                     </label>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${movie != null}">
                     <label>Movie
-                        <input type="checkbox" name="movie" value="7" checked>
+                        <input class="category" type="checkbox" name="movie" value="7" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label>Movie
-                        <input type="checkbox" name="movie" value="7">
+                        <input class="category" type="checkbox" name="movie" value="7">
                     </label>
                 </c:otherwise>
             </c:choose>
             <c:choose>
                 <c:when test="${superhero != null}">
                     <label>Superhero
-                        <input type="checkbox" name="superhero" value="8" checked>
+                        <input class="category" type="checkbox" name="superhero" value="8" checked>
                     </label>
                 </c:when>
                 <c:otherwise>
                     <label>Superhero
-                        <input type="checkbox" name="superhero" value="8">
+                        <input class="category" type="checkbox" name="superhero" value="8">
                     </label>
                 </c:otherwise>
             </c:choose>
             </label>
-
         </div>
-        <input type="submit" class="btn btn-block btn-primary">
+        <button type="submit" id="submit-button" class="btn btn-block btn-primary"> Submit</button>
     </form>
 </div>
 <jsp:include page="/WEB-INF/partials/script.jsp"/>

@@ -1,6 +1,8 @@
-/*.ad-img {*/
-/*  width: 100px;*/
-/*    height: 200px;*/
-/*    aspect-ratio: 1/1;*/
-/*    border-radius: 6px;*/
-/*}*/
+.messages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
+

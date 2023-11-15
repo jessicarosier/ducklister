@@ -15,7 +15,7 @@
 <div class="page-wrapper">
     <div class="container">
         <section class="row">
-            <div class="col left-side">
+            <div class="col-md-8 left-side">
                 <h1>Browse by Category</h1>
                 <div class="cat-form-wrapper">
                     <c:forEach var="cat" items="${cats}">
@@ -28,7 +28,7 @@
             </div>
             <div class="col right-side">
                 <div class="cat-img-wrapper">
-                    <img src="/assets/images/category-ducks.jpeg" alt="rubber ducks wearing costumes riding in a jeep" class="category-ducks" >
+                    <img src="/assets/images/cat-duck4.jpeg" alt="rubber ducks wearing costumes riding in a jeep" class="category-ducks" >
                 </div>
             </div>
         </section>

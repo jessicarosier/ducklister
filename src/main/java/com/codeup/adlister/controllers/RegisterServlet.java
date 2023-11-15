@@ -62,10 +62,6 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-//            request.setAttribute("PasswordError", "Passwords don't match.");
-//            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
-//            return;
-
             // create and save a new user
             User user = new User(firstName, lastName, username, email, password);
 
@@ -79,6 +75,7 @@ public class RegisterServlet extends HttpServlet {
             //insert the user into the database
             DaoFactory.getUsersDao().insert(user);
 
+            request.getSession().setAttribute("register", "success");
             //redirect the user to the login page
             response.sendRedirect("/login");
         }

@@ -12,6 +12,10 @@
 </jsp:include>
 <div class="container">
     <div class="row">
+        <div class="messages">
+            <jsp:include page="/WEB-INF/partials/messages.jsp" />
+        </div>
+
         <div class="col login-wrapper">
             <div class="login">
                 <img src="/assets/images/logo.svg" alt="Duck" class="duck">

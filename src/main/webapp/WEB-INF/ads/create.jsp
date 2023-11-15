@@ -7,12 +7,12 @@
     </jsp:include>
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" >
-    <jsp:param name="location" value="create" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp">
+    <jsp:param name="location" value="create"/>
 </jsp:include>
 <div class="container">
     <div id="message" class="messages">
-<%--        <jsp:include page="/WEB-INF/partials/messages.jsp" />--%>
+        <%--Form Validation error messages are dynamically placed here with JavaScript--%>
     </div>
     <h1>Create a new Ad</h1>
     <form action="/ads/create" method="post" id="create-ad-form">
@@ -167,7 +167,7 @@
             </label>
 
         </div>
-            <button type="submit" id="submit-button" class="btn btn-block btn-primary"> Submit</button>
+        <button type="submit" id="submit-button" class="btn btn-block btn-primary"> Submit</button>
     </form>
 </div>
 <jsp:include page="/WEB-INF/partials/script.jsp"/>

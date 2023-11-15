@@ -1,3 +1,61 @@
+:root {
+    --aquamarine : #A2C4E0;
+    --mimosa: #F7CB2D;
+    --blue-grotta: #0D659D;
+    --royal-blue: #1390E0;
+}
+
+body {
+    background-color: var(--mimosa);
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+}
+
+row {
+    display: flex;
+    justify-content: center;
+}
+
+.post-card {
+    color:#000000;
+    background-color: var(--aquamarine);
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 500px;
+    margin: 10px;
+    /*box-shadow: 10px 10px #ffffff;*/
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.post-card:hover {
+    transition: 0.3s ease-in;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.post-card button {
+    margin-top: 90px;
+}
+
+.ad-img-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-img, .missing-duck {
+    max-width: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+}
+/*TODO MODAL BELLOW*/
 .modal {
     position: fixed;
     top: 0;
@@ -10,7 +68,6 @@
     transition: all ease 0.3s;
     z-index: 999;
 }
-
 
 .modal-bg {
     position: absolute;
@@ -69,11 +126,11 @@ textarea {
     justify-content: center;
     cursor: pointer;
     transition: all ease 0.3s;
+}
 
-    &:hover {
-        background-color: yellow;
-        color: black;
-    }
+.modal-close:hover {
+    background-color: yellow;
+    color: black;
 }
 
 .submit-btn {
@@ -86,10 +143,10 @@ textarea {
     font-weight: bold;
     cursor: pointer;
     transition: all ease 0.3s;
+}
 
-    &:hover {
-        background-color: yellow;
-        color: black;
-    }
+.submit-btn:hover {
+    background-color: yellow;
+    color: black;
 }
 

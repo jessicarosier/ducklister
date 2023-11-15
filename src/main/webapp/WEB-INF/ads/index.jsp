@@ -27,6 +27,9 @@
 
         <div class="container-fluid w-100">
             <div class="row">
+                <div class="arrow">
+                    <img src="/assets/images/arrow-right-solid.svg" id="arrow-img">
+                </div>
                 <c:forEach var="ad" items="${ads}">
                     <div class="post-card d-flex">
                     <h2>${ad.title}</h2>

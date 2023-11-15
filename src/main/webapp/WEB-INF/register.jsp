@@ -1,62 +1,75 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page errorPage="partials/messages.jsp"%>
+<%@page errorPage="partials/messages.jsp" %>
 <html>
 <head>
     <jsp:include page="partials/head.jsp">
-        <jsp:param name="title" value="Register For Our Site!" />
+        <jsp:param name="title" value="Register For Our Site!"/>
     </jsp:include>
+    <link href="/css/register.css" rel="stylesheet">
 </head>
 <body>
 
-<jsp:include page="/WEB-INF/partials/navbar.jsp" >
-    <jsp:param name="location" value="register" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp">
+    <jsp:param name="location" value="register"/>
 </jsp:include>
-    <div class="container">
-        <h1>Please fill in your information.</h1>
+<div class="container">
+    <div class="register-form-container">
+        <div class="register-form-wrapper">
+            <h1>Register for a new account</h1>
+            <p>It's quick and easy.</p>
 
-        <form action="/register" method="post">
-            <div class="form-group">
-                <label for="firstName">First Name</label>
-                <input id="firstName" name="firstName" class="form-control" type="text" required="required" value="${FirstName}">
-            </div>
-            <div class="form-group">
-                <label for="lastName">Last Name</label>
-                <input id="lastName" name="lastName" class="form-control" type="text" required="required" value="${LastName}">
-            </div>
-            <div class="form-group">
+            <form action="/register" method="post" id="register-form">
+
+                <div class="form-group input-wrapper">
+                    <label for="firstName"></label>
+                    <input id="firstName" name="firstName" class="form-control full-name" type="text"
+                           required="required"
+                           value="${FirstName}" placeholder="First name">
+                    <label for="lastName"></label>
+                    <input id="lastName" name="lastName" class="form-control full-name" type="text" required="required"
+                           value="${LastName}" placeholder="Last name">
+                </div>
+
                 <c:if test="${UsernameError != null}">
                     <p style="color: red;">${UsernameError}</p>
                 </c:if>
-                <label for="username">Username</label>
-                <input id="username" name="username" class="form-control" type="text" required="required" value="${Username}">
-            </div>
-            <% String emailError = (String) request.getAttribute("EmailError");%>
-            <% if (emailError != null) { %>
-            <p style="color: red;"><%=emailError%></p><% } %>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input id="email" name="email" class="form-control" type="text" required="required" value="${Email}">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input id="password" name="password" class="form-control" type="password" required="required">
-            </div>
+                <div class="form-group single-input-wrapper">
+                    <label for="username"></label>
+                    <input id="username" name="username" class="form-control username-email" type="text"
+                           required="required"
+                           value="${Username}" placeholder="Username">
+                </div>
+                <% String emailError = (String) request.getAttribute("EmailError");%>
+                <% if (emailError != null) { %>
+                <p style="color: red;"><%=emailError%>
+                </p><% } %>
 
-            <% String passwordError = (String) request.getAttribute("PasswordError");%>
-                        <% if (passwordError != null) { %>
-                        <p style="color: red;"><%=passwordError%></p><% } %>
-<%--                            <p style="color:red">Passwords do not match.</p>--%>
-<%--                        </c:if>--%>
-            <div class="form-group">
-                <label for="confirm_password">Confirm Password</label>
-                <input id="confirm_password" name="confirm_password" class="form-control" type="password" required="required">
-            </div>
-            <input type="submit" class="btn btn-primary btn-block">
-        </form>
+                <div class="form-group single-input-wrapper">
+                    <label for="email"></label>
+                    <input id="email" name="email" class="form-control username-email" type="email" required="required"
+                           value="${Email}" placeholder="name@example.com">
+                </div>
+                <% String passwordError = (String) request.getAttribute("PasswordError");%>
+                <% if (passwordError != null) { %>
+                <p style="color: red;"><%=passwordError%>
+                </p><% } %>
+
+                <div class="form-group input-wrapper">
+                    <label for="password"></label>
+                    <input id="password" name="password" class="form-control password" type="password"
+                           required="required" placeholder="New Password">
+                    <label for="confirm_password"></label>
+                    <input id="confirm_password" name="confirm_password" class="form-control password" type="password"
+                           required="required" placeholder="Confirm Password">
+                </div>
+                <button type="submit" >Sign Up</button>
+            </form>
+        </div>
     </div>
+</div>
 
-    <jsp:include page="partials/script.jsp" />
+<jsp:include page="partials/script.jsp"/>
 
 </body>
 </html>

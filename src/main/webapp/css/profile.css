@@ -5,23 +5,31 @@
     --royal-blue: #1390E0;
 }
 
+body {
+    background-color: var(--mimosa);
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+}
+.profile-info {
+    margin-top: 130px;
+}
+
+.profile-info p {
+    font-size: 20px;
+}
 img {
     display: block;
     width: 300px;
 }
 
 .avatar {
-    width: 250px;
-    height: auto;
+    margin-top: 70px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    aspect-ratio: 1/1;
-}
-
-body {
-    background-color: var(--mimosa);
-    margin: 0;
-    padding: 0;
-    overflow-y: hidden;
+    /*aspect-ratio: 1/1;*/
+    object-fit: cover;
 }
 
 .container-fluid {
@@ -37,6 +45,7 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     max-height: 800px;
+    min-height: 800px;
     border: 3px solid #000000;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -100,5 +109,8 @@ button.delete-ad {
 }
 button.update-ad {
 margin-top: 20px;
+}
+.view-users-ad-btn {
+    margin-top: 90px;
 }
 

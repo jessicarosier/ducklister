@@ -2,6 +2,12 @@ body {
     background-color: var(--mimosa)
 }
 
+.update-container {
+    display: flex;
+    justify-content: center;
+}
+
+
 .form-container {
     display: flex;
    justify-content: space-between;
@@ -11,7 +17,7 @@ body {
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
     padding: 10px;
     background-color: white;
-    max-width: 70vw;
+    min-width: 80vw;
 }
 
 .update-user-form-wrapper {
@@ -41,5 +47,12 @@ form {
 
 button {
     align-self: center;
+}
+
+#temp-pic {
+    width: 250px;
+    height: auto;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
 }
 

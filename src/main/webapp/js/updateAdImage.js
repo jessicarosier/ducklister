@@ -20,7 +20,7 @@ fileUpload.addEventListener("change", (event) => {
 
         imageInput.value = imageUrl;
         image.src = response.url;
-        // form.submit();
+        form.submit();
     }).catch((error) => {
         console.log(error);
     });

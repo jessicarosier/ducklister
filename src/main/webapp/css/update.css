@@ -8,13 +8,18 @@
 /*.missing-duck{*/
 /*    width: 200px;*/
 /*}*/
+nav{
+    background-color: #A2C4E0;
+}
 body{
     background-color: #A2C4E0;
     display: block;
     /*justify-content: center;*/
     /*width: 75%;*/
 }
-
+body{
+    border-top: 5px solid black;
+}
 #title{
     border: 1px solid #F7CB2D;
     border-radius: 10px;
@@ -31,4 +36,17 @@ body{
     display: flex;
     width: 200px;
     height: 200px;
+}
+.btn {
+    color:#ffffff;
+    background-color: #292929;
+    width: 200px;
+    height: 40px;
+    border-radius: 25px;
+}
+.btn:hover{
+    background-color: var(--royal-blue);
+}
+.fa{
+    border-top: 5px solid #F7CB2D;
 }

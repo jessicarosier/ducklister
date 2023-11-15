@@ -6,7 +6,6 @@
         <jsp:param name="title" value="Viewing All The dao.Ads"/>
     </jsp:include>
     <link href="/css/ad.css" rel="stylesheet">
-
 </head>
 <body>
 <jsp:include page="/WEB-INF/partials/navbar.jsp" >
@@ -16,35 +15,38 @@
     <main class="container-fluid">
         <div class="row">
             <h1>Here is the selected ad</h1>
-            <div class="col-md-6">
+            <div class="col">
                 <c:forEach var="ad" items="${ad}">
-                    <h2>${ad.title}</h2>
-                    <p>${ad.description}</p>
-                    <c:choose>
-                        <c:when test="${ad.image == null || ad.image == ''}">
-                            <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
-                        </c:when>
-                        <c:otherwise>
-                            <img src="${ad.image}" alt="ad image" class="ad-img">
-                        </c:otherwise>
-                    </c:choose>
+                    <div class="post-card d-flex">
+                        <h2>${ad.title}</h2>
+                        <p>${ad.description}</p>
+                        <div class="ad-img-wrapper">
+                            <c:choose>
+                                <c:when test="${ad.image == null || ad.image == ''}">
+                                    <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="${ad.image}" alt="ad image" class="ad-img">
+                                </c:otherwise>
+                            </c:choose>
+                        </div>
 
-                    <form method="get" action="/userProfile">
-                        <input hidden="hidden" name="username" value="${owner.getUsername()}">
-                        <input hidden="hidden" name="location" value="viewUser">
-                        <input type="submit" contenteditable="false" value="By: ${owner.getUsername()}">
-                    </form>
-                    <p>${owner.email}</p>
-
-                    <%--  logic to display delete button if the ad belongs to the logged in user --%>
-                    <c:if test="${sessionScope.user.id == ad.userId}">
-                        <form method="post" action="/delete">
-                            <input hidden="hidden" name="adid" value="${ad.id}">
-                            <input hidden="hidden" name="from" value="ad">
-                            <button class="delete-ad" type="submit">Delete Post</button>
+                        <form method="get" action="/userProfile">
+                            <input hidden="hidden" name="username" value="${owner.getUsername()}">
+                            <input hidden="hidden" name="location" value="viewUser">
+                            <input type="submit" contenteditable="false" value="By: ${owner.getUsername()}">
                         </form>
-                    </c:if>
+                        <p>${owner.email}</p>
 
+                        <%--  logic to display delete button if the ad belongs to the logged in user --%>
+                        <c:if test="${sessionScope.user.id == ad.userId}">
+                            <form method="post" action="/delete">
+                                <input hidden="hidden" name="adid" value="${ad.id}">
+                                <input hidden="hidden" name="from" value="ad">
+                                <button class="delete-ad" type="submit">Delete Post</button>
+                            </form>
+                        </c:if>
+                    </div>
                     <%--  logic to display comments that belong to an ad IF they exist --%>
                     <%-- commentUserMap is a Hashmap with the username as the key and the comment made by that user as the value  --%>
                     <c:choose>

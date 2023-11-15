@@ -165,7 +165,6 @@
                 </c:otherwise>
             </c:choose>
             </label>
-
         </div>
         <button type="submit" id="submit-button" class="btn btn-block btn-primary"> Submit</button>
     </form>

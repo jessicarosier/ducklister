@@ -31,8 +31,10 @@ public class CreateAdServlet extends HttpServlet {
             // add a return statement to exit out of the entire method.
             return;
         }
+
         //otherwise, they are logged in, so they can create an ad
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+
 
     }
 
@@ -85,7 +87,7 @@ public class CreateAdServlet extends HttpServlet {
             selectedCats.add(superhero);
         }
 
-        if(ad.getTitle() == "") {
+        if (ad.getTitle() == "") {
             request.getSession().setAttribute("titleError", "Please enter a title");
         } else {
             request.getSession().removeAttribute("titleError");
@@ -131,9 +133,11 @@ public class CreateAdServlet extends HttpServlet {
 
         }
 
+        //redirects the user to the ad they just created
+        response.sendRedirect("/ad?ad=" + adId);
 
-        //redirects the user to the ads index page to display all ads
-        response.sendRedirect("/ads");
+
+
     }
 
 

@@ -46,8 +46,15 @@ public class MySQLUsersDao implements Users {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
+        // if the username already exists
+
             return rs.getLong(1);
         } catch (SQLException e) {
+            if (e instanceof SQLIntegrityConstraintViolationException) {
+                if (e.getMessage().contains("users.username")) {
+                    return null;
+                }
+            }
             throw new RuntimeException("Error creating new user", e);
         }
     }

@@ -71,9 +71,9 @@
                 </div>
             </main>
         </c:when>
+
+
         <c:otherwise>
-
-
         <main class="profile">
             <div class="row">
                 <section class="col-md-6">
@@ -143,33 +143,36 @@
                                                         <img class="missing-duck" src="/assets/images/missing-duck.svg" alt="ad image">
                                                     </c:when>
                                                     <c:otherwise>
-                                                        <img src="${ad.image}" alt="ad image" class="ad-img">
+                                                        <img src="${ad.getImage()}" alt="ad image" class="ad-img">
                                                     </c:otherwise>
 
                                                 </c:choose>
                                             </div>
-                                        <c:if test="${sessionScope.user.id == ad.userId}">
+
                                             <form method="post" action="/delete" class="hidden-form">
                                                 <input hidden="hidden" name="adid" value="${ad.id}">
+                                                <input hidden="hidden" name="userid" value="${thisUser.getId()}">
                                                 <input hidden="hidden" name="from" value="profile">
                                                 <button class="delete-ad" type="submit">Delete Post</button>
                                             </form>
                                             <form method="get" action="/update" class="hidden-form">
+                                                <input hidden="hidden" name="userId" value="${thisUser.getId()}">
                                                 <input hidden="hidden" name="ad" value="${ad.id}">
                                                 <input hidden="hidden" name="from" value="profile">
                                                 <button class="update-ad" type="submit">Update Post</button>
                                             </form>
-                                        </c:if>
+
                                     </div>
                                 </c:forEach>
                             </div>
                         </c:otherwise>
                     </c:choose>
-                    </c:otherwise>
-                    </c:choose>
+
                 </section>
             </div>
         </main>
+        </c:otherwise>
+        </c:choose>
     </div>
 </div>
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js"></script>

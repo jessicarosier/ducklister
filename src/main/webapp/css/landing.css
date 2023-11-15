@@ -20,8 +20,15 @@ body {
     justify-content: center;
     align-items: center;
 
-    & img {
-        width: 40vw;
-        margin: 10px 0 40px 0;
+}
+
+.main-logo {
+    width: 40vw;
+    margin: 10px 0 40px 0;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
     }
 }
+

@@ -17,6 +17,10 @@ import java.io.IOException;
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //remove old session error attributes
+        request.getSession().removeAttribute("UsernameError");
+        request.getSession().removeAttribute("PasswordError");
+
 //        request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         if (request.getSession().getAttribute("user") == null) {
 
@@ -56,32 +60,38 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("LastName", lastName);
             request.setAttribute("Username", username);
             request.setAttribute("Email", email);
-
             request.setAttribute("PasswordError", "Passwords don't match.");
             request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
             return;
         }
 
-//            request.setAttribute("PasswordError", "Passwords don't match.");
-//            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
-//            return;
+        // create and save a new user
+        User user = new User(firstName, lastName, username, email, password);
 
-            // create and save a new user
-            User user = new User(firstName, lastName, username, email, password);
+        // hash the password and add some salt
+        String hash = BCrypt.hashpw(password, BCrypt.gensalt(12));
 
-            // hash the password and add some salt
-            String hash = BCrypt.hashpw(password, BCrypt.gensalt(12));
-
-            //set the password to the hash
-            user.setPassword(hash);
+        //set the password to the hash
+        user.setPassword(hash);
 
 
-            //insert the user into the database
-            DaoFactory.getUsersDao().insert(user);
-
-            //redirect the user to the login page
+        //insert the user into the database
+        if (DaoFactory.getUsersDao().insert(user) == null) {
+            //if null, the username already exists, so send the user back to the register page and display an error message
+            request.setAttribute("UsernameError", "Username already exists.");
+            request.setAttribute("FirstName", firstName);
+            request.setAttribute("LastName", lastName);
+            request.setAttribute("Username", username);
+            request.setAttribute("Email", email);
+            request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
+        } else {
+            //otherwise, the user was successfully created, so set the session attribute to success and redirect them to the login page
+            request.getSession().setAttribute("register", "success");
             response.sendRedirect("/login");
         }
+
+
     }
+}
 
 

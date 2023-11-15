@@ -31,8 +31,10 @@ public class CreateAdServlet extends HttpServlet {
             // add a return statement to exit out of the entire method.
             return;
         }
+
         //otherwise, they are logged in, so they can create an ad
         request.getRequestDispatcher("/WEB-INF/ads/create.jsp").forward(request, response);
+
 
     }
 
@@ -48,10 +50,6 @@ public class CreateAdServlet extends HttpServlet {
                 request.getParameter("description").trim(),
                 request.getParameter("image")
         );
-        System.out.println(loggedInUser.getId());
-        System.out.println(ad.getImage());
-        System.out.println(ad.getTitle());
-        System.out.println(ad.getDescription());
 
         //if the user selected any categories, store that
         String generic = request.getParameter("generic");
@@ -89,10 +87,26 @@ public class CreateAdServlet extends HttpServlet {
             selectedCats.add(superhero);
         }
 
+        if (ad.getTitle() == "") {
+            request.getSession().setAttribute("titleError", "Please enter a title");
+        } else {
+            request.getSession().removeAttribute("titleError");
+        }
+
+        if (ad.getDescription() == "") {
+            request.getSession().setAttribute("descriptionError", "Please enter a description");
+        } else {
+            request.getSession().removeAttribute("descriptionError");
+        }
+
+        if (selectedCats.isEmpty()) {
+            request.getSession().setAttribute("categoryError", "Please select at least one category");
+        } else {
+            request.getSession().removeAttribute("categoryError");
+        }
 
         //input validation, user must enter a title and description when creating an ad
         if (ad.getTitle() == "" || ad.getDescription() == "" || selectedCats.isEmpty()) {
-            request.setAttribute("Error", "Please fill out all fields.");
             request.setAttribute("ad", ad);
             request.setAttribute("generic", generic);
             request.setAttribute("music", music);
@@ -119,8 +133,11 @@ public class CreateAdServlet extends HttpServlet {
 
         }
 
-        //redirects the user to the ads index page to display all ads
-        response.sendRedirect("/ads");
+        //redirects the user to the ad they just created
+        response.sendRedirect("/ad?ad=" + adId);
+
+
+
     }
 
 

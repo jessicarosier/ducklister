@@ -53,11 +53,12 @@ submitButton.addEventListener("click", (event) => {
         categoryError.innerHTML = `<p style="color: red">Please select at least one category</p>`;
 
     }
-    //if there is no title or description, add an error message
+    //if there is no title, add an error message
     if (title.value.length < 1) {
         titleError.innerHTML = `<p style="color: red" >Please enter a title</p>`;
     }
 
+    //if there is no description, add an error message
     if (description.value.length < 1) {
         descriptionError.innerHTML = `<p style="color: red">Please enter a description</p>`;
     }

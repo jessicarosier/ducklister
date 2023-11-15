@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
+
 import java.sql.*;
 
 public class MySQLUsersDao implements Users {
@@ -46,7 +47,7 @@ public class MySQLUsersDao implements Users {
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             rs.next();
-        // if the username already exists
+            // if the username already exists
 
             return rs.getLong(1);
         } catch (SQLException e) {
@@ -76,7 +77,7 @@ public class MySQLUsersDao implements Users {
     public void updateProfile(User user) throws SQLException {
 
         Statement statement = connection.createStatement();
-        String updateQuery = "UPDATE users SET first_name = '" + user.getFirstName() + "', last_name = '" + user.getLastName() + "', username = '" + user.getUsername() + "', email = '" + user.getEmail() + "', jeep_model = '" + user.getJeepModel() + "', jeep_year = '" + user.getJeepYear() + "', jeep_color = '" + user.getJeepColor() + "' WHERE id = '" + user.getId() + "'";
+        String updateQuery = "UPDATE users SET first_name = '" + user.getFirstName() + "', last_name = '" + user.getLastName() + "', username = '" + user.getUsername() + "', email = '" + user.getEmail() + "', jeep_model = '" + user.getJeepModel() + "', jeep_year = '" + user.getJeepYear() + "', jeep_color = '" + user.getJeepColor() + "', avatar = '" + user.getAvatar() + "' WHERE id = '" + user.getId() + "'";
 
         statement.executeUpdate(updateQuery);
 
@@ -90,8 +91,9 @@ public class MySQLUsersDao implements Users {
 
         statement.executeUpdate(updateQuery);
     }
-        @Override
-    public User insertProfilePic ( long userId, String image){
+
+    @Override
+    public User insertProfilePic(long userId, String image) {
         String query = "UPDATE users SET avatar = ? WHERE id = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -107,7 +109,7 @@ public class MySQLUsersDao implements Users {
 
     }
 
-    private User extractUser (ResultSet rs) throws SQLException {
+    private User extractUser(ResultSet rs) throws SQLException {
         if (!rs.next()) {
             return null;
         }

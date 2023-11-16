@@ -18,7 +18,7 @@
     <div class="create-new-ad-text">
     <h1>Create a new Ad</h1>
     </div>
-    <div action="/ads/create" method="post" id="create-ad-form">
+    <form action="/ads/create" method="post" id="create-ad-form">
         <%--  if the user tries to subit a from with missing information, keep the values for the fields that they DID fill in    --%>
         <div class="left-content">
         <div class="form-group">
@@ -199,7 +199,7 @@
                 </div>
 
     </form>
-</div>
+</form>
 
 </div>
 <jsp:include page="/WEB-INF/partials/script.jsp"/>

@@ -50,8 +50,10 @@
 
         </c:forEach>
         <div class="form-group category">
-            <p><b>Category</b></p>
-            <label> Generic
+            <div class="align-p">
+                <p><b>Select categories</b></p></div>
+            <div class="categories-group">
+            <label class="category-label"> Generic
                 <c:choose>
                     <c:when test="${generic != null}">
                         <input type="checkbox" name="generic" value="1" checked>
@@ -61,7 +63,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
-            <label> Music
+                <label class="category-label"> Music
                 <c:choose>
                     <c:when test="${music != null}">
                         <input type="checkbox" name="music" value="2" checked>
@@ -71,7 +73,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
-            <label> Sports
+                <label class="category-label"> Sports
                 <c:choose>
                     <c:when test="${sports != null}">
                         <input type="checkbox" name="sports" value="3" checked>
@@ -81,7 +83,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
-            <label> Seasonal
+                <label class="category-label"> Seasonal
                 <c:choose>
                     <c:when test="${seasonal != null}">
                         <input type="checkbox" name="seasonal" value="4" checked>
@@ -91,7 +93,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
-            <label> International
+                <label class="category-label"> International
                 <c:choose>
                     <c:when test="${international != null}">
                         <input type="checkbox" name="international" value="5" checked>
@@ -101,7 +103,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
-            <label> Patriotic
+                <label class="category-label"> Patriotic
                 <c:choose>
                     <c:when test="${patriotic != null}">
                         <input type="checkbox" name="patriotic" value="6" checked>
@@ -111,7 +113,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
-            <label> Movie
+                <label class="category-label"> Movie
                 <c:choose>
                     <c:when test="${movie != null}">
                         <input type="checkbox" name="movie" value="7" checked>
@@ -121,7 +123,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
-            <label> Superhero
+                <label class="category-label"> Superhero
                 <c:choose>
                     <c:when test="${superhero != null}">
                         <input type="checkbox" name="superhero" value="8" checked>
@@ -131,6 +133,7 @@
                     </c:otherwise>
                 </c:choose>
             </label>
+        </div>
         </div>
         <input type="submit" class="btn btn-block btn-primary">
     </form>

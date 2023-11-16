@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @WebServlet(name = "controllers.RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
@@ -49,6 +51,7 @@ public class RegisterServlet extends HttpServlet {
                 || lastName.isEmpty()
                 || username.isEmpty()
                 || email.isEmpty()
+                || !isValidEmail(email)
                 || password.isEmpty()
                 || (!password.equals(passwordConfirmation));
 
@@ -59,7 +62,7 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("LastName", lastName);
             request.setAttribute("Username", username);
             request.setAttribute("Email", email);
-            request.setAttribute("PasswordError", "Passwords don't match.");
+            request.setAttribute("PasswordError", "Passwords don't match or email is invalid.");
             request.getRequestDispatcher("WEB-INF/register.jsp").forward(request, response);
             return;
         }
@@ -88,8 +91,12 @@ public class RegisterServlet extends HttpServlet {
             request.getSession().setAttribute("register", "success");
             response.sendRedirect("/login");
         }
-
-
+    }
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }
 

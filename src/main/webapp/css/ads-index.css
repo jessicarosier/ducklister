@@ -11,6 +11,22 @@ body {
     padding: 0;
 }
 
+.categories-drop-down-col {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    align-self: center;
+}
+.categories-form {
+    align-self: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
 select {
     background-color: #ffffff;
     padding-left: 10px;

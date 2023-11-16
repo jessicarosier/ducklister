@@ -13,17 +13,20 @@
 </jsp:include>
 
     <div class="container-fluid w-100">
-        <h1>Here Are all the ads!</h1>
+        <div class=" categories-drop-down-row" style="display: flex; align-items: center">
+            <div class="categories-drop-down-col" style="width: 100%; display: flex; flex-direction: column; justify-content: center">
+                <h1>Here Are all the ads!</h1>
 
-            <form action="/cat" method="post">
-                <select id="category" name="id" type="text" >
-                    <c:forEach var="cat" items="${cats}">
-                        <option value="${cat.id}">${cat.title}</option>
-                    </c:forEach>
-                </select>
-                <button type="submit">Submit</button>
-            </form>
-
+                <form action="/cat" method="post" class="categories-form">
+                    <select id="category" name="id" type="text" >
+                        <c:forEach var="cat" items="${cats}">
+                            <option value="${cat.id}">${cat.title}</option>
+                        </c:forEach>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
 
         <div class="container-fluid w-100">
             <div class="row">

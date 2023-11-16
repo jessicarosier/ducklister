@@ -1,5 +1,5 @@
 body {
-    background-color: var(--mimosa)
+    background-color: var(--mimosa);
 }
 
 .update-container {
@@ -43,6 +43,14 @@ form {
     margin: 0 auto;
     width: 300px;
 
+    &form-group {
+
+        &input {
+
+            border: 1px solid var(--mimosa);
+        }
+    }
+
 }
 
 button {
@@ -50,9 +58,12 @@ button {
 }
 
 #temp-pic {
-    width: 250px;
-    height: auto;
+    margin-top: 70px;
+    width: 300px;
+    height: 300px;
     border-radius: 50%;
-    aspect-ratio: 1/1;
+    /*aspect-ratio: 1/1;*/
+    object-fit: cover;
 }
+
 

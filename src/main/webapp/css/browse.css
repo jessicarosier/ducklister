@@ -39,35 +39,14 @@ body {
     max-width: 300px;
 }
 
-/*.ad-img {*/
-/*    max-width: 250px;*/
-/*    max-height: 250px;*/
-/*    margin: 0 auto;*/
-/*    display: block;*/
-/*}*/
-
-/*.duck-card {*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*    max-width: 300px;*/
-/*    margin: 10px;*/
-/*    padding: 10px;*/
-/*    border-radius: 5px;*/
-/*    background-color: white;*/
-/*    box-shadow: 0 0 5px lightgray;*/
-/*    &:hover {*/
-/*        box-shadow: 0 0 5px grey;*/
-/*        transform: scale(1.01);*/
-/*    }*/
-/*}*/
-
+/*horizontal scrolling row*/
 .row {
     display: flex;
     -ms-overflow-style: none; /* for Internet Explorer, Edge */
     scrollbar-width: none; /* for Firefox */
     overflow-y: scroll;
+    min-height: fit-content;
+
 }
 
 .row::-webkit-scrollbar {
@@ -129,6 +108,14 @@ body {
     text-align: center;
     position: relative;
     transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid var(--mimosa);
+
 }
 
 .post-card:hover {
@@ -137,8 +124,17 @@ body {
     transform: scale(1.02);
 }
 
-.post-card button {
-    margin-top: 90px;
+
+
+.post-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px;
+    padding: 10px;
+    max-width: 300px;
 }
 
 .ad-img-wrapper{
@@ -161,3 +157,12 @@ form {
     margin: 0;
     max-height: 50px;
 }
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+

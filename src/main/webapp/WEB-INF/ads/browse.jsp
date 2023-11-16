@@ -16,17 +16,24 @@
         <div class="row header-row">
             <div class="header-wrapper">
                 <div class="page-header">
-                    <h1>Browse by Category</h1>
+                            <h1>Browse by Category</h1>
                 </div>
             </div>
         </div>
         <c:choose>
             <c:when test="${ads.isEmpty()}">
-                <div class="form-wrapper">
+                <div class="form-wrapper d-flex">
                     <form action="/cat" method="post" class="category-select-form">
                         <select id="category" name="id" class="form-control category-select" type="text">
                             <c:forEach var="cat" items="${cats}">
-                                <option value="${cat.id}">${cat.title}</option>
+                                <c:choose>
+                                    <c:when test="${cat.id == selectedCat}">
+                                        <option value="${cat.id}" selected >${cat.title}</option>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <option value="${cat.id}">${cat.title}</option>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:forEach>
                         </select>
                         <button type="submit">Submit</button>
@@ -38,21 +45,31 @@
                 <form action="/cat" method="post" class="category-select-form" style="align-self: center">
                     <select id="category" name="id" class="form-control" type="text">
                         <c:forEach var="cat" items="${cats}">
-                            <option value="${cat.id}">${cat.title}</option>
+                            <c:choose>
+                                <c:when test="${cat.id == selectedCat}">
+                                    <option value="${cat.id}" selected >${cat.title}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${cat.id}">${cat.title}</option>
+                                </c:otherwise>
+                            </c:choose>
                         </c:forEach>
                     </select>
                     <button type="submit">Submit</button>
                 </form>
                 <section class="row">
-                    <h2>Ads in this category:</h2>
                         <%-- arrow to let users know this row scrolls horizontally   --%>
                     <div class="arrow">
                         <img src="/assets/images/arrow-right-solid.svg" id="arrow-img">
                     </div>
                     <c:forEach var="ad" items="${ads}">
                         <div class="post-card d-flex">
-                            <h2>${ad.title}</h2>
-                            <p>${ad.description}</p>
+
+                            <div class="post-card-text">
+                                <h2>${ad.title}</h2>
+                                <p>${ad.description}</p>
+                            </div>
+
                             <div class="ad-img-wrapper">
                                 <c:choose>
                                     <c:when test="${ad.image == null || ad.image == ''}">

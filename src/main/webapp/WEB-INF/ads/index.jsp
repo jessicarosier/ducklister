@@ -8,11 +8,22 @@
     <link href="/css/ads-index.css" rel="stylesheet">
 </head>
 <body>
-<jsp:include page="/WEB-INF/partials/navbar.jsp" >
-    <jsp:param name="location" value="search" />
+<jsp:include page="/WEB-INF/partials/navbar.jsp">
+    <jsp:param name="location" value="search"/>
 </jsp:include>
 
+<div class="container-fluid w-100">
+    <h1>Here Are all the ads!</h1>
+                <form action="/cat" method="post">
+                    <select id="category" name="id" type="text" >
+                        <c:forEach var="cat" items="${cats}">
+                            <option value="${cat.id}">${cat.title}</option>
+                        </c:forEach>
+                    </select>
+                    <button type="submit">Submit</button>
+                </form>
     <div class="container-fluid w-100">
+
         <div class=" categories-drop-down-row" style="display: flex; align-items: center">
             <div class="categories-drop-down-col" style="width: 100%; display: flex; flex-direction: column; justify-content: center">
                 <h1>Here Are all the ads!</h1>
@@ -35,6 +46,14 @@
                 </div>
                 <c:forEach var="ad" items="${ads}">
                     <div class="post-card d-flex">
+
+        <div class="row">
+            <div class="arrow">
+                <img src="/assets/images/arrow-right-solid.svg" id="arrow-img">
+            </div>
+            <c:forEach var="ad" items="${ads}">
+                <div class="post-card d-flex">
+
                     <h2>${ad.title}</h2>
                     <p>${ad.description}</p>
                     <div class="ad-img-wrapper">
@@ -61,32 +80,15 @@
                         </form>
                     </c:if>
                 </div>
-                </c:forEach>
-
-
-
+            </c:forEach>
 
 
         </div>
     </div>
 
-<jsp:include page="/WEB-INF/partials/script.jsp"/>
+    <jsp:include page="/WEB-INF/partials/script.jsp"/>
 </body>
-    <script>
+<script>
 
-        //TODO MAYBE IMPLEMENT
-        // const movieCard = document.querySelectorAll(".post-card");
-        // const overlay = document.querySelectorAll(".overlay")
-        //
-        // movieCard.onmouseover = function(e) {
-        //     overlay.classList.toggle("visible");
-        //     console.log(e.target);
-        // };
-        // movieCard.onmouseout = function(e) {
-        //
-        //     overlay.classList.toggle("visible");
-        // };
-
-
-    </script>
+</script>
 </html>

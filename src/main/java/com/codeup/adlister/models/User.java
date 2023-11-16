@@ -79,6 +79,18 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
+    public User(long id, String firstName, String lastName, String username, String email, String jeepModel, String jeepYear, String jeepColor, String avatar) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.email = email;
+        this.jeep_model = jeepModel;
+        this.jeep_year = jeepYear;
+        this.jeep_color = jeepColor;
+        this.avatar = avatar;
+    }
+
     public long getId() {
         return id;
     }
@@ -127,9 +139,13 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public String getAvatar() {return avatar;}
+    public String getAvatar() {
+        return avatar;
+    }
 
-    public void setAvatar(String avatar) {this.avatar = avatar;}
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 
     public String getJeepModel() {
         return jeep_model;

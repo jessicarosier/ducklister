@@ -72,16 +72,6 @@ public class MySQLAdsDao implements Ads {
         } catch (SQLException e) {
             throw new RuntimeException("Error searching for ads", e);
         }
-//        try {
-//            PreparedStatement stmt = connection.prepareStatement(query);
-//            stmt.setString(1, "%" + searched + "%");
-//            stmt.setString(2, "%" + searched + "%");
-//            ResultSet rs = stmt.executeQuery();
-//            return (createAdsFromResults(rs));
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            throw new RuntimeException("Error finding retrieving your ad", e);
-//        }
     }
 
 

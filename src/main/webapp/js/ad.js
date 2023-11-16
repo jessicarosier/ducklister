@@ -8,19 +8,19 @@ commentLink.addEventListener("click", (e) => {
     console.log(adId);
 
     modal.innerHTML = `
- <div class="modal-bg"></div>
-        <div class="modal-content">
-        <div class="modal-header">
-        <h2 class="modal-title">Comment</h2>
-            <span class="modal-close">&times;</span>
-        </div>
-            <form action="/comment" method="post">
-                <input type="hidden" name="id" value="${adId}">
-                <input type="hidden" name="location" value="/ad">
-                <textarea name="comment" ></textarea>
-                <button type="submit" class="submit-btn">Submit<button>
-            </form>
-        </div>
+         <div class="modal-bg"></div>
+         <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title">Comment</h2>
+                    <span class="modal-close">&times;</span>
+                </div>
+                <form action="/comment" method="post">
+                    <input type="hidden" name="id" value="${adId}">
+                    <input type="hidden" name="location" value="/ad">
+                    <textarea name="comment" ></textarea>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+                </div>
     `;
 
     const modalClose = modal.querySelector(".modal-close");

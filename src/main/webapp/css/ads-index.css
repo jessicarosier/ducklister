@@ -65,7 +65,7 @@ button:hover{
     min-width: 400px;
     min-height: 500px;
     margin: 10px;
-    /*box-shadow: 10px 10px #ffffff;*/
+    box-shadow: 10px 10px #ffffff;
     text-align: center;
     position: relative;
     transition: transform 0.2s;

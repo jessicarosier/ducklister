@@ -1,0 +1,83 @@
+body {
+    background-color: var(--mimosa);
+    margin: 0;
+    padding: 0;
+}
+
+#arrow-img {
+    max-width: 100px;
+    max-height: 100px;
+    margin: 0 auto;
+    display: block;
+    animation: pointRight 1s infinite;
+}
+
+@keyframes pointRight {
+    0% {
+        transform: translateX(0px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+
+/*LUIS STYLING*/
+
+.row {
+    display: flex;
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+}
+
+.row::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
+
+.post-card {
+    color:#000000;
+    background-color: var(--aquamarine);
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 500px;
+    margin: 10px;
+    /*box-shadow: 10px 10px #ffffff;*/
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
+}
+
+.post-card:hover {
+    transition: 0.3s ease-in;
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+.post-card button {
+    margin-top: 90px;
+}
+
+.ad-img-wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ad-img {
+    max-width: 200px;
+    max-height: 200px;
+    min-width: 200px;
+    min-height: 200px;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+}
+
+form {
+    margin: 0;
+    max-height: 50px;
+}

@@ -22,8 +22,8 @@
                         <label for="file-upload" class="custom-file-upload">Update Profile Pic
                             <input type="file" id="file-upload">
                         </label>
-                        <input type="hidden" id="image-url" name="image" value="">
-                        <img src="${sessionScope.user.avatar}" name="adImage" alt="ad image" class="ad-image"
+                        <input type="hidden" id="image-url" name="image" value="${thisUser.getAvatar()}">
+                        <img src="${thisUser.getAvatar()}" name="adImage" alt="ad image" class="ad-image"
                              id="temp-pic">
                     </div>
 

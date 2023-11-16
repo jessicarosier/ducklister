@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@200;400&display=swap');
 
 :root {
-    --aquamarine : #A2C4E0;
+    --aquamarine: #A2C4E0;
     --mimosa: #F7CB2D;
     --blue-grotta: #0D659D;
     --royal-blue: #1390E0;
+    --chewy: 'Chewy';
+    --nunito: 'Nunito', sans-serif;
 }
 
 
@@ -11,6 +14,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: var(--nunito);
 }
 
 .page-wrapper {
@@ -25,16 +29,71 @@ img {
 
 
 /*NAVBAR STYLING*/
-.navbar {
-    background-color: var(--mimosa);
-    border: none;
-    padding: 10px 20px;
+.navigation-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 30px;
+    gap: 50px;
+    text-transform: uppercase;
+    list-style: none;
+
+    & li {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+
+        & a {
+            text-decoration: none;
+            color: #292929;
+            font-weight: bold;
+            padding: 0;
+            margin: 0;
+            font-family: var(--chewy);
+            font-size: 30px;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            /*on hover rubber duck*/
+
+            &:hover {
+                color: var(--royal-blue);
+                transition: 0.5s;
+
+            }
+        }
+    }
+
+}
+
+/*media queries*/
+@media (max-width: 1024px) {
+    .navigation-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+
+        & li {
+
+            & a {
+                font-size: 20px;
+
+            }
+        }
+    }
 }
 
 .navbar-container {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background-color: var(--mimosa);
     border: none;
     padding: 0;
@@ -45,17 +104,29 @@ img {
     display: flex;
     justify-content: start;
     align-items: center;
-    gap: 5px;
     justify-self: start;
     margin: 0;
-}
 
-#search {
-    max-width: 300px;
+    & input {
+        height: 32px;
+        border-radius: 25px;
+        border: 1px solid #292929;
+        padding: 0 10px;
+        width: 250px;
+        margin-left: -20px;
+
+    }
+
+    & button {
+        height: 32px;
+        margin-left: -20px;
+        border-bottom-right-radius: 25px;
+        border-top-right-radius: 25px;
+    }
 }
 
 button {
-    color:#ffffff;
+    color: #ffffff;
     background-color: #292929;
     width: 200px;
     height: 40px;
@@ -68,17 +139,17 @@ button {
     }
 }
 
-.nav-links{
-text-decoration: none;
+.nav-image {
+    width: 25px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-links:hover {
-    color: var(--royal-blue);
-}
 
-#search-button {
-  height: 32px;
-}
+
+
+
 
 
 

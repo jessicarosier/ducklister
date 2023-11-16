@@ -17,7 +17,11 @@
     <div class="register-form-container">
         <div class="register-form-wrapper">
             <h1>Register for a new account</h1>
-            <p>It's quick and easy.</p>
+            <div class="heart-duck-wrapper">
+            <p>It's quack and easy.</p>
+                <img class="nav-image" id="hidden-duck" src="/assets/images/heart-eyes-duck.png">
+            </div>
+
 
             <form action="/register" method="post" id="register-form">
 
@@ -63,13 +67,15 @@
                     <input id="confirm_password" name="confirm_password" class="form-control password" type="password"
                            required="required" placeholder="Confirm Password">
                 </div>
-                <button type="submit" >Sign Up</button>
+
+                    <button id="register-button" type="submit">Sign Up</button>
+
             </form>
         </div>
     </div>
 </div>
 
 <jsp:include page="partials/script.jsp"/>
-
+<script src="/js/register.js"></script>
 </body>
 </html>

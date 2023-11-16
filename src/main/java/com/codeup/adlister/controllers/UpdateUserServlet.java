@@ -19,24 +19,18 @@ public class UpdateUserServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         System.out.println(user.getJeepYear());
         System.out.println(user.getEmail());
+        System.out.println(user.getAvatar());
 
 
         if (user == null) {
-
             HttpSession session = request.getSession();
             String requestedUrl = request.getRequestURL().toString();
             session.setAttribute("requestedUrl", requestedUrl);
 
-
-               request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-          //  response.sendRedirect("/login");
-
-            return;
         } else {
 
-
             //sets attribute with current session user and sends it to be displayed
-            request.setAttribute("thisUser", DaoFactory.getUsersDao().findByUsername(user.getUsername()));
+            request.setAttribute("thisUser", user);
             request.getRequestDispatcher("/WEB-INF/updateUser.jsp").forward(request, response);
         }
     }
@@ -52,6 +46,14 @@ public class UpdateUserServlet extends HttpServlet {
         String jeepModel = request.getParameter("model");
         String jeepYear = request.getParameter("year");
         String jeepColor = request.getParameter("color");
+        String avatar = request.getParameter("image");
+
+        //if the avatar is blank, set it as the old iamge
+        if(avatar == "" || avatar == null) {
+            User user = (User) request.getSession().getAttribute("user");
+            avatar.equals(user.getAvatar());
+            System.out.println(user.getAvatar());
+        }
 
 
         // validate input
@@ -67,7 +69,8 @@ public class UpdateUserServlet extends HttpServlet {
         }
 
         // create and save a new user
-        User user = new User(id, firstName, lastName, username, email,jeepModel, jeepYear, jeepColor);
+        User user = new User(id, firstName, lastName, username, email,jeepModel, jeepYear, jeepColor, avatar);
+
 
 
         //insert the user into the database with new password into
@@ -77,6 +80,9 @@ public class UpdateUserServlet extends HttpServlet {
             throw new RuntimeException(e);
         }
 
+        User updatedUser = DaoFactory.getUsersDao().findUserById(user.getId());
+        request.removeAttribute("user");
+        request.getSession().setAttribute("user", updatedUser );
         //redirect the user to the profile page
         request.getRequestDispatcher("/WEB-INF/userUpdatedMessage.jsp").forward(request, response);
     }

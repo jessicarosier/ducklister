@@ -9,7 +9,7 @@
 </head>
 <body>
     <jsp:include page="/WEB-INF/partials/navbar.jsp" >
-        <jsp:param name="location" value="index" />
+        <jsp:param name="location" value="home" />
      </jsp:include>
     <div class="page-wrapper">
 

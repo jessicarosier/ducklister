@@ -12,7 +12,7 @@
     <jsp:param name="location" value="browse"/>
 </jsp:include>
 <main class="page-wrapper">
-    <div class="container">
+    <div class="container" style="display: flex; flex-direction: column">
         <div class="row header-row">
             <div class="header-wrapper">
                 <div class="page-header">
@@ -42,7 +42,7 @@
                 <p>No ads found.</p>
             </c:when>
             <c:otherwise>
-                <form action="/cat" method="post" class="category-select-form">
+                <form action="/cat" method="post" class="category-select-form" style="align-self: center">
                     <select id="category" name="id" class="form-control" type="text">
                         <c:forEach var="cat" items="${cats}">
                             <c:choose>

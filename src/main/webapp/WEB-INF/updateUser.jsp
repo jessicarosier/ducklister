@@ -26,6 +26,51 @@
                         <img src="${thisUser.getAvatar()}" name="adImage" alt="ad image" class="ad-image"
                              id="temp-pic">
                     </div>
+        <%-- start part taken out--%>
+<%--                    </c:when>--%>
+<%--                    <c:otherwise>--%>
+<%--                    <img src="${sessionScope.user.avatar}" name="avatar" alt="avatar" class="avatar" id="profile-pic">--%>
+<%--                    </c:otherwise>--%>
+<%--                    </c:choose>--%>
+<%--            </div>--%>
+<%--            <div class="form-group">--%>
+<%--                <label for="firstName">First Name</label>--%>
+<%--                <input required id="firstName" name="firstName" class="form-control" type="text"--%>
+<%--                       value="${thisUser.getFirstName()}">--%>
+<%--            </div>--%>
+<%--            <div class="form-group">--%>
+<%--                <label for="lastName">Last Name</label>--%>
+<%--                <input required id="lastName" name="lastName" class="form-control" type="text"--%>
+<%--                       value="${thisUser.getLastName()}">--%>
+<%--            </div>--%>
+<%--            <div class="form-group">--%>
+<%--                <label for="username">Username</label>--%>
+<%--                <input required id="username" name="username" class="form-control" type="text"--%>
+<%--                       value="${thisUser.getUsername()}">--%>
+<%--            </div>--%>
+<%--            <div class="form-group">--%>
+<%--                <label for="email">Email</label>--%>
+<%--                <input required id="email" name="email" class="form-control" type="text"--%>
+<%--                       value="${thisUser.getEmail()}">--%>
+<%--            </div>--%>
+<%--            <h2>Update Jeep.</h2>--%>
+<%--            <div class="form-group">--%>
+<%--                <label for="model">Model</label>--%>
+<%--                <input id="model" name="model" class="form-control" type="text"--%>
+<%--                       value="${thisUser.getJeepModel()}">--%>
+<%--            </div>--%>
+<%--            <div class="form-group">--%>
+<%--                <label for="year">Year</label>--%>
+<%--                <input  id="year" name="year" class="form-control" type="text"--%>
+<%--                       value="${thisUser.getJeepYear()}">--%>
+<%--            </div>--%>
+<%--            <div class="form-group">--%>
+<%--                <label for="color">Color</label>--%>
+<%--                <input  id="color" name="color" class="form-control" type="text"--%>
+<%--                       value="${thisUser.getJeepColor()}">--%>
+<%--            </div>--%>
+<%--end of part taken out--%>
+
 
                     <div class="form-group">
                         <label for="firstName">First Name</label>

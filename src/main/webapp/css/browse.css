@@ -96,17 +96,26 @@ body {
 /*LUIS STYLING*/
 
 .post-card {
+    color:#000000;
+    background-color: var(--aquamarine);
+    border-radius: 15px;
+    min-width: 400px;
+    min-height: 500px;
+    max-width: 400px;
+    max-height: 500px;
+    margin: 10px;
+    box-shadow: 10px 10px #ffffff;
+    text-align: center;
+    position: relative;
+    transition: transform 0.2s;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
-    margin: 10px;
     padding: 10px;
-    max-width: 300px;
-    border-radius: 15px;
-    background-color: var(--aquamarine);
     border: 1px solid var(--mimosa);
+
 }
 
 .post-card:hover {

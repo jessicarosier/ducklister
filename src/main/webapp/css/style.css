@@ -56,11 +56,16 @@ img {
             display: flex;
             align-items: center;
             gap: 2px;
-            /*on hover rubber duck*/
+
 
             &:hover {
                 color: var(--royal-blue);
                 transition: 0.5s;
+                display: block;
+
+                &:only-child {
+                    display: inline-block;
+                }
 
             }
         }
@@ -138,6 +143,7 @@ button {
         color: black;
     }
 }
+
 
 .nav-image {
     width: 25px;

@@ -17,7 +17,7 @@
         <div class="row main-row" style="width: 100%">
 
             <div class="col-md-6">
-                <h1>Here is the selected ad</h1>
+
                 <c:forEach var="ad" items="${ad}">
                     <div class="post-card d-flex">
                         <h2>${ad.title}</h2>

@@ -4,14 +4,14 @@ public class Config {
 
 
     public String getUrl() {
-        return "jdbc:mysql://ducklister-webapp-server.mysql.database.azure.com:3306/ducklister-webapp-database?useSSL=true";
+        return "jdbc:mysql://localhost:3306/adlister_db?allowPublicKeyRetrieval=true&useSSL=false";
     }
 
     public String getUsername() {
-        return "czezzwyxit";
+        return "root";
     }
 
     public String getPassword() {
-        return "G0N@vy9191!!";
+        return "codeup";
     }
 }

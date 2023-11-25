@@ -17,7 +17,7 @@
 
         <div class=" categories-drop-down-row" style="display: flex; align-items: center">
             <div class="categories-drop-down-col" style="width: 100%; display: flex; flex-direction: column; justify-content: center">
-                <h1>Here Are all the ads!</h1>
+                <h1>Check out these ducks!</h1>
 
                 <form action="/cat" method="post" class="categories-form">
                     <select id="category" name="id" type="text" >

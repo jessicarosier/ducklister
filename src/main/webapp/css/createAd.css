@@ -1,123 +1,123 @@
 
 :root {
-    --aquamarine : #A2C4E0;
+    --aquamarine: #A2C4E0;
     --mimosa: #F7CB2D;
     --blue-grotta: #0D659D;
     --royal-blue: #1390E0;
 }
-body{
+
+body {
     background-color: #F7CB2D;
 }
 
-.container{
+.container {
     padding: 25px;
     width: 75%;
-    height: 110%;
+    height: auto;
     justify-content: center;
     background-color: white;
-    border: 1px solid  #0D659D;
+    border: 1px solid #0D659D;
     border-radius: 15px;
-    background-image: url("/Users/genesiscruz/IdeaProjects/ducklister/images/design.png");
 
 }
-.create-new-ad-text{
+.wrapper {
     display: flex;
+    justify-content: space-evenly;
+}
+
+#create-ad-form {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
-    position: relative;
-    right: 25px
+    align-items: center;
 }
-#title{
-    border: 1px solid #F7CB2D;
-    border-radius: 10px;
-    width: 200px;
 
-    padding: 5px;
+.left-content {
+
 
 }
-#description{
-    width: 300px;
-    /*height: 300px;*/
-    text-indent: unset;
-    border: 1px solid #F7CB2D;
-    border-radius: 10px;
-    padding: 5px;
-}
-.left-content{
-    padding: 25px;
-}
-.align-p{
-    display: flex;
-    position: relative;
-    left: 30%
-}
-.right-content{
+
+.right-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*margin-left: 45%;*/
-    position: absolute;
-    top: 200px;
-    right: 350px;
-
 }
-.category{
+
+/*.create-new-ad-text {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+
+/*}*/
+
+/*#title {*/
+/*    border: 1px solid #F7CB2D;*/
+/*    border-radius: 10px;*/
+/*    width: 200px;*/
+/*    padding: 5px;*/
+
+/*}*/
+
+/*#description {*/
+/*    width: 300px;*/
+/*    text-indent: unset;*/
+/*    border: 1px solid #F7CB2D;*/
+/*    border-radius: 10px;*/
+/*    padding: 5px;*/
+/*}*/
+
+/*.left-content {*/
+/*    padding: 25px;*/
+/*}*/
+
+/*.align-p {*/
+/*    display: flex;*/
+/*}*/
+
+/*.right-content {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+
+/*}*/
+
+.category {
     display: inline-block;
-    width: 125%;
+    width: auto;
     justify-content: center;
     margin-left: 75px;
     margin-bottom: 10px;
-    position: relative;
-    /*border: 1px solid #1390E0;*/
-
-    /*top: 175px;*/
 }
-.categories-group{
+
+.categories-group {
     display: flex;
     flex-direction: column;
-    /*background-color: #A2C4E0;*/
     border: 1px solid #1390E0;
     border-radius: 10px;
-    height: 50%;
-    /*justify-content: space-evenly;*/
+    height: auto;
     padding: 25px;
 }
-.category-label {
+
+
+
+.btn-align {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    /*margin-bottom: 60px;*/
-}
-input[type=checkbox]{
-    flex: none;
-}
-.vl {
-    border-left: 1px solid #0D659D;
-    height: 50%;
-    position: absolute;
-    left: 50%;
-    margin-left: -3px;
-    top: 200px;
-}
-.btn-align{
-    display: flex;
-    justify-content: center;
-    position: relative;
-    bottom: 160px;
+    flex-direction: row;
+    justify-self: end;
 }
 
 .btn {
-    color:#ffffff;
+    color: #ffffff;
     background-color: #292929;
     width: 25%;
     /*height: 40px;*/
     border-radius: 25px;
-    position: absolute;
-    top: 350px;
 }
-.btn:hover{
+
+.btn:hover {
     background-color: var(--royal-blue);
 }
-.ad-image{
+
+.ad-image {
     max-width: 15%;
     height: auto;
     margin-top: 10px;

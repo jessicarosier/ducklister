@@ -61,11 +61,6 @@ img {
             &:hover {
                 color: var(--royal-blue);
                 transition: 0.5s;
-                display: block;
-
-                &:only-child {
-                    display: inline-block;
-                }
 
             }
         }
